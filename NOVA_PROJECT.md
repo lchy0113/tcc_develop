@@ -188,3 +188,9 @@ endif
 ```
 
 (4) : 설치할 APK list
+
+
+- kernel.mk
+```
+device/kdiwin/nova/common/kernel.mk
+```
