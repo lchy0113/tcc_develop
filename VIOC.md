@@ -1,6 +1,8 @@
 # VIOC 
 =====
 
+## Overview
+</pr>
 VIOC(Video Input/Output Controller)는 시스템 메모리에서 다양한 디스플레이 장치로 이미지 데이터를 보내거나 외부 비디오 입력에서 이미지 데이터를 받아 시스템 메모리에 쓰는 데 사용됩니다.
 
 디스플레이 장치는 TFT-LCD(RGB 인터페이스 유형), NTSC/PAL 인터페이스, HDMI 또는 아날로그 출력과 같은 것이고 비디오 입력은 카메라 또는 TV 입력 등과 같은 것입니다.
@@ -50,3 +52,9 @@ VIOC의 각 하드웨어 component는 "SYSTEM TIMER", "GRDMA", "VRDMA", "VWDMA",
 	"DEC100"은 GC420 2D 비디오 디코더(GC420은 GRAPHIC 부분 참조)에서 생성된 압축 비디오 스트림 데이터를 압축 해제하고, "DTRC"는 VP9 비디오 디코더(VP9는 VIDEOBUS 부분 참조)에서 생성된 압축 비디오 스트림 데이터를 압축 해제합니다.  
   
  ![VIOC Block Diagram](images/vioc_block_diagram.png)
+
+
+## Component & Interface
+</pr>
+ VIOC는 몇 가지 구성 요소로 구성됩니다.  사용자는 원하는 구성 요소를 구성할 수 있습니다.
+
