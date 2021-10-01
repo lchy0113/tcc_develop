@@ -58,3 +58,32 @@ VIOC의 각 하드웨어 component는 "SYSTEM TIMER", "GRDMA", "VRDMA", "VWDMA",
 </pr>
  VIOC는 몇 가지 구성 요소로 구성됩니다.  사용자는 원하는 구성 요소를 구성할 수 있습니다.
 
+
+
+# DDI_CONFIG
+=====
+
+## Overview
+</pr>
+DDI_CONFIG는 LCD port muxing, on-the-fly mode connection, HDMI AES KEY 설정 등과 같은 DDI bus device configurations을 제어합니다.
+
+## DDI_CONFIG Specific Features
+</pr>
+- Port connection of Scaler, LCDC, and VIQE for on-the-fly-mode
+- Control the Connection path of each display devices
+ (LCDC, HDMI, TV-Encoder)
+- HDMI on-off control
+- Set HDMI AESKEY for encryption
+
+## Block Diagram of DDI_CONFIG
+</pr>
+
+아래 그림은 DDI_CONFIG 블록의 간단한 블록다이어그램을 설명합니다.
+on-fly mode용 포트 mux는 LCD 컨트롤러와 VIQE/memory to memory scaler0/1 사이에 있어 직접 연결되지 않은 경우 불가피한 중복 메모리 액세스를 제거합니다.
+예를 들어, "VIQE-MSCL-LCDC" 조합은 image enhancement, scaling, external LCD로 출력의 one-stop 처리를 가능하게 하므로 메모리 액세스 시간을 줄일 수 있습니다.
+
+LCD Controller는 HDMI, TV-OUT, LCDC 등 다양한 출력 인터페이스를 지원합니다.
+
+LCDC 인터페이스는 최대 2개의 채널을 제공할 수 있습니다.
+
+ ![Block Diagram of DDI_CONFIG](images/block_diagram_of_DDI_CONFIG.png)
