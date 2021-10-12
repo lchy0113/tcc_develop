@@ -69,6 +69,7 @@ DDI_CONFIG는 LCD port muxing, on-the-fly mode connection, HDMI AES KEY 설정 �
 
 ## DDI_CONFIG Specific Features
 </pr>
+
 - Port connection of Scaler, LCDC, and VIQE for on-the-fly-mode
 - Control the Connection path of each display devices
  (LCDC, HDMI, TV-Encoder)
@@ -97,11 +98,51 @@ LCDC 인터페이스는 최대 2개의 채널을 제공할 수 있습니다.
 =====
 
 ```
-tcc898x:/ # mem r 0x12000000 w 0x4
-0x12000000 memory mapped at address 0xab5aa000.
-12000000: 140c82a1                            : ....
-tcc898x:/ # mem r 0x12000100 w 0x4
-0x12000100 memory mapped at address 0xa7c39000.
-12000100: 1906be61                            : a...
+
+tcc898x:/ # mem r 0x12000000 w 0x4 ; mem r 0x12000100 w 0x4
+0x12000000 memory mapped at address 0xafd31000.
+12000000: 1106be61                            : a...
+0x12000100 memory mapped at address 0xb6873000.
+12000100: 140c82a1                            : ....
 tcc898x:/ #
 ```
+
+```
+(composite)
+ persist.sys.output_mode 2
+fbdisplay0
+	|
+	+-> vioc_display0 
+	+-> vioc_wmixer 0
+	+-> vioc_rdma 0 1 2 3 
+	+-> vioc_wdma 0
+
+(hdmi & lcd)
+ persist.sys.output_mode 1 
+fbdisplay1
+	|
+	+-> vioc_display1
+	+-> vioc_wmixer 1
+	+-> vioc_rdma 4 5 6 7
+	+-> vio_wdma 1
+
+tcc_video_viqe_external
+	|
+	+-> vioc_wmixer 0
+	+-> vioc_rdma 3
+	+-> vioc_display0
+	+-> vioc_scaler 1
+	
+
+tcc_video_viqe_lcd
+	|
+	+-> vioc_wmixer 1
+	+-> vioc_rdma 7
+	+-> vioc_display1
+	+-> vioc_scaler 1
+	
+```
+
+
+ persist.sys.output_mode 1 
+
