@@ -87,3 +87,19 @@ LCD Controller는 HDMI, TV-OUT, LCDC 등 다양한 출력 인터페이스를 지
 LCDC 인터페이스는 최대 2개의 채널을 제공할 수 있습니다.
 
  ![Block Diagram of DDI_CONFIG](images/block_diagram_of_DDI_CONFIG.png)
+
+
+
+</pr>
+# tcc8985 evboard
+=====
+
+```
+tcc898x:/ # mem r 0x12000000 w 0x4
+0x12000000 memory mapped at address 0xab5aa000.
+12000000: 140c82a1                            : ....
+tcc898x:/ # mem r 0x12000100 w 0x4
+0x12000100 memory mapped at address 0xa7c39000.
+12000100: 1906be61                            : a...
+tcc898x:/ #
+```
