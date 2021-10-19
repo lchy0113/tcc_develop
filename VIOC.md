@@ -146,3 +146,14 @@ tcc_video_viqe_lcd
 
  persist.sys.output_mode 1 
 
+
+# analyse : extenddisplay_v02 hal
+=====
+
+```
+class ExtendDisplayClient
+```
+
+```
+init()
+```
