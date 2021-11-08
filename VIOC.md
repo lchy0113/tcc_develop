@@ -155,5 +155,7 @@ class ExtendDisplayClient
 ```
 
 ```
-init()
+int ExtendDisplayClient::init()
+	|
+	+-> pthread_create(&client_thread-id, NULL, &static_client_thread, this)
 ```
