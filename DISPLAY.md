@@ -22,4 +22,17 @@ called from crt0.S	/arch/arm/crt.S
 								 * mapping phy and board api
 								 * HDMI init (hdmi core power on, off)
 								 */
+							|
+							+-> void VIOC_OUTCFG_SetOutConfig(unsigned nType, unsigned nDisp)	/platform/tcc898x/vioc/vioc_outcfg.c
+								/*
+								 * set VIOC_OUTCFG(0x12100200) to DISPx
+								 */
+							|
+							+-> void VOIC_DISP_TurnOff(VIOC_DISP *pDISP)	/platform/tcc898x/vioc/vioc_disp.c
+								/* 
+								 * LCD Controller Stop
+								 * set DCTRL(0x12000000)
+								 */
+							|
+							+->	void video_params_reset(videoParams_t *videoParams)	/dev/hdmi/hdmi_v2_0/hdmi_api_lib/src/core/video_params.c
 ```
