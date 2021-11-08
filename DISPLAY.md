@@ -25,6 +25,11 @@ called from crt0.S	/arch/arm/crt.S
 								 * mapping phy and board api
 								 * HDMI init (hdmi core power on, off)
 								 */
+								 |
+								 +-> void dwc_hdmi_core_power_on(void)
+								 	/*
+									 * setting clock, i2c,,
+									 */
 							|
 							+-> void VIOC_OUTCFG_SetOutConfig(unsigned nType, unsigned nDisp)	/platform/tcc898x/vioc/vioc_outcfg.c
 								/*
