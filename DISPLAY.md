@@ -16,6 +16,9 @@ called from crt0.S	/arch/arm/crt.S
 					+-> lcdc_init()	platform/tcc898x/lcdc.c
 						|
 						+-> lcdc_io_init_hdmi(unsigned char lcdc_num)	/platform/tcc898x/lcdc.c
+							/*
+							 * 1st output setting : hdmi
+							 */
 							|
 							+-> hdmi_ddi_config_init(unsigned int display_device)	/dev/hdmi/hdmi_v2_0/hdmi_v2_0.c
 								/* 
@@ -37,4 +40,11 @@ called from crt0.S	/arch/arm/crt.S
 							+->	void video_params_reset(videoParams_t *videoParams)	/dev/hdmi/hdmi_v2_0/hdmi_api_lib/src/core/video_params.c
 								|
 								+-> void hdmi_start(videoParams_t *videoParams)	/dev/hdmi/hdmi_v2_0.c
+									|
+									+-> void edid_read_cap(void)	/dev/hdmi/hdmi_v2_0/hdmi_edid.c	
+					|
+					+-> static void lcdc_io_init_composite(unsigned char lcdc_num, unsigned char type)	/platform/tcc898x/lcdc.c
+						/*
+						 * 2nd output setting : compsite
+						 */
 ```
