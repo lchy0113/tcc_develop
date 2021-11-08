@@ -35,4 +35,6 @@ called from crt0.S	/arch/arm/crt.S
 								 */
 							|
 							+->	void video_params_reset(videoParams_t *videoParams)	/dev/hdmi/hdmi_v2_0/hdmi_api_lib/src/core/video_params.c
+								|
+								+-> void hdmi_start(videoParams_t *videoParams)	/dev/hdmi/hdmi_v2_0.c
 ```
