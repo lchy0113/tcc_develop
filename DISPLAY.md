@@ -28,8 +28,16 @@ called from crt0.S	/arch/arm/crt.S
 								 |
 								 +-> void dwc_hdmi_core_power_on(void)
 								 	/*
-									 * setting clock, i2c,,
+									 * setting clock,,
 									 */
+									 |
+									 +-> void dwc_hdmi_hw_reset(int reset_on)	/dev/hdmi/hdmi_v2_0/hdmi_v2_0.c
+									 /* 
+									  * initialize i2c timing
+									  * EDID i2c setting
+									  */
+									  |
+									  +-> static void hdmi_prepare_i2c(void)	/dev/hdmi/hdmi_v2_0/hdmi_misc.c
 							|
 							+-> void VIOC_OUTCFG_SetOutConfig(unsigned nType, unsigned nDisp)	/platform/tcc898x/vioc/vioc_outcfg.c
 								/*
@@ -52,4 +60,11 @@ called from crt0.S	/arch/arm/crt.S
 						/*
 						 * 2nd output setting : compsite
 						 */
+```
+## kernel
+
+```
+	static __init int hdmi1920x1080_init9void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
+	static int __init tccfb_init(void)	/driver/video/fbdev/tcc-fb/tcc_vioc_fb.c
+	static __init int hdmi1920x1080_init(void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
 ```
