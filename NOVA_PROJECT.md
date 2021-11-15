@@ -194,3 +194,12 @@ endif
 ```
 device/kdiwin/nova/common/kernel.mk
 ```
+
+
+-----
+
+# bootloader 
+
+> Added a new configuration file to the bootloader.
+
+
