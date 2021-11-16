@@ -203,3 +203,18 @@ device/kdiwin/nova/common/kernel.mk
 > Added a new configuration file to the bootloader.
 
 
+```
+make tcc8985_android_nova
+	|
+	+-> project/tcc8985_android_nova.mk
+		include $(LOCAL_DIR)/telechips.inc
+		TARGET := tcc8985_nova
+
+		PLATFORM_TYPE := android
+		DEFINES += TARGET_BOARD_STB
+
+		EMMC_BOOT := 1
+		DEFINES += _EMMC_BOOT=1
+		|
+		+-> target/tcc8985_nova/rules.mk
+```
