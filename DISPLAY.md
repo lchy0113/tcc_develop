@@ -1,5 +1,10 @@
 # DISPLAY 
 
+|     	| bootloader           	| kernel                  	|
+|-----	|----------------------	|-------------------------	|
+| 10" 	| DISP0: DISP1: lcd    	| DISP0: cvbs DISP1: lcd  	|
+| 13" 	| DISP0: hdmi  DISP1:  	| DISP0: cvbs DISP1: hdmi 	|
+
 ## bootloader (lk)
 
 ```
