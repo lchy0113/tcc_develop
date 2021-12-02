@@ -163,7 +163,51 @@ called from crt0.S	/arch/arm/crt0.S
 						 */
 ```
 ## kernel
+display
+```
+	arch_initcall(vioc_viqe_init)	drivers/video/fbdev/tcc-fb/vioc/vioc_viqe.c
+	|
+	+->	vioc_viqe:vioc_viqe@1200d000 {...} arch/arm/boot/dts/tcc/tcc898x.dtsi	
+	+-> get memory viqe0(0x1200 d000) viqe1(0x1201 0000)
 
+	arch_initall(vioc_mc_init)	drivers/video/fbdev/tcc-fb/vioc/vioc_mc.c
+	|
+	+-> vioc_mc@12009000 {...}	arch/arm/boot/dts/tcc/tcc898x.dtsi 
+
+	arch_initcall(vioc_dtrc_init)	drivers/video/fbdev/tcc-fb/vioc/vioc_dtrc.c	
+	|
+	+-> vioc_dtrc@12002600 {...}	arch/arm/boot/dts/tcc/tcc898x.dtsi
+
+	arch_initcall(vioc_config_init)	drivers/video/fbdev/tcc-fb/vioc/vioc_config.c
+	|
+	+-> vioc_config:vioc_config@1200a000 {...} arch/arm/boot/dts/tcc/tcc898x.dtsi
+	+-> void vioc_dma_path_init(void)	drivers/video/fbdev/tcc-fb/vioc/vioc_config.c	/* init rdma path */
+
+	arch_initcall(vioc_disp_init)	drivers/video/fbdev/tcc-fb/vioc/vioc_disp.c
+	|
+	+-> vioc_disp:vioc_disp@12000000 {...} arch/arm/boot/dts/tcc/tcc898x.dtsi
+
+	module_init(tccxxx_overlay_init)	driver/video/fbdev/tcc-fb/tcc_overlay.c
+	|
+	+-> tcc_overlay_drv {...} arch/arm/boot/dts/tcc/tcc898x.dtsi
+	+-> static int tcc_overlay_probe(struct platform_device *pdev)
+		|
+		+-> struct overlay_drv_type *overlay_drv : set framebuffer 
+		+-> misc_register(overlay_drv->misc) // create misc device
+		+-> set rdmas, wmix 
+
+	module_init(tcc_vsync_init)	driver/video/fbdev/tcc-fb/tcc_vsync.c
+	|
+	+-> tcc_vsync_dev {...} arch/arm/boot/dts/tcc/tcc8985-soc-module-hdmi-p01.dtsi
+	+-> static int tcc_vsync_probe(struct platform_device *pdev) 
+	
+	static int __init tccfb_init(void)	drivers/video/fbdev/tcc-fb/tcc_vioc_fb.c
+	|
+	+-> fbdisplay: fbdisplay@12000000 {...}	arch/arm/boot/dts/tcc/tcc898x.dtsi	
+	+-> static int tccfb_probe(struct platform_device *pdev)
+```
+
+hdmi
 ```
 	static __init int hdmi1920x1080_init(void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
 	static int __init tccfb_init(void)	/driver/video/fbdev/tcc-fb/tcc_vioc_fb.c
