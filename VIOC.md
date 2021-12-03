@@ -187,6 +187,11 @@ display
 	|
 	+-> vioc_disp:vioc_disp@12000000 {...} arch/arm/boot/dts/tcc/tcc898x.dtsi
 
+	arch_initcall(vioc_outputconfig_init)	drivers/video/fbdev/tcc-fb/vioc/vioc_config.c
+	|
+	+-> clear VIN_DEMUX register 	  
+	+-> set viocOutputConfig register
+
 	module_init(tccxxx_overlay_init)	driver/video/fbdev/tcc-fb/tcc_overlay.c
 	|
 	+-> tcc_overlay_drv {...} arch/arm/boot/dts/tcc/tcc898x.dtsi
