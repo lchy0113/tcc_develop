@@ -1,6 +1,25 @@
 # NOVA_PROJECT
 Information technology related to the nova project.
 
+<hr/>
+
+## repo manifest
+
+- repo manifest url : ssh://git@git.kdiwin.com:7999/hnnhn1051/project-manifests
+- remote aosp url 	: https://android.googlesource.com				(refs/tags/android-8.1.0_r20)
+- remote soc url 	: ssh://git@git.kdiwin.com:7999/hn_tcc8985 		(fourgen)
+- remote nova url	: ssh://git@git.kdiwin.com:7999/hnnov			(fourgen)
+- remote product url: ssh://git@git.kdiwin.com:7999					(master)
+
+### manifest format 참조 :
+> https://gerrit.googlesource.com/git-repo/+/master/docs/manifest-format.md
+
+
+
+<hr/>
+
+## device
+
 - 새 기기 추가
 ```
 tcc8985_nova/device/kdiwin$ find -name vendorsetup.sh
@@ -196,9 +215,9 @@ device/kdiwin/nova/common/kernel.mk
 ```
 
 
------
+<hr/>
 
-# bootloader 
+## bootloader 
 
 > Added a new configuration file to the bootloader.
 
