@@ -32,27 +32,27 @@ module_platform_driver(kdiwin_gpio_driver);
 
 -----
 ```
-module_platform_driver(gpio_keys_polled_driver)
+module_platform_driver(kdiwin_gpio_polled_driver)
 	|
 	+->	/**
 		  * 이 함수에서 device를 초기화하는 작업 진행.
 		  */
-		static int gpio_keys_polled_probe(struct platform_device pdev)
+		static int kdiwin_gpio_polled_probe(struct platform_device pdev)
 		|
 		+->	/**
-			  * alloc memory gpio_keys_platform_data (ex. pdata:28, nbuttons:2, button:40) 
+			  * alloc memory kdiwin_gpio_platform_data (ex. pdata:28, nbuttons:2, button:40) 
 			  * get information from dt
 			  */
 			 static struct gpio_keys_platform_data *gpio_keys_polled_get_devtree_pdata(struct device *dev)
 		
 			/**
-			  * gpio_keys_polled 자료 구조 선언 : input device이면서, gpio_keys_platform_data 
+			  * kdiwin_gpio_polled_dev 자료 구조 선언 : input device이면서, kdiwin_gpio_platform_data 
 			  */
- 			 struct gpio_keys_polled_dev {
+ 			 struct kdiwin_gpio_polled_dev {
 			 	struct input_polled_dev *poll_dev;
 			 	struct device *dev;
-			  	const struct gpio_keys_platform_data *pdata;
-			  	struct gpio_keys_button_data data[0];
+			  	const struct kdiwin_gpio-platform_data *pdata;
+			  	struct kdiwin_gpios_interface_data data[0];
 			}
 			
 			/**
@@ -65,24 +65,23 @@ module_platform_driver(gpio_keys_polled_driver)
 			  * work queue를 이용하여 지정된 시각(polled_inter val) 마다 값을 읽어 
 			  * user space로 던져주는 방식으로, 아래 함수가 주기적으로 호출됨 
 			  **/
-			static void gpio_keys_polled_poll(struct input_polled_dev *dev)
+			static void kdiwin_gpio_polled_poll(struct input_polled_dev *dev)
 			{
-				struct gpio_keys_polled_dev *bdev = dev->private;
-				const struct gpio_keys_platform_data *pdata = bdev->pdata;
+				struct kdiwin_gpio_polled_dev *bdev = dev->private;
 				struct input_dev *input = dev->input;
 				int i;
 
-				for (i = 0; i < pdata->nbuttons; i++) {
-					struct gpio_keys_button_data *bdata = &bdev->data[i];
+				for (i = 0; i < pdata->ninterfaces; i++) {
+					struct kdiwin_gpios_interface_data *bdata = &bdev->data[i];
 
 					if (bdata->count < bdata->threshold)
 					{
-						gpio_keys_polled_check_state(input, &pdata->buttons[i],
+						kdiwin_gpios_polled_check_state(input, &pdata->buttons[i],
 								bdata);
 						bdata->count++;
 					}
 					else
-						gpio_keys_polled_check_state(input, &pdata->buttons[i],
+						kdiwin_gpios_polled_check_state(input, &pdata->buttons[i],
 										 bdata);
 				}
 			}
@@ -90,10 +89,10 @@ module_platform_driver(gpio_keys_polled_driver)
 			/**
 			  * input device 초기화시 호출 
 			  */
-			static void gpio_keys_polled_open(struct input_polled_dev *dev)
+			static void kdiwin_gpio_polled_open(struct input_polled_dev *dev)
 			{
-				struct gpio_keys_polled_dev *bdev = dev->private;
-				const struct gpio_keys_platform_data *pdata = bdev->pdata;
+				struct kdiwin_gpio_polled_dev *bdev = dev->private;
+				const struct kdiwin_gpio_platform_data *pdata = bdev->pdata;
 
 				if (pdata->enable)
 					pdata->enable(bdev->dev);
@@ -104,10 +103,20 @@ module_platform_driver(gpio_keys_polled_driver)
 			  */
 			_set_bit(EV_KEY, input->evbit); 
 			
+
+			/**
+			  *
+			  */
+			platform_set_drvdata(pdev, bdev);
+
 			/**
 			  * input polled 장치로 등록
 			  */
 			error = input_register_polled_device(poll_dev);
-			 
+
 			
 ```
+
+
+![structure](images/gpio_polled.drawio.png)
+
