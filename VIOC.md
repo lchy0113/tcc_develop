@@ -92,10 +92,13 @@ LCDC 인터페이스는 최대 2개의 채널을 제공할 수 있습니다.
 
 # DISPLAY 
 =====
-|     	| bootloader           	| kernel                  	|
-|-----	|----------------------	|-------------------------	|
-| lcd 	| DISP0:    DISP1:     	| DISP0:	 DISP1: 	 	|
-| hdmi 	| DISP0:    DISP1:	  	| DISP0: 	 DISP1:  		|
+
+## 13inch display develop
+
+|     	| bootloader  	| kernel                  	|
+|-----	|--------------	|-------------------------	|
+| lcd 	| DISP1     	| DISP0:	 DISP1: 	 	|
+| hdmi 	| DISP0   	  	| DISP0: 	 DISP1:  		|
 
 ## bootloader (lk)
 
