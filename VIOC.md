@@ -216,10 +216,42 @@ display
 ```
 
 hdmi
+
 ```
-	static __init int hdmi1920x1080_init(void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
-	static int __init tccfb_init(void)	/driver/video/fbdev/tcc-fb/tcc_vioc_fb.c
-	static __init int hdmi1920x1080_init(void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
+static __init int hdmi1920x1080_init(void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
+	|
+	+->	static struct platform_driver hdmi1920x1080_driver = {
+		    .probe  = hdmi1920x1080_probe,
+			.remove = hdmi1920x1080_remove,
+			.driver = {
+				.name   = "hdmi1920x1080_lcd",
+				.owner  = THIS_MODULE,
+				.of_match_table = of_match_ptr(hdmi1920x1080_of_match),
+			},
+		};
+			|
+			+-> tatic int hdmi1920x1080_probe(struct platform_device *pdev)
+				|
+				+-> tccfb_register_panel(&hdmi1920x1080_panel); 
+(...)
+static int __init tccfb_init(void)	/driver/video/fbdev/tcc-fb/tcc_vioc_fb.c
+	|
+	+-> static struct platform_driver tccfb_driver = {
+			.probe      = tccfb_probe,
+			.remove     = tccfb_remove,
+			.driver     = {
+				.name   = "tccfb",
+				.owner  = THIS_MODULE,
+		#ifdef CONFIG_PM_RUNTIME
+				.pm		= &tccfb_pm_ops,
+		#endif
+				.of_match_table = of_match_ptr(tccfb_of_match),
+			},
+		};
+			|
+			+-> static int tccfb_probe(struct platform_device *pdev)
+
+static __init int hdmi1920x1080_init(void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
 ``` 
 
 </pr>
