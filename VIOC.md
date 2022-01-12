@@ -272,8 +272,13 @@ static int __init tccfb_init(void)	/driver/video/fbdev/tcc-fb/tcc_vioc_fb.c
 				+-> /** register framebuffer  */ 
 				+-> /** start display and show logo on boot */
 				+-> /** call init() from lcd_panel module */
-					|
-					+-> static __init int hdmi1920x1080_init(void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
+				|	|
+				|	+-> static __init int hdmi1920x1080_init(void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
+				+-> int tca_fb_init(struct tccfb_info *fbi)	/drivers/video/fbdev/tcc-fb/tcc_vioc_interface.c
+						|
+						+-> /** get telechips,scaler node from dt
+								get telechips,vioc_config node from dt */
+							/** prepare vioc, ddc clock */
 ``` 
 
 ### composite
@@ -342,6 +347,28 @@ static int __init tccxxx_overlay_init(void)	drivers/video/fbdev/tcc-fb/tcc_overl
 				/** Set default overlay */
 				/** get wmix information. */
 				/** Set this driver data in platform device structure */
+```
+
+### tcc_vioc_interface
+
+```
+
+```
+
+### tcc_vioc_fb
+
+```
+
+```
+
+### tcc_vsync
+
+```
+static int __init tcc_vsync_init(void)	drivers/video/fbdev/tcc-fb/tcc_vsync.c
+	|
+	+->	/** Allocate and initialize buffer for hdmi display lastframe. */
+		/** register tcc_vsync_driver to platform_driver */
+
 ```
 
 </pr>
