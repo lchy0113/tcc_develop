@@ -250,10 +250,58 @@ static int __init tccfb_init(void)	/driver/video/fbdev/tcc-fb/tcc_vioc_fb.c
 		};
 			|
 			+-> static int tccfb_probe(struct platform_device *pdev)
-
-static __init int hdmi1920x1080_init(void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
+				|
+				+->	static int tcc_dp_dt_parse_data(struct tccfb_info *info)
+				|	|	/**
+				|	|	  * Parsing data from dt
+				|	|	  * main_np = fb_displayX
+				|	|	  * extend_np = fb_displayX
+				|	|	  */
+				|	|
+				|	+-> unsgiend int tcc_vioc_display_dt_parse(struct device_node *np, struct tcc_dp_device *dp_data)
+				|			/**
+				|			  * Parsing the default display block and sub display block properties from dt.
+				|			  * ddc, wmixer , rdma, wdma
+				|			  */
+				|
+				+-> /** Setting fb_info structure properties and framebuffer operation function */
+				+-> /** initialize video memory */
+				+-> /** register framebuffer  */ 
+				+-> /** start display and show logo on boot */
+				+-> /** call init() from lcd_panel module */
+					|
+					+-> static __init int hdmi1920x1080_init(void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
 ``` 
 
+composite
+
+```
+
+int __init tcc-composite_init(void)	drivers/video/fbdev/tcc-fb/vioc/tcc_composite.c
+	|
+	+->	static struct platform_driver tcc_compostite = {
+			.probe = composite_probe,
+			.remove = composite_remove,
+			.driver = {
+				.name = "tcc_composite",
+				.owner = THIS_MODULE,
+				.pm = &composite_pm_ops,
+				.of_match_table = of_match_ptr(composite_of_match),
+			},
+		};
+			|
+			+->	 static int composite_probe(struct platform_device *pdev)	
+					|
+					+->	static int composite_parse_dt(struct device_node *np)
+					|	/** get composite_lcdc0_clk, composite_lcdc1_clk value */
+					|	/** get scaler, config, ddicfg value from dt */
+					|	/** get the information of vioc-fbfb device node */
+					|
+					+-> misc_register(&tcc_composite_misc_device)
+					|	/** register composite misc driver(file_operations) */
+					+-> void internal_tve_init(void)	drivers/video/fbdev/tcc-fb/vioc/tcc_composite_internal.c
+
+```
 </pr>
   
 # analyse : tcc8985 evboard  
