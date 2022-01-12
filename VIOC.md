@@ -165,8 +165,11 @@ called from crt0.S	/arch/arm/crt0.S
 						 * 2nd(0x12000100) output setting : compsite
 						 */
 ```
+
 ## kernel
-display
+
+### display
+
 ```
 	arch_initcall(vioc_viqe_init)	drivers/video/fbdev/tcc-fb/vioc/vioc_viqe.c
 	|
@@ -215,7 +218,7 @@ display
 	+-> static int tccfb_probe(struct platform_device *pdev)
 ```
 
-hdmi
+### hdmi
 
 ```
 static __init int hdmi1920x1080_init(void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
@@ -273,7 +276,7 @@ static int __init tccfb_init(void)	/driver/video/fbdev/tcc-fb/tcc_vioc_fb.c
 					+-> static __init int hdmi1920x1080_init(void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
 ``` 
 
-composite
+### composite
 
 ```
 
@@ -302,6 +305,13 @@ int __init tcc-composite_init(void)	drivers/video/fbdev/tcc-fb/vioc/tcc_composit
 					+-> void internal_tve_init(void)	drivers/video/fbdev/tcc-fb/vioc/tcc_composite_internal.c
 
 ```
+
+### tcc_overlay
+
+```
+module_init(tccxxx_overlay_init)
+```
+
 </pr>
   
 # analyse : tcc8985 evboard  
