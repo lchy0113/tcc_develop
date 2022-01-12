@@ -309,7 +309,39 @@ int __init tcc-composite_init(void)	drivers/video/fbdev/tcc-fb/vioc/tcc_composit
 ### tcc_overlay
 
 ```
-module_init(tccxxx_overlay_init)
+static int __init tccxxx_overlay_init(void)	drivers/video/fbdev/tcc-fb/tcc_overlay.c
+	|
+	+-> platform_driver_register(&tcc_overlay_driver)
+		/** Register tcc_overlay_driver to platform driver */
+		static struct platform_driver tcc_overlay_driver = {
+			.probe          = tcc_overlay_probe,
+			.remove         = tcc_overlay_remove,
+			.suspend        = tcc_overlay_suspend,
+			.resume         = tcc_overlay_resume,
+			.driver         = { 
+				.name   = "tcc_overlay",
+				.owner  = THIS_MODULE,
+				.of_match_table = of_match_ptr(tcc_overlay_of_match),
+			},
+		};
+			|
+			+-> /** register tcc_overlay misc device */
+			|	static const struct file_operations tcc_overlay_fops =
+			|	{
+			|		.owner          = THIS_MODULE,
+			|		.poll           = tccxxx_overlay_poll,
+			|		.unlocked_ioctl = tccxxx_overlay_ioctl,
+			|		.mmap           = tccxxx_overlay_mmap,
+			|		.open           = tccxxx_overlay_open,
+			|		.release        = tccxxx_overlay_release,
+			|	}
+			+-> /** Get rdma information. 
+					If fbdisplay_num is 0, rdma0,1,2,3
+					If fbdisplay_num is 1, rdma4,5,6,7
+				*/
+				/** Set default overlay */
+				/** get wmix information. */
+				/** Set this driver data in platform device structure */
 ```
 
 </pr>
