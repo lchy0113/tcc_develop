@@ -368,6 +368,22 @@ static int __init tcc_vsync_init(void)	drivers/video/fbdev/tcc-fb/tcc_vsync.c
 	|
 	+->	/** Allocate and initialize buffer for hdmi display lastframe. */
 		/** register tcc_vsync_driver to platform_driver */
+			static struct platform_driver tcc_vsync_driver = {
+				.probe      = tcc_vsync_probe,
+				.remove     = tcc_vsync_remove,
+				.driver     = {
+					.name   = "tcc_vsync",
+					.owner  = THIS_MODULE,
+					.pm     = &tcc_vsync_pm_ops,
+					.of_match_table = of_match_ptr(vsync_of_match),
+				},
+			};
+				|
+				+-> static int tcc_vsync_probe(struct platform_device *pdev)
+					/**
+					  * LCD_LCDC_NUM(1) EX_OUT_LCDC(0)
+					  * create tcc_vsync0, tcc_vsync1 misc driver 
+					  */
 
 ```
 
