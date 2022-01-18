@@ -271,6 +271,10 @@ static int __init tccfb_init(void)	/driver/video/fbdev/tcc-fb/tcc_vioc_fb.c
 				+-> /** initialize video memory */
 				+-> /** register framebuffer  */ 
 				+-> /** start display and show logo on boot */
+				+-> /**
+				      * Initialize workqueue sending vsync uevents from kernel to userspace.
+					  * send_vsync_event(kernelspace) -> tc_hwc_vsync_thread (userspace)
+					  */
 				+-> /** call init() from lcd_panel module */
 				|	|
 				|	+-> static __init int hdmi1920x1080_init(void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
@@ -384,6 +388,86 @@ static int __init tcc_vsync_init(void)	drivers/video/fbdev/tcc-fb/tcc_vsync.c
 					  * LCD_LCDC_NUM(1) EX_OUT_LCDC(0)
 					  * create tcc_vsync0, tcc_vsync1 misc driver 
 					  */
+
+```
+### tc_hwc
+
+```
+/*****************************************************************************/
+static struct hw_module_methods_t hwc_module_methods = {
+	open: tc_hwc_device_open
+};
+
+hwc_module_t HAL_MODULE_INFO_SYM = {
+	common: {
+		tag: HARDWARE_MODULE_TAG,
+		module_api_version: HWC_MODULE_API_VERSION_0_1,
+		hal_api_version: HARDWARE_HAL_API_VERSION,
+		id: HWC_HARDWARE_MODULE_ID,
+		name: "Telechips Hardware Composer HAL",
+		author: "Telechips, Inc.",
+		methods: &hwc_module_methods,
+	}
+};
+/*****************************************************************************/
+
+static int tc_hwc_device_open(const struct hw_module_t* module, const char* name, struct hw_device_t** device)	hardware/telechips/common/hwcomposer/tc_hwc.cpp
+	|
+	+-> int tc_cfg_open(TccHwcCfg *TccCfg)	hardware/telechips/commmon/hwcomposer/tc_hwc_dedicated.cpp 
+	|	/**
+	|	  * open /dev/graphics/fb0
+	|	  * get framebuffer info from fbmem kernel module
+	|	  */
+	|
+	+->	/**
+	|	  * initialize the procs 
+	|	  */
+	|		dev->device.common.tag          = HARDWARE_DEVICE_TAG;
+	|		dev->device.common.version      = TCC_HWC_VERSION;
+	|		dev->device.common.module       = const_cast<hw_module_t*>(module);
+	|		dev->device.common.close        = tc_hwc_device_close;
+	|
+	|		dev->device.prepare             = tc_hwc_prepare;
+	|		dev->device.set                 = tc_hwc_set;
+	|	//    dev->device.fbTargetUpdate      = tc_hwc_update_fbTarget_async;
+	|		dev->device.eventControl        = tc_hwc_eventControl;
+	|		dev->device.registerProcs       = tc_hwc_registerProcs;
+	|		dev->device.query               = tc_hwc_query;
+	|		dev->device.blank               = tc_hwc_blank;
+	|		dev->device.dump                = NULL;
+	|		dev->device.getDisplayConfigs   = tc_hwc_getDisplayConfigs;
+	|		dev->device.getDisplayAttributes = tc_hwc_getDisplayAttributes;
+	|
+	|	#if (TCC_HWC_VERSION >= HWC_DEVICE_API_VERSION_1_4)
+	|		dev->device.setPowerMode            = tc_hwc_setPowerMode;
+	|		dev->device.getActiveConfig         = tc_hwc_getActiveConfig;
+	|		dev->device.setActiveConfig         = tc_hwc_setActiveConfig;
+	|		dev->device.setCursorPositionAsync  = tc_hwc_setCursorPositionAsync;
+	|	#endif
+	|
+	+-> static void *tc_hwc_vsync_thread(void *data)
+	|	/** 
+	|	  * create tc_hwe_vsync_thread 
+	|	  * received uevent data from kernel
+	|	  */
+	+->	ExtendDisplayClient->init()
+	|	/** 
+	|	  * init ExtendDisplayClient 
+	|	  */
+	+-> /** return 0 */
+
+			
+```
+
+### extenddisplay_v02
+
+```
+class ExtendDisplayClient : public tcc::BnTClient	hardware/telechips/common/extenddisplay_v2/extenddisplay.h
+	|
+	+->	int ExtendDisplayClient::init()	hardware/telechips/common/extenddisplay_v2/extenddsiaplay.cpp
+		|
+		+->	/** run extenddisplay thread */
+
 
 ```
 
