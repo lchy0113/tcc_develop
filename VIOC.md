@@ -456,6 +456,22 @@ static int tc_hwc_device_open(const struct hw_module_t* module, const char* name
 	|	  */
 	+-> /** return 0 */
 
+
+	dev->device.prepare
+		|
+		+->	static int tc_hwc_prepare(hwc_composer_device_1_t *dev, size_t numDisplays, hwc_display_contents_1_t** displays) 	hardware/telechips/common/hwcomposer/tc_hwc.cpp
+			|
+			+-> int tc_create_renderer(TccHwcCfg *TccCfg, hwc_display_contents_1_t *primary_contents, hwc_display_contents_1_t *external_contents, int overlay_primary_idx, int overlay_external_idx) hardware/telechips/common/hwcomposer/tc_hwc_dedicated.cpp
+				|
+				+-> int __tc_try_render_creation(TccHwcCfg *TccCfg, hwc_display_contents_1_t *contents, int overlay_idx, int disp)	hardware/telechips/common/hwcomposer/tc_hwc_dedicated.cpp
+					|
+					+-> static int __tc_create_renderer(TccHwcCfg *TccCfg, hwc_display_contents_1_t *contents, int disp) 	hardware/telechips/common/hwcomposer/tc_hwc_dedicated.cpp
+						|
+						+-> static void __tc_refresh_renderer(TccHwcCfg *TccCfg,hwc_display_contents_1_t *contents)	hardwrae/telechips/common/hwcomposer/tc_hwc_dedicated.cpp
+							|
+							+>	int HwRenderer::render(unsigned int fd_0, int inWidth, int inHeight, int outLeft, int outTop, int outRight, int outBottom, unsigned int transform) hardware/telechips/common/hwcomposer/tc_hwc_overlay.cpp
+								|
+								+-> bool HwRenderer::output_Overlay(output_overlay_param_t * pOverlayInfo, bool *overlayCheckRet)	hardware/telechips/common/hwcomposer/tc_hwc_overlay.cpp 
 			
 ```
 
