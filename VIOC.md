@@ -102,7 +102,7 @@ LCDC 인터페이스는 최대 2개의 채널을 제공할 수 있습니다.
 
 ## bootloader (lk)
 
-```
+```c
 called from crt0.S	/arch/arm/crt0.S
 	|
 	+-> void kmain(void)	/kernel/main.c
