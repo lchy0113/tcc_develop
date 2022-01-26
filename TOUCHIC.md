@@ -72,86 +72,68 @@ Android driver source code for gt9xx series touch controller.
   10. goodix,int-sync: This is property is very for our IC to work properly, please don't modified it. 
 
 
-  ```
-  &i2c0 {
-    	gt9xx@5d {
-          compatible = "goodix,gt9xx";
-          reg = <0x5d>; 
-          pinctrl-names = "default", "int-output-low","int-output-high", "int-input";
-          pinctrl-0 = <&ts_int_default>;
-          pinctrl-1 = <&ts_int_output_low>;
-          pinctrl-2 = <&ts_int_output_high>;
-          pinctrl-3 = <&ts_int_input>;
+```
+&i2c2 {
+/* gt9xx	*/
+	gt9xx@14	{
+		compatible = "goodix,gt9xx";
+		reg = <0x14>;
+		status = "okay";
+		pinctrl-names = "default";
+		pinctrl-0 = <&tsc_default>;
+		
+		irq-gpios = <&gpg 18 0>;
+		irq-flags = <2>;
+		reset-gpios = <&gpg 19 0>;
 
-          reset-gpios = <&msm_gpio 12 0x0>;
-          irq-gpios = <&msm_gpio 13 0x2800>;
-          irq-flags = <2>;
+		touchscreen-max-id = <11>;
+		touchscreen-size-x = <1024>;
+		touchscreen-size-y = <600>;
+		touchscreen-max-w = <1000>;
+		touchscreen-max-p = <255>;
 
-          touchscreen-max-id = <11>;
-          touchscreen-size-x = <1080>;
-          touchscreen-size-y = <1920>;
-          touchscreen-max-w = <512>;
-          touchscreen-max-p = <512>;
+		goodix,int-sync = <1>;
+		goodix,driver-send-cfg = <0>;
+		goodix,swap-x2y = <0>;
+		goodix,esd-protect = <1>;
+		touchscreen-inverted-x = <0>;
+		touchscreen-inverted-y = <0>;
+		/*	do not flash configuration values at boot time  */
+		goodix,cfg-group2 = [
+		46 00 04 58 02 05 3D 00 01 10
+		28 08 50 32 03 05 00 00 00 00
+		00 00 00 1A 1C 20 14 90 30 AA
+		47 49 C1 0E 00 00 01 83 02 11
+		00 00 00 00 00 00 00 00 00 00
+		00 32 55 94 C5 02 07 00 00 04
+		C3 1B 00 A4 21 00 8C 28 00 78
+		31 00 69 3B 00 69 00 00 00 00
+		F0 50 3A FF FF 27 00 00 00 00
+		00 00 00 00 00 00 00 00 00 00
+		00 00 00 00 00 00 00 00 00 00
+		00 00 00 01 04 05 06 07 08 09
+		0C 0D 0E 0F 10 11 14 15 16 17
+		18 19 00 00 00 00 00 00 00 00
+		00 00 00 02 04 06 07 08 0A 0C
+		0D 0E 0F 10 11 12 13 14 19 1B
+		1C 1E 1F 20 21 22 23 24 25 26
+		27 28 29 2A 00 00 00 00 00 00
+		00 00 00 00 0D 01
+		];
+	};
+};
 
-          goodix,int-sync = <1>;
-      };
-  }
-  ```
+```
 
-  Because we use Pinctrl to control irq-gpio state. Please add the following pinctrl state declaration to the target platform device tree. Attention here need fix the irq-gpio number according to the  
+Because we use Pinctrl to control irq-gpio state. Please add the following pinctrl state declaration to the target platform device tree. Attention here need fix the irq-gpio number according to the  
 
-  ```
-  &msmgpio {               
-  	/* add pingrp for touchscreen */
-  	ts_int_default: ts_int_defalut {
-  		mux {
-  			pins = "gpio13";
-  			function = "gpio";
-  		};
-  		config {
-  			pins = "gpio13";
-  			drive-strength = <16>;
-  			/*bias-pull-up;*/
-  			input-enable;
-  			bias-disable;
-  		};
-  	};
+```
+	tsc_default: tsc_default	{
+		telechips,pins = "gpg-18", "gpg-19";
+		telechips,pin-function = <0>;
+	};
+```
 
-  	ts_int_output_high: ts_int_output_high {
-  		mux {
-  			pins = "gpio13";
-  			function = "gpio";
-  		};
-  		config {
-  			pins = "gpio13";
-  			output-high;
-  		};
-  	};
-
-  	ts_int_output_low: ts_int_output_low {
-  		mux {
-  			pins = "gpio13";
-  			function = "gpio";
-  		};
-  		config {
-  			pins = "gpio65";
-  			output-low;
-  		};
-  	};
-
-  	ts_int_input: ts_int_input {
-  		mux {
-  			pins = "gpio13";
-  			function = "gpio";
-  		};
-  		config {
-  			pins = "gpio13";
-  			input-enable;
-  			bias-disable;
-  		};
-  	};
-  };
-  ```
 -----
 
 # code review
@@ -186,37 +168,59 @@ module_init(gtp_init);
 			+-> static int gtp_request_io_port(struct goodix_ts_data *ts)
 			+-> void gtp_reset_guitar(struct i2c_client *client, s32 ms)
 			|	/**
-			|	  * reset chip.
+			|	  * reset(initialize) chip.
 			|	  */
 			|	  |
 			|	  +-> static int gtp_init_ext_watchdog(struct i2c_client *client)
 			|	  	|
 			|		+-> /**
 			|			  *	initialize external watchdog for esd protect
+			|			  * write 0xAA to ESD_Check(0x8041) addr	(return value 1: succed, otherwise: failed)
 			|			  */
 			+-> s32 gtp_get_fw_info(struct i2c_client *client, struct goodix_fw_info *fw_info)
 			+-> static s8 gtp_request_input_dev(struct goodix_ts_data *ts)
+			|	/**
+			|	  * allocate input device
+			|	  */
 			+-> static int gtp_request_irq(struct goodix_ts_data *ts)
 			|	/**
 			|	  * Request interrupt if define irq pin else use delayed workqueue 
-			|	  * 인터럽트 : gtp_interrupt_work
-			|	  * 폴링 : gtp_polling_work 
+			|     * if vailed interrupt gpio pin : 인터럽트 _ gtp_irq_handler
+			|	  * else : 폴링(use delayed workqueue) _ gtp_polling_work 
 			|	  */
+			|		+-> static irqreturn_t gtp_irq_handler(int irq, void *dev_id)
+			|		|		+->	static void gtp_work_func(struct goodix_ts_data *ts)
+			|		|		|	/** 
+			|		|		|	  * goodix touchscreen sensor report function
+			|		|		|	  */
+			|		|		|		|
+			|		|		|		+-> static int gtp_gesture_handler(struct goodix_ts_data *ts)
+			|		|		|		|	/**
+			|		|		|		|	  * if slide_wakeup enable && DOZE_MODE : check gesture type(ascii character , swipe right, left, down, up, double-tap)
+			|		|		|	 	|	  * 	input report key(KEY_POWER) 
+			|		|		|	 	|	  */
+			|		|		|		+-> static u8 gtp_get_points(struct goodix_ts_data *ts, struct goodix_point_t *points, u8 *key_value)
+			|		|		|			/**
+			|		|		|			  * return touch state register value 
+			|		|		|			  */
+			|		|		
+			|		+->	static void gtp_polling_work(struct work_struct *work)
+			|		|		|	/** Timer interrupt servic routine for polling mode (10ms)
+			|		|		+-> static void gtp_work_func(struct goodix_ts_data *ts)
+			|
 			+-> static int gtp_create_file(struct goodix_ts_data *ts)
 			|	/**
 			|	  * create proc and sys filesystem 
 			|	  */
 			+-> static int gtp_esd_init(struct goodix_ts_data *ts)
 			|	/**
-			|	  * gtp_esd_check_func workqueue 등록
-			|	  * INIT_DELAYED_WORK
+			|	  * workqueue : static void gtp_esd_check_func(struct work_struct *work)
+			|	  * IC와 통신(read ic reg addr 0x8040) 2초 간격 실패 시, Reset IC
 			|	  */
 			+-> void gtp_esd_on(struct goodix_ts_data *ts)
 				/**
 				  * delayed work 실행 (timeout = 2*HZ) 
 				  * schedule_delayed_work()
 				  */
-
-
 
 ```
