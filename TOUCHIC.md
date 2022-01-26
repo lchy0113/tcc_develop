@@ -227,6 +227,8 @@ module_init(gtp_init);
 
 -----
 
+## Reference 
+
 * doze mode   
  Doze restrictions   
 	The following restrictions apply to your apps while in Doze:   
