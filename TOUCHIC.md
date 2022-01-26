@@ -72,7 +72,7 @@ Android driver source code for gt9xx series touch controller.
   10. goodix,int-sync: This is property is very for our IC to work properly, please don't modified it. 
 
 
-```c
+```dts
 &i2c2 {
 /* gt9xx	*/
 	gt9xx@14	{
