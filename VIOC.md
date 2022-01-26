@@ -170,7 +170,7 @@ called from crt0.S	/arch/arm/crt0.S
 
 ### display
 
-```
+```c
 	arch_initcall(vioc_viqe_init)	drivers/video/fbdev/tcc-fb/vioc/vioc_viqe.c
 	|
 	+->	vioc_viqe:vioc_viqe@1200d000 {...} arch/arm/boot/dts/tcc/tcc898x.dtsi	
@@ -220,7 +220,7 @@ called from crt0.S	/arch/arm/crt0.S
 
 ### hdmi
 
-```
+```c
 static __init int hdmi1920x1080_init(void)	/drivers/video/fbdev/tcc-fb/hdmi_1920x1080.c
 	|
 	+->	static struct platform_driver hdmi1920x1080_driver = {
@@ -287,8 +287,7 @@ static int __init tccfb_init(void)	/driver/video/fbdev/tcc-fb/tcc_vioc_fb.c
 
 ### composite
 
-```
-
+```c
 int __init tcc-composite_init(void)	drivers/video/fbdev/tcc-fb/vioc/tcc_composite.c
 	|
 	+->	static struct platform_driver tcc_compostite = {
@@ -317,7 +316,7 @@ int __init tcc-composite_init(void)	drivers/video/fbdev/tcc-fb/vioc/tcc_composit
 
 ### tcc_overlay
 
-```
+```c
 static int __init tccxxx_overlay_init(void)	drivers/video/fbdev/tcc-fb/tcc_overlay.c
 	|
 	+-> platform_driver_register(&tcc_overlay_driver)
@@ -367,7 +366,7 @@ static int __init tccxxx_overlay_init(void)	drivers/video/fbdev/tcc-fb/tcc_overl
 
 ### tcc_vsync
 
-```
+```c
 static int __init tcc_vsync_init(void)	drivers/video/fbdev/tcc-fb/tcc_vsync.c
 	|
 	+->	/** Allocate and initialize buffer for hdmi display lastframe. */
@@ -402,7 +401,7 @@ void tccfb_extoutput_activate(int stage)	drivers/video/fbdev/tcc-fb/tcc_vioc_fb.
 
 ### tc_hwc
 
-```
+```cpp
 /*****************************************************************************/
 static struct hw_module_methods_t hwc_module_methods = {
 	open: tc_hwc_device_open
@@ -487,7 +486,7 @@ static int tc_hwc_device_open(const struct hw_module_t* module, const char* name
 
 ### extenddisplay_v02
 
-```
+```cpp
 class ExtendDisplayClient : public tcc::BnTClient	hardware/telechips/common/extenddisplay_v2/extenddisplay.h
 	|
 	+->	int ExtendDisplayClient::init()	hardware/telechips/common/extenddisplay_v2/extenddsiaplay.cpp
