@@ -390,6 +390,16 @@ static int __init tcc_vsync_init(void)	drivers/video/fbdev/tcc-fb/tcc_vsync.c
 					  */
 
 ```
+
+```
+void tccfb_extoutput_activate(int stage)	drivers/video/fbdev/tcc-fb/tcc_vioc_fb.c
+	|
+	+->	void tcc_vsync_hdmi_start(struct tcc_dp_device *pdp_data,int* lcd_video_started)	drivers/video/fbdev/tcc-fb/tcc_vsync.c
+```
+
+
+## HAL 
+
 ### tc_hwc
 
 ```
@@ -483,6 +493,22 @@ class ExtendDisplayClient : public tcc::BnTClient	hardware/telechips/common/exte
 	+->	int ExtendDisplayClient::init()	hardware/telechips/common/extenddisplay_v2/extenddsiaplay.cpp
 		|
 		+->	/** run extenddisplay thread */
+
+
+```
+
+## lcd display(nhn1033)
+
+* 하드웨어 디코더 동작
+```
+
+
+```
+
+## hdmi display(nhn1311)
+
+* 하드웨어 디코더 동작
+```
 
 
 ```
