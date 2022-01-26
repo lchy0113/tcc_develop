@@ -228,8 +228,8 @@ module_init(gtp_init);
    
 </pr>
    
+
 * doze mode   
-   
  Doze restrictions   
 	The following restrictions apply to your apps while in Doze:   
    
