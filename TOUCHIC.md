@@ -225,9 +225,7 @@ module_init(gtp_init);
 
 ```
 
-   
-</pr>
-   
+-----
 
 * doze mode   
  Doze restrictions   
