@@ -225,12 +225,13 @@ module_init(gtp_init);
 
 ```
 
+   
 </pr>
-
-* doze mode
- Doze restrictions
-	The following restrictions apply to your apps while in Doze:
-
+   
+* doze mode   
+ Doze restrictions   
+	The following restrictions apply to your apps while in Doze:   
+   
  - Network access is suspended.
  - The system ignores wake locks.
  - Standard AlarmManager alarms (including setExact() and setWindow()) are deferred to the next maintenance window.
