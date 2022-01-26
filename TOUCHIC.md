@@ -224,3 +224,18 @@ module_init(gtp_init);
 				  */
 
 ```
+
+
+
+* doze mode
+ Doze restrictions
+	The following restrictions apply to your apps while in Doze:
+
+ - Network access is suspended.
+ - The system ignores wake locks.
+ - Standard AlarmManager alarms (including setExact() and setWindow()) are deferred to the next maintenance window.
+ - If you need to set alarms that fire while in Doze, use setAndAllowWhileIdle() or setExactAndAllowWhileIdle().
+ - Alarms set with setAlarmClock() continue to fire normally — the system exits Doze shortly before those alarms fire.
+ - The system does not perform Wi-Fi scans.
+ - The system does not allow sync adapters to run.
+ - The system does not allow JobScheduler to run.
