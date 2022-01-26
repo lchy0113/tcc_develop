@@ -570,11 +570,11 @@ tcc_video_viqe_lcd
 # analyse : extenddisplay_v02 hal
 =====
 
-```
+```cpp
 class ExtendDisplayClient
 ```
 
-```
+```cpp
 int ExtendDisplayClient::init()
 	|
 	+-> pthread_create(&client_thread-id, NULL, &static_client_thread, this)
