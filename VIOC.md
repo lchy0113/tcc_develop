@@ -517,7 +517,7 @@ class ExtendDisplayClient : public tcc::BnTClient	hardware/telechips/common/exte
 # analyse : tcc8985 evboard  
 =====
 
-```
+```bash
 
 tcc898x:/ # mem r 0x12000000 w 0x4 ; mem r 0x12000100 w 0x4
 0x12000000 memory mapped at address 0xafd31000.
