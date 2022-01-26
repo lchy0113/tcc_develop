@@ -138,7 +138,7 @@ Because we use Pinctrl to control irq-gpio state. Please add the following pinct
 
 # code review
  
-```
+```c
 module_init(gtp_init);
 	|
 	+-> static int __init gtp_init(void)
