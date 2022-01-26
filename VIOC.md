@@ -527,7 +527,7 @@ tcc898x:/ # mem r 0x12000000 w 0x4 ; mem r 0x12000100 w 0x4
 tcc898x:/ #
 ```
 
-```
+```markdown
 (composite)
  persist.sys.output_mode 2
 fbdisplay0
