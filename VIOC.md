@@ -95,10 +95,10 @@ LCDC 인터페이스는 최대 2개의 채널을 제공할 수 있습니다.
 
 ## 13inch display develop
 
-|		    		 	| bootloader  	| kernel	       	|
-|-------------------	|--------------	|----------------	|
-| composite(extend) 	| DISP0     	| DISP0 		 	|
-| hdmi(main) 			| DISP1   	  	| DISP1  			|
+|		    	| bootloader  	| kernel	       	|
+|--------------	|--------------	|----------------	|
+| composite() 	| DISP1     	| DISP1 		 	|
+| hdmi() 		| DISP0   	  	| DISP0  			|
 
 ## bootloader (lk)
 
@@ -502,13 +502,20 @@ class ExtendDisplayClient : public tcc::BnTClient	hardware/telechips/common/exte
 ```
 
 
+
 ```
 
 ## hdmi display(nhn1311)
 
 * 하드웨어 디코더 동작
-```
-
+```cpp
+static struct hw_module_methods_t hwc_module_methods
+	hardware/telechps/common/hwcomposer/tc_hwc.cpp
+int tc_cfg_open(TccHwcCfg *tccCfg)
+	hareware/telechips/hwcomposer/tc_hwc.cpp
+	+-> TccCfg->render 
+int HwRenderer::initDevice(int inWidth, int inHeight, int overlay_ch, unsigned int fd_0, char* handle)
+	hardware/telechips/common/hwcomposer/tc_hwc_overlay.cpp 
 
 ```
 
