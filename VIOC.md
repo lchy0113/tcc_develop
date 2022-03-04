@@ -390,7 +390,14 @@ static int __init tcc_vsync_init(void)	drivers/video/fbdev/tcc-fb/tcc_vsync.c
 
 ```
 
+#### tcc_vsync : end video output
+
+```c
+
 ```
+
+
+```c
 void tccfb_extoutput_activate(int stage)	drivers/video/fbdev/tcc-fb/tcc_vioc_fb.c
 	|
 	+->	void tcc_vsync_hdmi_start(struct tcc_dp_device *pdp_data,int* lcd_video_started)	drivers/video/fbdev/tcc-fb/tcc_vsync.c
