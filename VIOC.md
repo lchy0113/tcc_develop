@@ -393,6 +393,9 @@ static int __init tcc_vsync_init(void)	drivers/video/fbdev/tcc-fb/tcc_vsync.c
 #### tcc_vsync : end video output
 
 ```c
+static void tcc_vsync_end(tcc_video_disp *p, VSYNC_CH_TYPE type)	drivers/video/fbdev/tcc-fb/tcc_vsync.c
+	|
+	+->	void tca_vsync_video_display_disable(void)	drivers/video/fbdev/tcc-fb/tcc_vsync.c
 
 ```
 
