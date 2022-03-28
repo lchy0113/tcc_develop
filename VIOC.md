@@ -430,6 +430,25 @@ void tccfb_extoutput_activate(int stage)    drivers/video/fbdev/tcc-fb/tcc_vioc_
     +->    void tcc_vsync_hdmi_start(struct tcc_dp_device *pdp_data,int* lcd_video_started)    drivers/video/fbdev/tcc-fb/tcc_vsync.c
 ```
 
+### [kdiwin] : decoder data composite output
+- ImageInfo 의 enable 필드를 참고하여 tcc_sub_display_ctrl() 를 호출한다.
+- sub display(cvbs)에 디코더 데이터를 출력 시킬 경우, ImageInfo 의 data addr을 cvbs rdma addr 에 세팅한다. 
+- sub display(cvbs)에 디코더 데이터를 출력 시키지 않을 경우, sub display(cvbs) 의 rdma를 비활성화 세팅한다.
+```c
+void tca_scale_display_update(struct tcc_dp_device *pdp_data, struct tcc_lcdc_image_update *ImageInfo)	drivers/video/fbdev/tcc-fb/tcc_vioc_interface.c
+	|	/**
+	|	  * 비디오 재생(decoder 데이터 출력) sequence에서 호출되는 함수.
+	|	  * pdp_data : display device info
+	|	  * ImageInfo : display data 
+	|	  */
+	+-> void tcc_sub_display_ctl(SUB_DISPLAY_MODE mode, struct tcc_lcdc_image_update *ImageInfo)	
+		/**
+		  * sub display(cvbs)의 데이터 출력을 제어하는 함수.
+		  * mode : sub display(cvbs) 출력 제어 모드.
+		  * ImageInfo : display data
+		  */
+
+```
 
 ## HAL 
 
