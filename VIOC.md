@@ -431,7 +431,7 @@ void tccfb_extoutput_activate(int stage)    drivers/video/fbdev/tcc-fb/tcc_vioc_
 ```
 
 ### [kdiwin] : decoder data composite output
-- ImageInfo 의 enable 필드를 참고하여 tcc_sub_display_ctrl() 를 호출한다.
+- ImageInfo 의 enable 필드를 참고하여 tcc_sub_display_ctl() 를 호출한다.
 - sub display(cvbs)에 디코더 데이터를 출력 시킬 경우, ImageInfo 의 data addr을 cvbs rdma addr 에 세팅한다. 
 - sub display(cvbs)에 디코더 데이터를 출력 시키지 않을 경우, sub display(cvbs) 의 rdma를 비활성화 세팅한다.
 ```c
