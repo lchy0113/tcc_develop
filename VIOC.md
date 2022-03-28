@@ -288,7 +288,7 @@ static int __init tccfb_init(void)    /driver/video/fbdev/tcc-fb/tcc_vioc_fb.c
 ### composite
 
 ```c
-int __init tcc-composite_init(void)    drivers/video/fbdev/tcc-fb/vioc/tcc_composite.c
+int __init tcc_composite_init(void)    drivers/video/fbdev/tcc-fb/vioc/tcc_composite.c
     |
     +->    static struct platform_driver tcc_compostite = {
             .probe = composite_probe,
@@ -319,7 +319,23 @@ void tcc_composite_attach(char lcdc_num, char mode, char starter_flag)
     |      * mode         : 
     |      * start_flag    : reset privious display path
     |      */
-
+    +->    void tcc_composite_start(TCC_COMPOSITE_TYPE mode)
+    |       +-> int tcc_composite_connect_lcdc(int lcdc_num, int enable)
+    |       |   /**
+    |       |     * set SDVESEL field of MISC Register(0x1210020C; SDVENC (NTSC/PAL) Output Select) to Display Device 0 Component. 
+    |       |     * enable NTSC/PAL DDI bus.
+    |       |     */
+    |       +->    void tcc_composite_set_lcd2tv(COMPOSITE_MODE_TYPE type)
+    |                /**
+    |                  * composite device 의 mode에 맞는 timing 및 control 세팅. 
+    |                  * tcc_composite의 fb 초기화.
+    |                  * vioc display block 초기화.
+    |                  * composite device 초기화.
+    |                  */
+    +->    void tca_fb_attach_start(struct tccfb_info *info)
+               /**
+                 * disp1 -> disp0 간 data attach을 위한 메모리 초기화.
+                 */
 ```
 
 ### tcc_overlay
