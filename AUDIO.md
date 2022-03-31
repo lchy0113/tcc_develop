@@ -244,5 +244,20 @@ static struct i2c_driver cx2070x_i2c_driver = {
 };
 
 ```
+
+### compatible = "telechips,snd-cx2070x"
 - sound/soc/tcc/tcc_board_cx2070x.c
 
+```c
+static struct platform_driver cx2070x_driver = {
+	.driver = {
+		.name = "cx2070x-audio",
+		.owner = THIS_MODULE,
+		.pm = &snd_soc_pm_ops, /* for suspend */
+		.of_match_table = of_match_ptr(tcc_cx2070x_match),
+	},
+	.probe = tcc_audio_probe,
+	.remove = cx2070x_remove,
+};
+
+```
