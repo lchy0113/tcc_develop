@@ -12,6 +12,8 @@ Three types of audio interface are supported; DAI, SPDIF, and CDIF.
 
 
 ## kernel device tree
+- Define DAI device with GPIO Port Information
+  * To add audio device, redefine and enable DAI device in device tree for target board. 
 ```dts
 // tcc8985-soc-module-p04.dtsi
 	/*
@@ -55,14 +57,14 @@ Three types of audio interface are supported; DAI, SPDIF, and CDIF.
 		status="okay";
 	};
 
-	/*	inter-ic sound, or integrated interchip sound */
-	i2s@16101000 {
-        pinctrl-names = "default";
-        pinctrl-0 = <&m0dai1_clks &m0dai1_d0>; 
-		port-mux = <1>;
-        status = "disable";
-	};
 
+	(...)
+
+	/**
+      * pinctrl-names : The name of pinctrl for DAI.
+	  * pinctrl-0, pinctrl-1 : The group of GPIO port in each case of pinctrl-names.
+	  * port-mux : 
+	  */
 	i2s@16201000 {
         pinctrl-names = "default";
         pinctrl-0 = <&m1dai1_clks &m1dai1_d0>;
@@ -87,155 +89,14 @@ Three types of audio interface are supported; DAI, SPDIF, and CDIF.
 
 ```
 
+- This is a part of GPIO port group for audio interfaces.
 ```dts
 
 /*****************************************************
 * Audio PinCtrl Start
 ******************************************************/
-/*****************************************************
-* Audio0 DAI Port_0 m:multi, m0:Audio0, dai0:port0 
-******************************************************/
 
-    m0dai0_clks: m0dai0_clks{
-        telechips,pins = "gpf-0", "gpf-1", "gpf-2";
-        telechips,pin-function = <2>;
-    };
-
-    m0dai0_d0: m0dai0_d0{
-        telechips,pins = "gpf-3", "gpf-4";
-        telechips,pin-function = <2>;
-    };
-
-    m0dai0_d1: m0dai0_d1{
-        telechips,pins = "gpf-5", "gpf-6";
-        telechips,pin-function = <2>;
-    };
-
-    m0dai0_d2: m0dai0_d2{
-        telechips,pins = "gpf-7", "gpf-8";
-        telechips,pin-function = <2>;
-    };
-
-    m0dai0_d3: m0dai0_d3{
-        telechips,pins = "gpf-9", "gpf-10";
-        telechips,pin-function = <2>;
-    };
-
-    m0dai0_spdif_rx: m0dai0_spdif_rx{
-        telechips,pins = "gpf-13";
-        telechips,pin-function = <2>;
-    };
-
-    m0dai0_spdif_tx: m0dai0_spdif_tx{
-        telechips,pins = "gpf-14";
-        telechips,pin-function = <2>;
-    };
-
-/*****************************************************
-* Audio0 DAI Port_1 m:multi, m0:Audio0, dai1:port1
-******************************************************/
-    m0dai1_clks: m0dai1_clks{
-        telechips,pins = "gpg-0", "gpg-1", "gpg-2";
-        telechips,pin-function = <1>;
-    };
-
-    m0dai1_d0: m0dai1_d0{
-        telechips,pins = "gpg-3", "gpg-4";
-        telechips,pin-function = <1>;
-    };
-
-    m0dai1_spdif_rx: m0dai1_spdif_rx{
-        telechips,pins = "gpg-5";
-        telechips,pin-function = <2>;
-    };
-
-    m0dai1_spdif_tx: m0dai1_spdif_tx{
-        telechips,pins = "gpg-5";
-        telechips,pin-function = <1>;
-    };
-
-/*****************************************************
-* Audio0 DAI Port_2 m:multi, m0:Audio0, dai2:port2
-******************************************************/
-
-    m0dai2_clks: m0dai2_clks{
-        telechips,pins = "gpg-6", "gpg-7", "gpg-8";
-        telechips,pin-function = <1>;
-    };
-
-    m0dai2_d0: m0dai2_d0{
-        telechips,pins = "gpg-9", "gpg-10";
-        telechips,pin-function = <1>;
-    };
-
-    m0dai2_d1: m0dai2_d1{
-        telechips,pins = "gpg-11", "gpg-12";
-        telechips,pin-function = <1>;
-    };
-
-    m0dai2_d2: m0dai2_d2{
-        telechips,pins = "gpg-13", "gpg-14";
-        telechips,pin-function = <1>;
-    };
-
-    m0dai2_d3: m0dai2_d3{
-        telechips,pins = "gpg-15", "gpg-16";
-        telechips,pin-function = <1>;
-    };
-
-    m0dai2_spdif_rx: m0dai2_spdif_rx{
-        telechips,pins = "gpg-17";
-        telechips,pin-function = <2>;
-    };
-
-    m0dai2_spdif_tx: m0dai2_spdif_tx{
-        telechips,pins = "gpg-18";
-        telechips,pin-function = <2>;
-    };
-
-/*****************************************************
-* Audio1 DAI Port_0 m:multi, m1:Audio1, dai0:port0 
-******************************************************/
-
-    m1dai0_clks: m1dai0_clks{
-        telechips,pins = "gpf-0", "gpf-1", "gpf-2";
-        telechips,pin-function = <8>;
-    };
-
-    m1dai0_d0: m1dai0_d0{
-        telechips,pins = "gpf-3", "gpf-4";
-        telechips,pin-function = <8>;
-    };
-
-    m1dai0_d1: m1dai0_d1{
-        telechips,pins = "gpf-5", "gpf-6";
-        telechips,pin-function = <8>;
-    };
-
-    m1dai0_d2: m1dai0_d2{
-        telechips,pins = "gpf-7", "gpf-8";
-        telechips,pin-function = <8>;
-    };
-
-    m1dai0_d3: m1dai0_d3{
-        telechips,pins = "gpf-9", "gpf-10";
-        telechips,pin-function = <8>;
-    };
-
-    m1dai0_d4: m1dai0_d4{
-        telechips,pins = "gpf-11", "gpf-12";
-        telechips,pin-function = <8>;
-    };
-
-    m1dai0_spdif_rx: m1dai0_spdif_rx{
-        telechips,pins = "gpf-13";
-        telechips,pin-function = <8>;
-    };
-
-    m1dai0_spdif_tx: m1dai0_spdif_tx{
-        telechips,pins = "gpf-14";
-        telechips,pin-function = <8>;
-    };
+	(...)
 
 /*****************************************************
 * Audio1 DAI Port_0 m:multi, m1:Audio1, dai1:port1 
@@ -267,49 +128,7 @@ Three types of audio interface are supported; DAI, SPDIF, and CDIF.
         telechips,pin-function = <3>;
     };
 
-/*****************************************************
-* Audio1 DAI Port_0 m:multi, m1:Audio1, dai2:port2 
-******************************************************/
-
-    m1dai2_clks: m1dai2_clks{
-        telechips,pins = "gpg-6", "gpg-7", "gpg-8";
-        telechips,pin-function = <3>;
-    };
-
-    m1dai2_d0: m1dai2_d0{
-        telechips,pins = "gpg-9", "gpg-10";
-        telechips,pin-function = <3>;
-    };
-
-    m1dai2_d1: m1dai2_d1{
-        telechips,pins = "gpg-11", "gpg-12";
-        telechips,pin-function = <3>;
-    };
-
-    m1dai2_d2: m1dai2_d2{
-        telechips,pins = "gpg-13", "gpg-14";
-        telechips,pin-function = <3>;
-    };
-
-    m1dai2_d3: m1dai2_d3{
-        telechips,pins = "gpg-15", "gpg-16";
-        telechips,pin-function = <3>;
-    };
-
-    m1dai2_d4: m1dai2_d4{
-        telechips,pins = "gpg-17", "gpg-18";
-        telechips,pin-function = <3>;
-    };
-
-    m1dai2_spdif_rx: m1dai2_spdif_rx{
-        telechips,pins = "gpg-17";
-        telechips,pin-function = <4>;
-    };
-
-    m1dai2_spdif_tx: m1dai2_spdif_tx{
-        telechips,pins = "gpg-18";
-        telechips,pin-function = <4>;
-    };
+	(...)
 
 /*****************************************************
 * Audio PinCtrl END
@@ -342,6 +161,18 @@ Three types of audio interface are supported; DAI, SPDIF, and CDIF.
 		i2s0 = &i2s0;
 		i2s1 = &i2s1;
 (...)
+
+	adma0: adma@16100000 {
+		compatible = "telechips,adma";
+		reg = <0x16100000 0x200>;
+		interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
+	adma1: adma@16200000 {
+		compatible = "telechips,adma";
+		reg = <0x16200000 0x200>;
+		interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
+	};
 
     i2s0: i2s@16101000 {
         compatible = "telechips,i2s";
