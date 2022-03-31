@@ -195,3 +195,54 @@ Three types of audio interface are supported; DAI, SPDIF, and CDIF.
 (...)
 
 ```
+
+## analysis cx2070x
+
+### compatible = "conexant,cx2070xctl"
+- drivers/kdiwin/cx2070x/cx2070x.c 
+
+```c
+static struct i2c_driver cx2070x_i2c_driver = {
+  .driver = {
+    	.name = "cx2070xctl",
+    	.owner = THIS_MODULE,
+		.of_match_table = cx2070x_of_match,
+   },
+  .probe=cx2070x_i2c_probe,
+  .remove=cx2070x_i2c_remove,
+  .id_table=cx2070x_i2c_id,
+};
+
+struct cx2070x_priv
+{
+  //enum snd_soc_control_type control_type;	// KJW
+  void *control_data;	/* i2c */
+  unsigned int sysclk;
+  int	       master;
+  enum Cx_INPUT_SEL input_sel;
+  enum Cx_OUTPUT_SEL output_sel;
+  unsigned int mute;
+  struct gpio_desc *reset_gpio;
+};
+
+
+```
+
+### compatible = "conexant,cx2070x"
+- sound/soc/codecs/cx2070x-i2c.c
+- sound/soc/codecs/cx2070x.c
+
+```c
+static struct i2c_driver cx2070x_i2c_driver = {
+	.driver = {
+		.name = "cx2070x",
+		.of_match_table = cx2070x_of_match,
+	},
+	.probe = cx2070x_i2c_probe,
+	.remove = cx2070x_i2c_remove,
+	.id_table = cx2070x_i2c_id,
+};
+
+```
+- sound/soc/tcc/tcc_board_cx2070x.c
+
