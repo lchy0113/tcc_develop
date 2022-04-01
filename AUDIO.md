@@ -198,7 +198,7 @@ Three types of audio interface are supported; DAI, SPDIF, and CDIF.
 
 ## analysis cx2070x
 
-### compatible = "conexant,cx2070xctl"
+### [codev control driver] compatible = "conexant,cx2070xctl"
 /drivers/kdiwin/cx2070x/
   cx2070x-i2c.h*
   cx2070x.c*
@@ -220,20 +220,25 @@ static struct i2c_driver cx2070x_i2c_driver = {
   .remove=cx2070x_i2c_remove,
   .id_table=cx2070x_i2c_id,
 };
+	|
+	+-> static int cx2070x_i2c_probe(struct i2c_client *i2c, const struct i2c_device_id *id)
+		/**
+		  * cdev, sys class 생성. 
+		  * cx2070x 모듈과 i2c 초기화(firmware, register,,)
+		  */
+```
 
-struct cx2070x_priv
-{
-  //enum snd_soc_control_type control_type;	// KJW
-  void *control_data;	/* i2c */
-  unsigned int sysclk;
-  int	       master;
-  enum Cx_INPUT_SEL input_sel;
-  enum Cx_OUTPUT_SEL output_sel;
-  unsigned int mute;
-  struct gpio_desc *reset_gpio;
-};
-
-
+- log
+```
+[    3.458922] cx2070x codec driver version: 03,01,10,13
+[    3.464082] [CNXT] sDesc = CNXT CHANNEL PATCH  09.00.00, sizeof CHAN_PATH = 19
+[    5.459741] cx2070x: firmware download successfully! FW: 5,2,15, FW Patch: 9,0,0 
+[    5.467200] cx2070x_download_firmware(): download firmware successfully.
+[    5.478203] cx2070x_init(): firmware version 5.2, patch 9.0.0, chip CX20703 (ROM)
+[    5.485738] cx2070x_init(): CX2070X patch version 1.1 
+[    5.566731] [cx2070x] set register to init_register
+[    5.571668] cx2070x: patch firmware successfully.
+[    5.576633] cx2070x_init(): codec is ready.                                        
 ```
 
 ### compatible = "conexant,cx2070x"
@@ -257,7 +262,7 @@ static struct i2c_driver cx2070x_i2c_driver = {
 
 ```
 
-### compatible = "telechips,snd-cx2070x"
+### [codec driver] compatible = "telechips,snd-cx2070x"
 /sound/soc/tcc/
   tcc-adma.c
   tcc-dsp-api.c
@@ -281,5 +286,75 @@ static struct platform_driver cx2070x_driver = {
 	.probe = tcc_audio_probe,
 	.remove = cx2070x_remove,
 };
+	|
+	+-> static int tcc_audio_probe(struct platform_device *pdev)
+		/**
+		  *  
+		  */
+```
 
+#### data structure
+```c
+static struct snd_soc_dai_link cx2070x_dai_link = {
+	.name = "ASOC-CX2070X",
+	.stream_name = "CX2070X_DP1",
+//	.cpu_dai_name = str_dai_name,
+	.codec_dai_name = "cx2070x-dp1",
+	.ops = &cx2070x_ops,
+//	.symmetric_rates = 1,
+	.init = cx2070x_dai_init,
+	.dai_fmt = (SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_CBS_CFS),
+	// master mode : SND_SOC_DAIFMT_CBS_CFS
+	// slave mode : SND_SOC_DAIFMT_CBM_CFM
+};
+
+static struct snd_soc_card cx2070x_card = {
+	.name = "TCC Audio", /* proc/asound/cards */
+	.long_name = "Telechips Board",
+//	.name = "I2S-CX2070X", /* proc/asound/cards */
+	.owner = THIS_MODULE,
+	.dai_link = &cx2070x_dai_link,
+	.num_links = 1,
+	.suspend_pre = &cx2070x_suspend_pre,
+	.resume_pre = &cx2070x_resume_pre,
+	.resume_post = &cx2070x_resume_post,
+	.dapm_widgets = cx2070x_dapm_widgets,
+	.num_dapm_widgets = ARRAY_SIZE(cx2070x_dapm_widgets),
+#if 0
+	.dapm_routes = cx2070x_audio_map,
+	.num_dapm_routes = ARRAY_SIZE(cx2070x_audio_map),
+#endif
+	.dapm_routes = audio_map,
+	.num_dapm_routes = ARRAY_SIZE(audio_map),
+};
+
+```
+
+- log
+```
+    [    5.603512] tcc_audio_probe TCC Audio Card 
+	[    5.607941] cx2070x 6-0014: cx2070x_codec_probe() 
+	[    5.613848] cx2070x 6-0014: ASoC: no source widget found for LHPOUT 
+	[    5.620187] cx2070x 6-0014: ASoC: Failed to add route LHPOUT -> direct -> Headset Jack 
+	[    5.628233] cx2070x 6-0014: ASoC: no source widget found for LHPOUT
+	[    5.634562] cx2070x 6-0014: ASoC: Failed to add route LHPOUT -> direct -> Headphone Jack 
+	[    5.642781] cx2070x 6-0014: ASoC: no source widget found for RHPOUT 
+	[    5.649174] cx2070x 6-0014: ASoC: Failed to add route RHPOUT -> direct -> Headphone Jack 
+	[    5.657334] cx2070x 6-0014: ASoC: no source widget found for ROUT
+	[    5.663547] cx2070x 6-0014: ASoC: Failed to add route ROUT -> direct -> Ext Spk  
+	[    5.670984] cx2070x 6-0014: ASoC: no source widget found for LOUT  
+	[    5.677147] cx2070x 6-0014: ASoC: Failed to add route LOUT -> direct -> Ext Spk   
+	[    5.685186] cx2070x-audio sound: cx2070x-dp1 <-> 16201000.i2s mapping ok   
+	[    5.691964] cx2070x-audio sound: ASoC: no source widget found for HPOUTR   
+	[    5.698797] cx2070x-audio sound: ASoC: Failed to add route HPOUTR -> direct -> Headphone Jack 
+	[    5.707449] cx2070x-audio sound: ASoC: no source widget found for HPOUTL 
+	[    5.714212] cx2070x-audio sound: ASoC: Failed to add route HPOUTL -> direct -> Headphone Jack
+	[    5.722870] cx2070x-audio sound: ASoC: no source widget found for ROP   
+	[    5.729439] cx2070x-audio sound: ASoC: Failed to add route ROP -> direct -> Int Spk
+	[    5.737166] cx2070x-audio sound: ASoC: no source widget found for RON      
+	[    5.743728] cx2070x-audio sound: ASoC: Failed to add route RON -> direct -> Int Spk
+	[    5.751514] cx2070x-audio sound: ASoC: no source widget found for LOP
+	[    5.758023] cx2070x-audio sound: ASoC: Failed to add route LOP -> direct -> Int Spk
+	[    5.765800] cx2070x-audio sound: ASoC: no source widget found for LON
+	[    5.772308] cx2070x-audio sound: ASoC: Failed to add route LON -> direct -> Int Spk        
 ```
