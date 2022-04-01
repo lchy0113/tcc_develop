@@ -199,8 +199,16 @@ Three types of audio interface are supported; DAI, SPDIF, and CDIF.
 ## analysis cx2070x
 
 ### compatible = "conexant,cx2070xctl"
-- drivers/kdiwin/cx2070x/cx2070x.c 
-
+/drivers/kdiwin/cx2070x/
+  cx2070x-i2c.h*
+  cx2070x.c*
+  cx2070x.h*
+  cx2070x_fw.h*
+  cxdebug.c*
+  cxdebug.h*
+  cxpump.c*
+  cxpump.h*
+  Makefile*
 ```c
 static struct i2c_driver cx2070x_i2c_driver = {
   .driver = {
@@ -229,8 +237,12 @@ struct cx2070x_priv
 ```
 
 ### compatible = "conexant,cx2070x"
-- sound/soc/codecs/cx2070x-i2c.c
-- sound/soc/codecs/cx2070x.c
+/sound/soc/codecs/
+  cx2070x-i2c.c*
+  cx2070x-spi.c*
+  cx2070x-sysfs.c*
+  cx2070x.c*
+  cx2070x.h*
 
 ```c
 static struct i2c_driver cx2070x_i2c_driver = {
@@ -246,7 +258,17 @@ static struct i2c_driver cx2070x_i2c_driver = {
 ```
 
 ### compatible = "telechips,snd-cx2070x"
-- sound/soc/tcc/tcc_board_cx2070x.c
+/sound/soc/tcc/
+  tcc-adma.c
+  tcc-dsp-api.c
+  tcc-i2s-dsp.c*
+  tcc-i2s.c*
+  tcc-i2s.h*
+  tcc-pcm-dsp.c*
+  tcc-pcm-v10.c*
+  tcc-pcm-v20.c*
+  tcc-pcm.h*
+  tcc_board_cx2070x.c
 
 ```c
 static struct platform_driver cx2070x_driver = {
