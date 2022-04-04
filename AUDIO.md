@@ -313,6 +313,7 @@ static struct platform_driver cx2070x_driver = {
 	|
 	+-> static int tcc_audio_probe(struct platform_device *pdev)
 		/**
+		  * codec driver
 	 	  */
 
 ```
