@@ -199,16 +199,16 @@ Three types of audio interface are supported; DAI, SPDIF, and CDIF.
 ## analysis cx2070x
 
 ### [codec control driver] compatible = "conexant,cx2070xctl"
-/drivers/kdiwin/cx2070x/
-  cx2070x-i2c.h*
-  cx2070x.c*
-  cx2070x.h*
-  cx2070x_fw.h*
-  cxdebug.c*
-  cxdebug.h*
-  cxpump.c*
-  cxpump.h*
-  Makefile*
+/drivers/kdiwin/cx2070x/ <br/>
+  cx2070x-i2c.h* <br/>
+  cx2070x.c* <br/>
+  cx2070x.h* <br/>
+  cx2070x_fw.h* <br/>
+  cxdebug.c* <br/>
+  cxdebug.h* <br/>
+  cxpump.c* <br/>
+  cxpump.h* <br/>
+  Makefile* <br/>
 ```c
 static struct i2c_driver cx2070x_i2c_driver = {
   .driver = {
