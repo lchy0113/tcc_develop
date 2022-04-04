@@ -242,12 +242,12 @@ static struct i2c_driver cx2070x_i2c_driver = {
 ```
 
 ### compatible = "conexant,cx2070x"
-/sound/soc/codecs/
-  cx2070x-i2c.c*
-  cx2070x-spi.c*
-  cx2070x-sysfs.c*
-  cx2070x.c*
-  cx2070x.h*
+/sound/soc/codecs/ <br/>
+  cx2070x-i2c.c* <br/>
+  cx2070x-spi.c* <br/>
+  cx2070x-sysfs.c* <br/>
+  cx2070x.c* <br/>
+  cx2070x.h* <br/>
 
 ```c
 static struct i2c_driver cx2070x_i2c_driver = {
