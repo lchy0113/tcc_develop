@@ -263,17 +263,17 @@ static struct i2c_driver cx2070x_i2c_driver = {
 ```
 
 ### [codec driver] compatible = "telechips,snd-cx2070x"
-/sound/soc/tcc/
-  tcc-adma.c
-  tcc-dsp-api.c
-  tcc-i2s-dsp.c*
-  tcc-i2s.c*
-  tcc-i2s.h*
-  tcc-pcm-dsp.c*
-  tcc-pcm-v10.c*
-  tcc-pcm-v20.c*
-  tcc-pcm.h*
-  tcc_board_cx2070x.c
+/sound/soc/tcc/ <br/>
+  tcc-adma.c <br/>
+  tcc-dsp-api.c <br/>
+  tcc-i2s-dsp.c* <br/>
+  tcc-i2s.c* <br/>
+  tcc-i2s.h* <br/>
+  tcc-pcm-dsp.c* <br/>
+  tcc-pcm-v10.c* <br/>
+  tcc-pcm-v20.c* <br/>
+  tcc-pcm.h* <br/>
+  tcc_board_cx2070x.c <br/>
 
 ```c
 static struct platform_driver cx2070x_driver = {
