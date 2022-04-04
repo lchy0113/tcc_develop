@@ -259,7 +259,31 @@ static struct i2c_driver cx2070x_i2c_driver = {
 	.remove = cx2070x_i2c_remove,
 	.id_table = cx2070x_i2c_id,
 };
-
+	|
+	+-> static int cx2070x_i2c_probe(struct i2c_client *i2c, const struct i2c_device_id *id)
+		/**
+		  * regmap 초기화
+		  */
+		|
+		+-> int cx2070x_probe(struct device *dev, struct regmap *regmap)
+			/* codec private data 초기화 */
+			struct cx2070x_priv {
+				struct regmap *regmap;
+				unsigned int sysclk;
+				int is_clk_gated[NUM_OF_DAI];
+				int master[NUM_OF_DAI];
+				struct device *dev;
+				const struct snd_soc_codec_driver *codec_drv;	/* codec driver(ops) */
+				struct snd_soc_dai_driver *dai_drv;	/* dai driver */
+				int num_dai;
+				struct mutex update_lock;
+				struct snd_soc_codec *codec;
+				struct i2c_client *cx_i2c;
+				struct gpio_desc *reset_gpio;
+			| 
+			+-> static int cx2070x_register_codec_driver(struct cx2070x_priv *cx2070x)
+				/* snd_soc_dai_ops 초기화, codec driver 초기화. */
+				/* Register a codec with the ASoC core : snd_soc_register_codec() */
 ```
 
 ### [codec driver] compatible = "telechips,snd-cx2070x"
@@ -289,8 +313,8 @@ static struct platform_driver cx2070x_driver = {
 	|
 	+-> static int tcc_audio_probe(struct platform_device *pdev)
 		/**
-		  *  
-		  */
+	 	  */
+
 ```
 
 #### data structure
