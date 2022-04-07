@@ -383,3 +383,123 @@ static struct snd_soc_card cx2070x_card = {
 	[    5.765800] cx2070x-audio sound: ASoC: no source widget found for LON
 	[    5.772308] cx2070x-audio sound: ASoC: Failed to add route LON -> direct -> Int Spk        
 ```
+
+----- 
+
+## 📌 analysis ak7755
+
+### [snd_codec_driver]  ak7755
+/sound/soc/codecs/ <br/>
+  ak7755.c	<br/>
+  ak7755_dsp_code.h	<br/>
+  ak7755_dsp_code2.h <br/>
+  ak7755.h <br/>
+
+```dts
+	ak7755: ak7755@18	{
+		compatible = "akm.ak7755";
+		reg = <0x18>;
+		ak7755,pdn-gpio = <&gpg 0 0>;
+	};
+```
+
+```c
+static int ak7755_i2c_probe(struct i2c_client *i2c, const struct i2c_device_id *id)
+	|	/**
+	|	* ret = snd_soc_register_codec(&i2c->dev, 
+	|	* 	&soc_codec_dev_ak7755, &ak7755_dai[0], ARRAY_SIZE(ak7755_dai));
+	|	*/
+	+-> struct snd_soc_codec_driver soc_codec_dev_ak7755 = {  // '15/10/23
+	|		.probe = ak7755_probe,
+	|		.remove = ak7755_remove,
+	|		.suspend =	ak7755_suspend,
+	|		.resume =	ak7755_resume,
+	|	
+	|	
+	|		.idle_bias_off = true,
+	|		.set_bias_level = ak7755_set_bias_level,
+	|	
+	|	#ifdef AK7755_DEBUG	//16/05/20
+	|		.read = ak7755_reg_read,  // '16/02/22
+	|		.write = ak7755_reg_write,
+	|	#endif
+	|		.controls = ak7755_snd_controls,
+	|		.num_controls = ARRAY_SIZE(ak7755_snd_controls),
+	|		.dapm_widgets = ak7755_dapm_widgets,
+	|		.num_dapm_widgets = ARRAY_SIZE(ak7755_dapm_widgets),
+	|		.dapm_routes = ak7755_intercon,
+	|		.num_dapm_routes = ARRAY_SIZE(ak7755_intercon),
+	|	}	
+	|
+	+-> static struct snd_soc_dai_ops ak7755_dai_ops = { 
+			.hw_params	= ak7755_hw_params,
+			.set_sysclk	= ak7755_set_dai_sysclk,
+			.set_fmt	= ak7755_set_dai_fmt,
+			.trigger = ak7755_trigger,
+			.digital_mute = ak7755_set_dai_mute,
+		};
+		
+		struct snd_soc_dai_driver ak7755_dai[] = {   
+			{										 
+				.name = "ak7755-AIF1",
+				.playback = {
+				       .stream_name = "Playback",
+				       .channels_min = 1,
+				       .channels_max = 2,
+				       .rates = AK7755_RATES,
+				       .formats = AK7755_FORMATS,
+				},
+				.capture = {
+				       .stream_name = "Capture",
+				       .channels_min = 1,
+				       .channels_max = 4,
+				       .rates = AK7755_RATES,
+				       .formats = AK7755_FORMATS,
+				},
+				.ops = &ak7755_dai_ops,
+			},										 
+		};
+
+
+static int ak7755_probe(struct snd_soc_codec *codec)
+	| // parse devicetree
+	+-> static int ak7755_init_reg(struct snd_soc_codec *codec)
+		/**
+		  * read device id
+		  * initialize parameters
+		  * initialize registers
+		  */
+		  	|
+			+-> int snd_soc_update_bits(struct snd_soc_codec *codec, unsigned int reg, 
+						unsigned int mask, unsigne dint value)
+				/*
+				 * update codec register bits
+				 * : write new register value
+				 */
+
+	
+```
+
+### [snd_soc_card]  ak7755
+/sound/soc/tcc/ <br/>
+  tcc_board_ak7755.c <br/>
+
+```dts
+	/* sound */
+	sound {
+		compatible = "telechips,snd-ak7755";
+		telechips,model = "TCC Audio Card";
+
+		telechips,audio-routing = 
+			"Headphone Jack", "HPOUTR",
+            "Headphone Jack", "HPOUTL",
+            "Int Spk", "ROP",
+            "Int Spk", "RON",
+            "Int Spk", "LOP",
+            "Int Spk", "LON";
+		telechips,dai-controller = <&i2s1>;
+		telechips,audio-codec = <&ak7755>;
+		status="okay";
+	};
+
+```
