@@ -503,3 +503,50 @@ static int ak7755_probe(struct snd_soc_codec *codec)
 	};
 
 ```
+
+
+### [Functions] 
+
+1. Mixer Control
+ALSA의 mixer control 은 아래 기능을 제어 할 수 있다.
+(1) Volume control and Function control
+(2) Path control and Switch
+(3) DSP control
+
+1-1. Volume control and Function control
+1-2. Path control and Switch
+1-3. DSP control
+(1) DSP PRAM Download
+ "DSP Firmware PARM"의 mixer control는 PRAM data 를 AK7755의 PRAM에 write 한다. 
+ "basic"은 ak7755_dsp_code.h의 ak7755_pram_basic[]을 PRAM에 write한다.
+ "data*"는 ak7755_pram_data*.bin을 PRAM에 write한다. 
+ ak7755_pram_dtaa*는 '/system/vendor/firmware/'경로에 위치해야 한다.
+ [Format of ak7755_pram_xxxx.bin]
+ PRAM Write Command 0xB8 (1byte)
+ PRAM Write Address (2byte)
+ PRAM CODEC
+
+(2) DSP CRAM Download
+ "DSP Firmware CRAM"의 mixer control는 AK7755의 CRAM에 CRAM data를 write 한다.
+ "basic"은 ak7755_dsp_codec.h의 ak7755_cram_basic[]을 CRAM에 write 한다.
+ "data*"는 ak7755_cram_data*.bin을 write한다. ak7755_cram_data*.bin은 '/system/vendor/firmware/'에 위치해야 한다.
+ [Format of ak7755_cram_xxxx.bin]
+ CRAM Write Command 0xB4 (1byte)
+ CRAM Write Address (2byte)
+ CRAM CODEC
+
+(3) DSP OFREG Download
+ "DSP Firmware OFREG"의 mixer control는 OFREG data를 AK7755의 OFREG에 write 한다.
+ "basic"은 ak7755_dsp_code.h의 ak7755_pram_basic[]을 OFREG에 write 한다.
+ "data*"는 ak7755_ofreg_data*.bin 을 OFREG에 write 한다. ak7755_ofreg_dtata*.bin 은 '/system/vendor/firmware'에 위치해야 한다.
+ [Format of ak7755_ofreg_xxxx.bin]
+ OFREG Write Command 0xB2 (1byte)
+ OFREG Write Address (2byte)
+ OFREG CODEC
+
+
+#### Reference 
+- PRAM : Program RAM
+- CRAM : Coefficient RAM
+- OFREG : Offset REG
+- ACCRAM : Accelerator Coefficient RAM
