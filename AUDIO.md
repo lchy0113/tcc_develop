@@ -480,6 +480,30 @@ static int ak7755_probe(struct snd_soc_codec *codec)
 	
 ```
 
+- codec initialize
+  *  read regs dump 
+```c
+static void read_regs_dump_ak7755(struct snd_soc_codec *codec)
+	|
+	+-> unsigned int ak7755_reg_read(struct snd_soc_codec *codec, unsigned int reg)
+		/**
+		  * return read data 
+		  */
+```
+  * write regs init ak7755 
+```c
+static void write_regs_init_ak7755(struct snd_soc_codec *codec)
+	|
+	+-> static int ak7755_reg_write(struct snd_soc_codec *codec, unsigned int reg, unsigned int value)
+		/**
+		  * tx[0] = reg address
+		  * tx[1] = reg value
+		  * i2c_master_send i2c transmit 함수를 통해 전송
+		  */
+		  
+
+```
+
 ### [snd_soc_card]  ak7755
 /sound/soc/tcc/ <br/>
   tcc_board_ak7755.c <br/>
