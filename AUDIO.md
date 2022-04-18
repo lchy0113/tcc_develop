@@ -11,6 +11,33 @@ Three types of audio interface are supported; DAI, SPDIF, and CDIF.
 | CDIF      	| CDIF is available only for slave mode and data reception.<br/>* Data format<br/>   * I2S and Right-justified waveform format.<br/>   * S16_LE interleaved format.<br/> * About clock <br/>  * Bit clock: 32 fs<br/>   * Sample rates: 8-192 kHz                                            	|                                                  	|
 
 
+### DAI 
+
+ TCC898x는 IIS(Inter-IC Sound)를 준수하는 디지털 오디오 인터페이스를 제공합니다. 
+ DAI에는 IIS 인터페이스를 위한 5개의 입력/출력 핀이 있습니다. 
+ MCLK, *BCLK*, *LRCK*, *DAI*, *DAO*. 모든 DAI 입/출력 핀은 GPIO 핀으로 multiplexed 됩니다.
+
+ - MCLK : MCLK는 CODEC 시스템 클럭에 사용되는 시스템 클럭 핀입니다. 
+ 	master 모드에서 MCLK는 DCLK로 알려진 클록 generator에서 생성되거나 
+	slave 모드에서 칩 외부에서 공급될 수 있습니다.
+	DAI는 128fs, 192fs, 256fs, 288fs, 384fs, 512fs, 768fs 및 1024fs를 시스템 클록으로 처리할 수 있습니다.
+	256fs는 시스템 클록이 샘플링 주파수(fs)의 256배를 가짐을 의미합니다.
+ - BCLK : BCLK는 IIS 데이터 교환을 위한 serial bit 클록입니다.
+	 DAI는 시스템 클록을 나누어 64fs, 48fs 및 32fs를 생성할 수 있습니다.
+	 BCLK의 polarity(극성)을 프로그래밍할 수 있습니다.
+	   즉, serial bit BCLK의 상승 에지 또는 BCLK의 하강 에지 모두 적용할 수  있습니다.
+ - LRCK : LRCK는 스테레오 오디오 채널 왼쪽 및 오른쪽에 대한 frame clock 입니다. 
+ 	LRCK의 주파수는 fs로 알려져 있습니다. 
+	일반적으로 MP3 플레이어, CD 플레이어와 같은 오디오 응용 프로그램의 경우 fs는 8kHz ~ 192kHz로 설정할 수 있습니다.
+	오디오 애플리케이션에서 광범위한 샘플링 주파수를 지원하기 위해 DCO 기능은 시스템 클록을 생성하는 데 매우 유용합니다.
+	자세한 내용은 SMU&PMU의 PCLKDCOCTRLn 레지스터를 참조하십시오.
+> 세 개의 클럭(MCLK, BCLK, LRCK) 모두 master 또는 slave로 선택 가능합니다.
+ - DAI and DAO : DAI 및 DAO는 각각 serial data 입력 출력 핀입니다. 
+	 DAI에는 내부 입력/출력 버퍼가 있습니다.
+	 버퍼의 한 쪽은 데이터를 수신/전송하고 다른 쪽은 읽기/쓰기가 가능한 뱅크 버퍼 구조를 가지고 있습니다.
+	   최대 데이터 워드 크기는 24비트입니다.
+	     데이터는 32비트의 MSB로 정당화되고 0은 LSB로 채워집니다.
+
 ## kernel device tree
 - Define DAI device with GPIO Port Information
   * To add audio device, redefine and enable DAI device in device tree for target board. 
