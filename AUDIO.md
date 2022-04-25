@@ -595,6 +595,66 @@ ALSA의 mixer control 은 아래 기능을 제어 할 수 있다.
  OFREG Write Address (2byte)
  OFREG CODEC
 
+### [Linux device : tcc8926 based]
+```c
+
+(BOOT)
+	|
+	+-> static struct i2c_driver ak7755_i2c_driver
+	|	|
+	|	+->	static int ak7755_i2c_probe(struct i2c_client *i2c, const struct i2c_device_id *id)
+	|		/**
+	|		  * snd_soc_register_codec() 를 호출하여 코덱을 ASoC에 등록하고, 내부적으로snd_soc_register_dais() 를 호출하여 DAI(Digital Audio Interface)를 등록한다.
+	|		  */
+	+-> struct snd-soc_codec_driver soc_codec_dev_ak7755
+		|
+		+-> static int ak7755_probe(struct snd_soc_codec *codec)
+			|
+			+-> static int ak7755_init_reg(struct snd_soc_codec *codec)
+				/**
+				  *  AK7755 PDN pin(gpio) : low -> high (실제 동작여부 모르겠음)
+				  *  AK7755 Device ID 를 읽어와서 i2c 인터페이스 및 동작 확인.
+				  *  vendor 사에서 제공한 코드에 의해서 initialize register 세팅 함 (실제 동작여부 모르겠음) 
+				  */
+```
+
+### [Linux device : ak7755 : /home/lchy0113/Develop/Telechips/Linux_SDK/audio_dsp_driver]
+```c
+struct kdone_audio {
+	struct i2c_adapter *adapter;
+	struct i2c_client *i2c;
+	KDWIN_AUDIO_PATH AudioPath;
+	struct driver_info board_info;
+
+	struct ak7755_reg *ak7755_cache_register;
+	bool mbClassDAmp;
+	bool b_mute;
+	bool b_mic_mute;
+	int m_maxCache;
+	unsigned char m_nMuteVal;
+	unsigned char m_nMicMuteVal;
+};
+struct kdone_audio kdone_audio_dev;   /* global 변수 */
+
+(MODULE INIT)
+	|
+	+-> static int __init ak7755_modinit(void)
+		|	/** 
+		|	  * ak7755 레지스터 사이즈 체크 한 후, kdone_audio_dev global 변수 초기화에 사용
+		|	  * ak7755 POWER DOWN gpio 핀 초기화 및 제어
+		|	  * ak7755 레지스터 덤프(0xC0~0xDE)
+		|	  * 레지스터 write(ak7755_normal_register)
+		|	  */
+		+->  static void wrtie_regs_init_ak7755(void)
+				/**
+				  * ak7755 POWER DOWN gpio 핀 제어를 통해 Reset
+				  * ak7755 레지스터 덤프(0xC0~0xDE)
+				  * write ak7755_normal_register 리스트
+				  * aplly_register (KDWIN_AUDIO_PATH_DOOR) 함수 호출하여 pram, cram 펌웨어 다운로드
+				  */
+				  	
+
+```
 
 #### Reference 
 - PRAM : Program RAM
