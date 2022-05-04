@@ -95,18 +95,17 @@ static int __devinit kdone_bs83b08_probe(struct i2c_client *client, const struct
 	|
 	+-> // gpio interface 초기화
 	+-> // led 초기화
-		|
-		+-> static int kdone_bs83b08_led_init(void)
-
-
-
-
-	struct led_fmt *local_led = &kdone_bs83b08_dev.led_state;
-		/**
-		  * 상태를 LED_OFF로 설정.(count < USED_LED)
-		  * sensitivity 값 세팅
-		  */
-// kernel thread 초기화
-thread = kthread_run(kdone_bs83b08_work_handler, 0, "bs83b08_thread");
-
+	|	|
+	|	+-> static int kdone_bs83b08_led_init(void)
+	|	|	/**
+	|	|	  * 상태를 LED_OFF로 설정.(count < USED_LED)
+	|	|	  * sensitivity 값 세팅
+	|	|	  */
+	|	+->	/**
+	|		  * kernel thread 초기화
+	|		  */
+	|		kthread_run(kdone_bs83b08_work_handler, 0, "bs83b08_thread");
+	=-> return 
 ```
+
+
