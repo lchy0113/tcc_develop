@@ -3,10 +3,10 @@
 
 ## linux version
 - kdone bs83b08 struct
+![bs83b08 struct](images/holtek_bs83b08-01.png)
 
 ```c
 // kdone_bs83b08 struct 초기화
-![bs83b08 struct](images/holtek_bs83b08-01.png)
 struct kdone_bs83b08 {
     struct i2c_board_info board_info;
     struct i2c_adapter *adapter;
