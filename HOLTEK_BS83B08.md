@@ -108,4 +108,56 @@ static int __devinit kdone_bs83b08_probe(struct i2c_client *client, const struct
 	=-> return 
 ```
 
+thread : kdone_bs83b08_work_handler
+```c
+static int kdone_bs83b08_work_handler(void *arg)
+	|	/**
+	|	  * buf size = 10 byte
+	|	  * buf = [0x0][0xf0][][][][][][][][]
+	|	  * i2c write buf 
+	|	  */
+	+-> // support set sensitivity
+	|	/**
+	|	  * buf size = 10 byte
+	|	  * buf = [0x00][0][0][0][0][0][0][][][]
+	|	  * i2c write buf
+	|	  * 
+	|	  * i2c read (0x00) 한 후, buf에 저장.
+	|	  */
+		/**
+		  * loop
+		  *
+		  * trigger key data
+		  * interrupt gpio 값이 0인 경우,
+		  *    buf[3] 크기 만큼 i2c read
+		  *    read된 buf를 short data로 복사
+		  *    local_key = kdone_bs83b08_dev.key_state;
+		  *    data 의 각 bit를 비교하여, 1인 경우 
+		  *    local_key[i].status 멤버를 KDONE_BS83B08_ENABLE로 변경. local_key[i].count 증가
+		  *    data 의 각 bit를 비교하여, 0인 경우 
+		  *    local_key[i].status 멤버를 KDONE_BS83B08_DISABLEE로 변경. local_key[i].sendflag를 KDONE_BS83B08_KEY_RELEASE로 변경
+		  * interrupt gpio 값이 1인 경우,
+		  *    data = 0  으로 변경.
+		  *    local_key[i].status 멤버를 KDONE_BS83B08_DISABLEE로 변경. local_key[i].sendflag를 KDONE_BS83B08_KEY_RELEASE로 변경
+		  *
+		  * send key event
+		  * local_key[i] (i<USED_KEY) 에저장된 sendflag에 따라 동작 
+		  * KDONE_BS83B08_KEY_IDLE 인경우,
+		  *    local_key[i].count 값의 범위가 2 보다 크고 80 보다 작은 경우, 
+		  *    make_new_key_event(i, HOTKEY_PRESS)
+		  *    local_key[i].sendflag = KDONE_BS83B08_KEY_SHORT로 변경
+		  * KDONE_BS83B08_KEY_SHORT 인경우,
+		  *    local_key[i].count 값의 범위가 80보다 큰 경우,
+		  *    make_new_key_event(i, HOTKEY_LONG)
+		  *    local_key[i].sendflag = KDONE_BS83B08_KEY_LONG로 변경
+		  * KDONE_BS83B08_KEY_RELEASE 인경우,
+		  *    local_key[i].count 값의 범위가 80보다 큰 경우,
+		  *    make_new_key_event(i, HOTKEY_LONG_RELEASE)
+		  *    local_key[i].count 값의 범위가 2보다 큰 경우,
+		  *    make_new_key_event(i, HOTKEY_RELEASE)
+		  *    local_key[i].sendflag = KDONE_BS83B08_KEY_IDLE로 변경
+		  *    local_key[i].count = 0
+		  *
+		  * LED blink LED off time
 
+```
