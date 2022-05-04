@@ -125,7 +125,7 @@ static int kdone_bs83b08_work_handler(void *arg)
 	|	  * i2c read (0x00) 한 후, buf에 저장.
 	|	  */
 		/**
-		  * loop
+		  * loop (25ms)
 		  *
 		  * trigger key data
 		  * interrupt gpio 값이 0인 경우,
@@ -159,5 +159,12 @@ static int kdone_bs83b08_work_handler(void *arg)
 		  *    local_key[i].count = 0
 		  *
 		  * LED blink LED off time
+		  */
+```
+
+- function: make_new_key_event
+```c
+static int make_new_key_event(int key_code, int sendflag )
 
 ```
+TODO: loop에서 트리거된 data값을 파싱하여 keyevent 로 전달.
