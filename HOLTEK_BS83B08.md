@@ -2,12 +2,11 @@
 
 
 ## linux version
+- kdone bs83b08 struct
 
-- module_init
 ```c
-module_init(kd_io_init);
-
 // kdone_bs83b08 struct 초기화
+![bs83b08 struct](images/holtek_bs83b08-01.png)
 struct kdone_bs83b08 {
     struct i2c_board_info board_info;
     struct i2c_adapter *adapter;
@@ -24,9 +23,16 @@ struct led_fmt {
     int change_flag;
     enum LED_STATUS status[KD_LED_MAX];	// [0] : off, [1] : on, [2] : blink
 };
+```
 
+- module_init
+```c
+module_init(kd_io_init);
 
-struct kdone_bs83b08 kdone_bs83b08_dev;
+/** 
+  * i2c driver 등록
+  */ 
+ret = i2c_add_driver(&kdone_bs83b08_driver);
 
 /**
   * alloc_chrdev_region 함수는 주번호를 명시하는 대신, 주번호를 할당받는다. 
@@ -80,12 +86,19 @@ dev = device_create( class, NULL, id, NULL, DEVICE_NAME );
 kdio 드라이버 생성
 ```
 
-- kdone_bs83b08 i2c_drvier probe 
+- i2c_drvier probe 
 probe
 ```c
-// bs83b08 ic 초기화
-// led 초기화
-kdone_bs83b08_led_init();
+static int __devinit kdone_bs83b08_probe(struct i2c_client *client, const struct i2c_device_id *id)
+	|
+	+-> // gpio interface 초기화
+	+-> // led 초기화
+		|
+		+-> static int kdone_bs83b08_led_init(void)
+
+
+
+
 	struct led_fmt *local_led = &kdone_bs83b08_dev.led_state;
 		/**
 		  * 상태를 LED_OFF로 설정.(count < USED_LED)
