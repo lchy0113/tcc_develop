@@ -56,12 +56,12 @@ cdev_keypad.owner = THIS_MODULE;
 // cdev device 초기화
 struct file_operations kd_io_fops =
 {
-	.owner          = THIS_MODULE,
-	.read		    = kd_io_read,
-	.write          = kd_io_write,
+	.owner			= THIS_MODULE,
+	.read			= kd_io_read,
+	.write			= kd_io_write,
 	.unlocked_ioctl	= kd_io_ioctl,
-	.open		    = kd_io_open,
-	.release	    = kd_io_close,
+	.open			= kd_io_open,
+	.release		= kd_io_close,
 	.poll			= kd_io_poll,
 };
 
