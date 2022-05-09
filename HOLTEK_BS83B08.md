@@ -170,7 +170,9 @@ static int make_new_key_event(int key_code, int sendflag )
 
 ## android version(develop)
 
+
 - key value table : 
+
 |    	| button 	| data                           	| key 	|
 |----	|--------	|--------------------------------	|-----	|
 | 1  	| 1      	| [0x00][0x00][0x00][0x01][0x01] 	|     	|
