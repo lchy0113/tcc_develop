@@ -191,5 +191,6 @@ static int make_new_key_event(int key_code, int sendflag )
 | 14 	| 🔑          	| 0x2000   	| KEYCODE_ENTER 	| 66                 	|
 | 15 	| 👮          	| 0x4000   	| KEYCODE_HELP  	| 259                	|
 
-TODO: loop에서 트리거된 data값을 파싱하여 keyevent 로 전달.
+- code 
+TODO: 작성 예정.
 
