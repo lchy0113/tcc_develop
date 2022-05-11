@@ -174,7 +174,7 @@ static int make_new_key_event(int key_code, int sendflag )
 - key value table : 
 
 |    	| **button** 	| **data** 	|    **key**    	| **Constant Value** 	|
-|:--:	|:----------:	|:--------:	|:-------------:	|--------------------	|
+|:--:	|:----------:	|:--------:	|:-------------:	|:--------------------:	|
 | 1  	| 1          	| 0x0001   	| KEYCODE_1     	| 8                  	|
 | 2  	| 2          	| 0x0002   	| KEYCODE_2     	| 9                  	|
 | 3  	| 3          	| 0x0004   	| KEYCODE_3     	| 10                 	|
