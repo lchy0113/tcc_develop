@@ -173,23 +173,23 @@ static int make_new_key_event(int key_code, int sendflag )
 
 - key value table : 
 
-|    	| **button** 	| **data** 	|    **key**    	|
-|:--:	|:----------:	|:--------:	|:-------------:	|
-| 1  	| 1          	| 0x0001   	| KEYCODE_1     	|
-| 2  	| 2          	| 0x0002   	| KEYCODE_2     	|
-| 3  	| 3          	| 0x0004   	| KEYCODE_3     	|
-| 4  	| 4          	| 0x0008   	| KEYCODE_4     	|
-| 5  	| 5          	| 0x0010   	| KEYCODE_5     	|
-| 6  	| 6          	| 0x0020   	| KEYCODE_6     	|
-| 7  	| 7          	| 0x0040   	| KEYCODE_7     	|
-| 8  	| 8          	| 0x0080   	| KEYCODE_8     	|
-| 9  	| 9          	| 0x0100   	| KEYCODE_9     	|
-| 10 	| *          	| 0x0200   	| KEYCODE_STAR  	|
-| 11 	| 0          	| 0x0400   	| KEYCODE_0     	|
-| 12 	| #          	| 0x0800   	| KEYCODE_POUND 	|
-| 13 	| 📞          	| 0x1000   	| KEYCODE_CALL  	|
-| 14 	| 🔑          	| 0x2000   	| KEYCODE_ENTER 	|
-| 15 	| 👮          	| 0x4000   	| KEYCODE_HELP  	|
+|    	| **button** 	| **data** 	|    **key**    	| **Constant Value** 	|
+|:--:	|:----------:	|:--------:	|:-------------:	|--------------------	|
+| 1  	| 1          	| 0x0001   	| KEYCODE_1     	| 8                  	|
+| 2  	| 2          	| 0x0002   	| KEYCODE_2     	| 9                  	|
+| 3  	| 3          	| 0x0004   	| KEYCODE_3     	| 10                 	|
+| 4  	| 4          	| 0x0008   	| KEYCODE_4     	| 11                 	|
+| 5  	| 5          	| 0x0010   	| KEYCODE_5     	| 12                 	|
+| 6  	| 6          	| 0x0020   	| KEYCODE_6     	| 13                 	|
+| 7  	| 7          	| 0x0040   	| KEYCODE_7     	| 14                 	|
+| 8  	| 8          	| 0x0080   	| KEYCODE_8     	| 15                 	|
+| 9  	| 9          	| 0x0100   	| KEYCODE_9     	| 16                 	|
+| 10 	| *          	| 0x0200   	| KEYCODE_STAR  	| 17                 	|
+| 11 	| 0          	| 0x0400   	| KEYCODE_0     	| 7                  	|
+| 12 	| #          	| 0x0800   	| KEYCODE_POUND 	| 18                 	|
+| 13 	| 📞          	| 0x1000   	| KEYCODE_CALL  	| 5                  	|
+| 14 	| 🔑          	| 0x2000   	| KEYCODE_ENTER 	| 66                 	|
+| 15 	| 👮          	| 0x4000   	| KEYCODE_HELP  	| 259                	|
 
 TODO: loop에서 트리거된 data값을 파싱하여 keyevent 로 전달.
 
