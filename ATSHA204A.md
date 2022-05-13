@@ -18,4 +18,57 @@ ATSHA204A 장치에는 아래 메모리 블록으로 구성되어 있습니다.
 
 ## driver code
 
+- module init
+```c
+static int __init atsha204a_module_init(void)	// driver module loadeing initialization
+	|
+	+-> inc_add_driver(&atsha204a_driver)	//	i2c driver 등록
+	+-> alloc_chrdev_region(&ndev, 0, 1, "atsha204a") 	// device number 할당
+	+-> atsha204a_dev = cdev_alloc()	// cdev 구조의 메모리 공간 할당
+    	atsha204a_dev->ops = &atsha204a_driver_fops;
+	+-> crypto_class = class_create(THIS_MODULE, "crypto");		// class 장치 생성
+```
 
+- i2c_driver
+```c
+// module probe
+static int atsha204a_probe(struct i2c_client *i2c, const struct i2c_device_id *id)
+	|	//atsha204a 의 serial number를 읽어 칩과의 통신을 확인한다. 
+	+-> static int atsha204a_get_sn(struct i2c_client *i2c, unsigned char *sn_data)	
+
+// module remove
+	// nothing
+```
+
+- file operations
+```c
+// atsha204a_open
+	// nothing
+
+// atsha204a_release
+	// nothing
+
+// atsha204a_read
+	// nothing
+
+// atsha204a_write
+	// nothing
+
+// atsha204a_ioctl
+ /**
+   * ioctl table
+   *  #define ATSHA204A_SN_CMD                     (0x10)       //!< get atsha204a sn 
+   *  
+   *  #define ATSHA204A_NONCE_CMD                  (0x11)       //!< atsha204a run nonce command 
+   *  
+   *  #define ATSHA204A_MAC_CMD                    (0x12)       //!< atsha204a run mac command 
+   *  
+   *  #define ATSHA204A_WRITE_CMD                  (0x13)       //!< atsha204a run writer command 
+   *  
+   *  #define ATSHA204A_READ_CMD                   (0x14)       //!< atsha204a run read command 
+   *  #define ATSHA204A_LOCK_CMD                   (0x15)
+   */
+
+static long atsha204a_ioctl(struct file* filp, unsigned int cmd, unsigned long data) 
+
+```
