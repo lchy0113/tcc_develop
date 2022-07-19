@@ -64,8 +64,8 @@ dnsmasq -d -C /data/local/tmp/dnsmasq.conf \
 			-r /data/local/tmp/resolv.conf
 ```
 
-- hostapd
-	[hostapd.conf](/attachment/hostapd.conf)
+- hostapd  
+	[hostapd.conf](/attachment/hostapd.conf)  
 ```bash
 hostapd -dd /data/local/tmp/hostapd.conf
 ```
