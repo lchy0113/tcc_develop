@@ -55,9 +55,9 @@ ip link set p2p0 up
 ip addr add 172.16.0.1/24 dev p2p0
 ```
 
-- dnsmasq
-	[dnsmasq.conf](/attachment/dnsmasq.conf)
-	[resolv.conf](/attachment/resolv.conf)
+- dnsmasq  
+	[dnsmasq.conf](/attachment/dnsmasq.conf)  
+	[resolv.conf](/attachment/resolv.conf)  
 ```bash
 dnsmasq -d -C /data/local/tmp/dnsmasq.conf \
 			-x /data/local/tmp/dnsmasq.pid \
