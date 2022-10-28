@@ -6,7 +6,10 @@
 
 ## HAL 
 
-
+```c
+int32_t TAvnHardwareInterface::startPreview(void)
+	// start preview processing
+```
 
 ---
 
