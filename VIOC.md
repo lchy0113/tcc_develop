@@ -319,6 +319,9 @@ void tcc_composite_attach(char lcdc_num, char mode, char starter_flag)
     |      * mode         : 
     |      * start_flag    : reset privious display path
     |      */
+	+->    void tcc_composite_clock_onoff(char OnOff)
+	|
+	|
     +->    void tcc_composite_start(TCC_COMPOSITE_TYPE mode)
     |       +-> int tcc_composite_connect_lcdc(int lcdc_num, int enable)
     |       |   /**
