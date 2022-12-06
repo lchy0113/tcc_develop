@@ -10,7 +10,7 @@ mmc0: Error -74 starting bkops
 (...)
 ```
 
- - bkops feature
+### bkops feature
 > bkops : background operations(bkops) feature
 
  eMMC는 Host에 의해 시작된 normal operations과 별도로 런타임 동안 internal maintenance(관리) 목적에 필요한 다양한 internal background operations을 수행할 수 있습니다. 
@@ -18,10 +18,11 @@ mmc0: Error -74 starting bkops
  read, write와 같이 time-critical 이 중요한 operations에 time 을 줄이고, idle time 동안 eMMC 제어 전력 소비를 최소화하기 위해, 이 기능은 Host에 device background operations을 지연시키는기능을 제공합니다.
 
 
-- reference : https://www.jedec.org/sites/default/files/Victor_Tsai.pdf
+ - reference : https://www.jedec.org/sites/default/files/Victor_Tsai.pdf
 
  - code
- code에서 출력된 로그.
+
+ > code에서 출력된 로그.
 ```c
 /**
  *	mmc_start_bkops - start BKOPS for supported cards
