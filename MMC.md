@@ -10,6 +10,11 @@ mmc0: Error -74 starting bkops
 (...)
 ```
 
+ - error number
+```c
+#define	EBADMSG		74	/* Not a data message */
+```
+
 ### bkops feature
 > bkops : background operations(bkops) feature
 
@@ -20,9 +25,10 @@ mmc0: Error -74 starting bkops
 
  - reference : https://www.jedec.org/sites/default/files/Victor_Tsai.pdf
 
- - code
+ - *code*
 
- > code에서 출력된 로그.
+ > 로그가 출력된 code
+ > support eMMC card에 대해서 **bkops feature**을 시작하는 함수 입니다. 
 ```c
 /**
  *	mmc_start_bkops - start BKOPS for supported cards
@@ -90,10 +96,3 @@ out:
 EXPORT_SYMBOL(mmc_start_bkops);
 ```
 
-   * mmc_start_bkops
-  support eMMC card에 대해서 **bkops feature**을 시작하는 함수 입니다. 
-
-   * error code : 
-```c
-#define	EBADMSG		74	/* Not a data message */
-```
