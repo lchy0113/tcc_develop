@@ -341,6 +341,15 @@ void tcc_composite_attach(char lcdc_num, char mode, char starter_flag)
                  */
 ```
 
+
+- composite out clock enable disable
+>  VENCON register 를 사용하여 확인 가능.
+```bash
+# mem r 0x12200800 w 0x4
+12200800 memory mapped at address 0xb6aff000.
+0x12200800: 0x00000000
+```
+
 ### tcc_overlay
 
 ```c
