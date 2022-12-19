@@ -421,7 +421,114 @@ int32_t TCameraCommon::camera_device_open(const hw_module_t* module, const char*
 
 - camera preview call flow
 
+ - startPreview()
 ```c
+//hardware/interfaces/camera/device/1.0/default/CameraDevice_1_0.h
+struct CameraDevice : public ICameraDevice {
+
+    // Called by provider HAL. Provider HAL must ensure the uniqueness of
+    // CameraDevice object per cameraId, or there could be multiple CameraDevice
+    // trying to access the same physical camera.
+    // Also, provider will have to keep track of all CameraDevice objects in
+    // order to notify CameraDevice when the underlying camera is detached
+    CameraDevice(sp<CameraModule> module,
+                 const std::string& cameraId,
+                 const SortedVector<std::pair<std::string, std::string>>& cameraDeviceNames);
+    ~CameraDevice();
+
+    // Caller must use this method to check if CameraDevice ctor failed
+    bool isInitFailed() { return mInitFail; }
+    // Used by provider HAL to signal external camera disconnected
+    void setConnectionStatus(bool connected);
+
+    // Methods from ::android::hardware::camera::device::V1_0::ICameraDevice follow.
+    Return<void> getResourceCost(getResourceCost_cb _hidl_cb) override;
+    Return<void> getCameraInfo(getCameraInfo_cb _hidl_cb) override;
+    Return<Status> setTorchMode(TorchMode mode) override;
+    Return<Status> dumpState(const hidl_handle& fd) override;
+    Return<Status> open(const sp<ICameraDeviceCallback>& callback) override;
+    Return<Status> setPreviewWindow(const sp<ICameraDevicePreviewCallback>& window) override;
+    Return<void> enableMsgType(uint32_t msgType) override;
+    Return<void> disableMsgType(uint32_t msgType) override;
+    Return<bool> msgTypeEnabled(uint32_t msgType) override;
+    Return<Status> startPreview() override;
+    Return<void> stopPreview() override;
+    Return<bool> previewEnabled() override;
+    Return<Status> storeMetaDataInBuffers(bool enable) override;
+    Return<Status> startRecording() override;
+    Return<void> stopRecording() override;
+    Return<bool> recordingEnabled() override;
+    Return<void> releaseRecordingFrame(uint32_t memId, uint32_t bufferIndex) override;
+    Return<void> releaseRecordingFrameHandle(
+            uint32_t memId, uint32_t bufferIndex, const hidl_handle& frame) override;
+    Return<void> releaseRecordingFrameHandleBatch(
+            const hidl_vec<VideoFrameMessage>&) override;
+    Return<Status> autoFocus() override;
+    Return<Status> cancelAutoFocus() override;
+    Return<Status> takePicture() override;
+    Return<Status> cancelPicture() override;
+    Return<Status> setParameters(const hidl_string& params) override;
+    Return<void> getParameters(getParameters_cb _hidl_cb) override;
+    Return<Status> sendCommand(CommandType cmd, int32_t arg1, int32_t arg2) override;
+    Return<void> close() override;
+
+private:
+    struct CameraMemory : public camera_memory_t {
+        MemoryId mId;
+        CameraDevice* mDevice;
+    };
+
+    class CameraHeapMemory : public RefBase {
+    public:
+        CameraHeapMemory(int fd, size_t buf_size, uint_t num_buffers = 1);
+        explicit CameraHeapMemory(
+            sp<IAllocator> ashmemAllocator, size_t buf_size, uint_t num_buffers = 1);
+        void commonInitialization();
+        virtual ~CameraHeapMemory();
+
+        size_t mBufSize;
+        uint_t mNumBufs;
+
+        // Shared memory related members
+        hidl_memory      mHidlHeap;
+        native_handle_t* mHidlHandle; // contains one shared memory FD
+        void*            mHidlHeapMemData;
+        sp<IMemory>      mHidlHeapMemory; // munmap happens in ~IMemory()
+
+        CameraMemory handle;
+    };
+
+
+// hardware/interfaces/camera/device/1.0/default/CameraDevice.cpp
+Return<Status> CameraDevice::startPreview() {
+    ALOGV("%s(%s)", __FUNCTION__, mCameraId.c_str());
+    Mutex::Autolock _l(mLock);
+    if (!mDevice) {
+        ALOGE("%s called while camera is not opened", __FUNCTION__);
+        return Status::OPERATION_NOT_SUPPORTED;
+    }
+    if (mDevice->ops->start_preview) {
+        return getHidlStatus(mDevice->ops->start_preview(mDevice));
+    }
+    return Status::INTERNAL_ERROR; // HAL should provide start_preview
+}
+```
+
+```c
+// hardware/libhardware/include/hardware/camera.h
+typedef struct camera_device_ops {	
+	(...)
+	/**
+	 * Start preview mode.
+	 */
+	int (*start_preview)(struct camera_device *);
+	(...)
+
+	};
+```
+
+```c
+// hardware/telechips/camera/libcamera_v2/include/modules/anv/TCameraAvn_Module.h
 camera_device_ops_t TAvnModule::m_CameraOps = {
     .set_preview_window =        TAvnModule::set_preview_window,
     .set_callbacks =             TAvnModule::set_CallBacks,
@@ -454,12 +561,22 @@ camera_device_ops_t TAvnModule::m_CameraOps = {
     .dump =                      TAvnModule::dump,
 };
 
+
+// hardware/telechips/camera/libcamera_V2/modules/avn/TCameraAvn_Module.cpp
 int32_t TAvnModule::start_preview(struct camera_device *device)
-	// start preview
-	|
+	|	// start preview
 	+-> int32_t TAvnHardwareInterface::startPreview(void)
-		// start preview processing
+	|	// hardware/telechips/camera/libcamera_v2/modules/avn/TCameraAvn_hwi.cpp
+	|	// start preview processing
+	+-> int32_t TAvnHardwareInterface::createPreviewThread(void) 
+	|	// hardware/telechips/camera/libcamera_v2/modules/avn/TCameraAvn_hwi.cpp
+	|	// create preview thread
+	+-> int32_t TAvnHardwareInterface::createRecoveryThread(void)
+	|	// hardware/telechips/camera/libcamera_v2/modules/avn/TCameraAvn_hwi.cpp
+	|	// Create recovery thread
 ```
+
+
 
 note : https://cleanli.github.io/cleanhome/posts/2017-08-12/Android_x86_Camera_HAL.html
 
