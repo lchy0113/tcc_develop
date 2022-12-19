@@ -161,6 +161,263 @@ camera_module_t HAL_MODULE_INFO_SYM = {
 }
 ```
 
+
+- camera hal open
+
+```c
+typedef struct {
+	tcam_types type;	// TYPE_NONE, TYPE_USB_WEBCAM, TYPE_HDMI_INPUT, TYPE_AVN_CAMERA, TYPE_HH_CAMERA
+	int facing;
+} hal_descriptor;
+
+class TCameraCommon
+{
+public:
+    TCameraCommon();
+    virtual ~TCameraCommon();
+    static int32_t get_number_of_cameras();
+    static int32_t get_camera_info(int32_t camera_id, struct camera_info *info);
+    static int32_t camera_device_open(const hw_module_t* module, const char* id, hw_device_t** device);
+    
+private:
+    int32_t TCamera_device_connect(int32_t camera_id, hw_device_t** device);
+    int32_t TCamera_device_Info(int32_t camera_id, struct camera_info *info);
+    int32_t TCamera_number_of_devices();
+    
+private:    
+    hal_descriptor *m_HalDescriptors;
+    int32_t m_NumOfCameras;
+};
+
+```
+
+```c
+namespace tcamera {
+
+class TAvnModule
+{
+public:
+    TAvnModule(uint32_t Camera_ID);
+    virtual ~TAvnModule();
+    int open_camera(hw_device_t** device);
+    static int32_t get_camera_info(struct camera_info *info);
+    static int32_t set_preview_window(struct camera_device *device,
+        struct preview_stream_ops *window);
+    static void set_CallBacks(struct camera_device *device,
+        camera_notify_callback notify_cb,
+        camera_data_callback data_cb,
+        camera_data_timestamp_callback data_cb_timestamp,
+        camera_request_memory get_memory,
+        void *user);
+    static void enable_msg_type(struct camera_device *device, int32_t msg_type);
+    static void disable_msg_type(struct camera_device *device, int32_t msg_type);
+    static int32_t msg_type_enabled(struct camera_device *device, int32_t msg_type);
+    static int32_t start_preview(struct camera_device *device);
+    static void stop_preview(struct camera_device *device);
+    static int32_t preview_enabled(struct camera_device *device);
+    static int32_t store_meta_data_in_buffers(struct camera_device *device, int32_t enable);
+    static int32_t start_recording(struct camera_device *device);
+    static void stop_recording(struct camera_device *device);
+    static int32_t recording_enabled(struct camera_device *device);
+    static void release_recording_frame(struct camera_device *device, const void *opaque);
+    static int32_t auto_focus(struct camera_device *device);
+    static int32_t cancel_auto_focus(struct camera_device *device);
+    static int32_t take_picture(struct camera_device *device);
+    static int32_t cancel_picture(struct camera_device *device);
+    static int32_t set_parameters(struct camera_device *device, const char *parms);
+    static char* get_parameters(struct camera_device *device);
+    static void put_parameters(struct camera_device *device, char *parm);
+    static int32_t send_command(struct camera_device *device,
+                                            int32_t cmd,
+                                            int32_t arg1,
+                                            int32_t arg2);
+    static void release(struct camera_device *device);
+    static int32_t dump(struct camera_device *device, int32_t fd);
+    
+    static camera_device_ops_t m_CameraOps;
+
+private:
+    static int32_t close_camera(hw_device_t *hw_dev);
+    void lock();
+    void unlock();
+
+private:
+    camera_device_t m_CameraDevice;
+    pthread_mutex_t m_lock;
+    
+    uint32_t m_CameraID;
+    void *m_hwi;
+};
+
+}; //tcamera
+
+```
+
+```c
+class TAvnHardwareInterface {
+public:
+	TAvnHardwareInterface(int32_t);
+    virtual ~TAvnHardwareInterface();
+	void setCallbacks(camera_notify_callback,
+			camera_data_callback,
+			camera_data_timestamp_callback,
+			camera_request_memory,
+			void*);
+	int32_t setPreviewWindow(struct preview_stream_ops *);
+	void enableMsgType(int32_t);
+	void disableMsgType(int32_t);
+	bool msgTypeEnabled(int32_t);
+	int32_t startPreview(void);
+	int32_t stopPreview(void);
+	int32_t previewEnabled(void);
+	int32_t getVideoRecordingFrame(void *, int32_t);
+	int32_t storeMetaDataInBuffers(int32_t);
+	int32_t startRecording(void);
+	void stopRecording(void);
+	int32_t recordingEnabled(void);
+	void releaseRecordingFrame(const void*);
+	int32_t autoFocus(void);
+	int32_t cancelAutoFocus(void);
+	int32_t takePicture(void);
+	int32_t cancelPicture(void);
+	int32_t setParameters(const char*);
+	char* getParameters(void);
+	void putParameters(char*);
+	int32_t sendCommand(int32_t, int32_t, int32_t);
+	void release(void);
+	int32_t dump(int32_t) const;
+
+	void* preview_handler(void);
+	void* recovery_handler(void);
+	void post_preview_callback(int32_t);
+	void post_video_callback(int32_t);
+	int32_t sendBuffer(int32_t buf_id);
+
+	int32_t createPreviewThread(void);
+	int32_t createRecoveryThread(void);
+	void destroyPreviewThread(void);
+	void destroyRecoveryThread(void);
+
+	int32_t picture_handler(void);
+private:
+	void *m_parameters;
+
+    /* common device to control a kernel camera driver */
+    t_camif_device *m_device;
+
+	/* Callback util */
+	TCameraCallbackUtil *m_callback;
+
+	/* stream util to control buffer */
+	TCameraStreamUtil *m_stream;
+
+	/* native window */
+	preview_stream_ops_t *m_window;
+
+	/* Message from frameworks */
+	int32_t m_MsgEnabled;
+
+	/* buffer information */
+	avn_buf_info_t m_buffer[AVN_BUF_COUNT];
+
+	/* preview process */
+	pthread_t m_PreviewThread;
+	bool m_PreviewEnabled;
+
+	/* recovery process */
+	pthread_t m_RecoveryThread;
+	bool m_RecoveryEnabled;
+
+	/* picture parameters */
+	Jpeg_Enc_Data m_picture;
+
+	int32_t m_status;
+	int32_t m_NormalFps;
+	int32_t m_FpsMode;
+	int32_t m_FpsOnTime;
+	bool m_FirstFrame;
+	bool m_FrameSkip;
+
+	/* record process */
+	int32_t m_StoreMetaDataInBuffer;
+	bool m_RecordingEnabled;
+	int32_t m_RecordingFrmTotal;
+	avn_buf_manager_t m_RecordingManager;
+    mutable android::Mutex m_RecordingLock;
+
+private:
+	int32_t initDefaultParameters(void);
+	int32_t do_startPreview(void);
+	int32_t do_stopPreview(void);
+	int32_t allocPreviewBuffer(void);
+	int32_t releasePreviewBuffer(void);
+};
+```
+
+```c
+namespace tcamera {
+
+class TCameraParameters
+{
+public:
+    TCameraParameters();
+    virtual ~TCameraParameters();
+    void GetDisplayHalPixelFormat(int32_t *pixel_format);
+    void GetDisplayPreviewSize(int32_t *width, int32_t *height);
+	void GetPreviewFpsRange(int32_t *min, int32_t *max);
+    void GetPictureSize(int32_t *width, int32_t *height);
+    void GetVideoSize(int32_t *width, int32_t *height);
+    void GetThumbnailSize(int32_t *width, int32_t *height);
+    void GetPictureJpegQlty(int32_t *quality);
+    void GetThumbnailJpegQlty(int32_t *quality);
+    int32_t SetParameters(const char* parameters);
+    char* GetParameters(void);
+    void PutParameters(char *parms);
+    void Set(const char *key, const char *value);
+    void SetPreviewSize(int32_t width, int32_t height);
+    void SetPictureSize(int32_t width, int32_t height);
+    void SetVideoSize(int32_t width, int32_t height);
+    void SetPreviewFormat(const char *format);
+    void SetPictureFormat(const char *format);
+	void SetPreviewFrameRate(int32_t fps);
+    float GetFloat(const char *key) const;
+    int32_t GetInt(const char *key) const;
+    const char* Get(const char *key) const;
+
+private:
+    CameraParameters m_CamParameters;
+
+};
+```
+
+```c
+namespace tcamera { 
+	TCameraCommon *gTCameraCommon = NULL;
+	(...)
+}
+
+int32_t TCameraCommon::camera_device_open(const hw_module_t* module, const char* id, hw_device_t** device)
+	|
+	+->  int32_t TCamera_device_connect(int32_t camera_id, hw_device_t** device);
+	|	/** 
+	|	  * connect a camera hal and open camera device with ID
+	|	  */
+	|	|
+	|	+-> TAvnModule::TAvnModule(uint32_t Camera_ID): m_CameraID(Camera_ID),m_hwi(NULL)
+	|	|	/**
+	|	|	  * default constructor of TAvnModule
+	|	|	  * camera_device_ops 매핑 : &m_CameraOps
+	|	|     */
+	|	+-> int32_t TAvnModule::open_camera(hw_device_t** device)
+	|	| 	/**
+	|	|     * open camera
+	|	|	  * TAvnHardwareInterface 초기화.
+	|	|	  */
+	|	|	|
+	|	|	+-> TAvnHardwareInterface::TAvnHardwareInterface(int32_t camera_id) :
+
+```
+
 - camera preview call flow
 
 ```c
