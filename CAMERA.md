@@ -27,6 +27,7 @@ nhn1033:/ #
 2. android.hardware.camera.provider@2.4-service 프로세스.
 
 소스코드 위치 : hardware/interfaces/camera/provider/
+
  ![](images/CAMERA_02.png)
 
  hardware/interfaces/camera/provider/2.4/default/ 경로에 android.hardware.camera.provider@2.4-service.rc파일이 존재한다. 
