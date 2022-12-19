@@ -4,12 +4,62 @@
 
 ---
 
-## HAL 
+## The Camera Provider of the Android Camera principle starts
 
-define
+1. Camera provider process 소개.
+
+```bash
+nhn1033:/ # ps -e  | grep camrea
+1|nhn1033:/ # ps -e  | grep camera
+cameraserver  1775     1   42092   6608 binder_thread_read b52de2f8 S android.hardware.camera.provider@2.4-service
+cameraserver  1812     1   47524  12956 binder_thread_read b31d62f8 S cameraserver
+nhn1033:/ #
+```
+
+ pid 1775은 camera provider프로세스로서 cameraserver보다 일찍 실행. 
+ 디바이스에서 실행되는 android.hardware.cameraprovider@2.4-service process는 camera 작동을 지원하는 중요한 프로세스.
+ 
+ ![Camera 구조](images/CAMERA_01.png)
+
+ 위의 그림에서 camera architecture는 camera provider process의 위치를 보여준다. 
+ HAL layer는 camera provider process에서 실행된다.
+
+2. android.hardware.camera.provider@2.4-service 프로세스.
+
+소스코드 위치 : hardware/interfaces/camera/provider/
+ ![](images/CAMERA_02.png)
+
+ hardware/interfaces/camera/provider/2.4/default/ 경로에 android.hardware.camera.provider@2.4-service.rc파일이 존재한다. 
+ Android 초기화는 이러한 rc파일을 실행하는 것이다. 
+ 실행 코드를 살펴보자.
+
+```bash
+service camera-provider-2-4 /vendor/bin/hw/android.hardware.camera.provider@2.4-service
+    class hal
+	user cameraserver
+	group audio camera input drmrpc
+	ioprio rt 4
+	writepid /dev/cpuset/foreground/tasks
+```
+
+ 첫번째 줄에서 /vendor/bin/hw/android.hardware.camera.provider@2.4-service 프로세스가 시작되었음을 알 수 있다. 
+
+ ![](images/CAMERA_03.png)
+
+ - camera provider start process. 
+ 
+ ![](images/CAMERA_04.png)
 
 
-camera_module_t는 아래 경로에 정의되어 있습니다. 
+
+
+-----
+
+## CAMERA HAL 
+
+ - hardware/telechips/camera 
+
+ - camera_module_t는 아래 경로에 정의되어 있습니다. 
 ```c
 // hardware/libhardware/include/hardware/camera_common.h
 
