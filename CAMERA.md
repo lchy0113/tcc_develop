@@ -50,6 +50,12 @@ service camera-provider-2-4 /vendor/bin/hw/android.hardware.camera.provider@2.4-
  
  ![](images/CAMERA_04.png)
 
+ - service.cpp : hardware/interfaces/camera/provider/2.4/default/service.cpp
+ - CameraProvider : hardware/interfacs/camera/provider/2.4/default/CameraProvider.cpp
+ - hardware.c : hardware/libhardware/hardware.c
+ - CameraModule : hardware/interfaces/camera/common/1.0/default/CameraModule.cpp
+ - tcamera : hardware/telechips/camera/libcamera_v2/common/TCamera_common.cpp
+
 
 
 
