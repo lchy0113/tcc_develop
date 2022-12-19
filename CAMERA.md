@@ -57,6 +57,57 @@ service camera-provider-2-4 /vendor/bin/hw/android.hardware.camera.provider@2.4-
  - tcamera : hardware/telechips/camera/libcamera_v2/common/TCamera_common.cpp
 
 
+ CameraModule에서 TCamera_common.cpp호출시, camera_module_t struct 가 이용된다.
+
+ CameraModule::init 함수를 통해 확인 할 수있다.
+
+
+```c
+int CameraModule::init() {
+	ATRACE_CALL();
+	int res = OK;
+	if (getModuleApiVersion() >= CAMERA_MODULE_API_VERSION_2_4 &&
+			mModule->init != NULL) {
+		ATRACE_BEGIN("camera_module->init");
+		res = mModule->init();
+		ATRACE_END();
+	}
+	mCameraInfoMap.setCapacity(getNumberOfCameras());
+	return res;
+}
+```
+
+ mModule->init() 은 mModule은 camera_module_t struct의 객체 이다. 
+
+```c
+#include "TCamera_Common.h"
+
+static struct hw_module_methods_t tcamera_module_methods = {
+    .open = tcamera::TCameraCommon::camera_device_open
+};
+
+camera_module_t HAL_MODULE_INFO_SYM = {
+    .common = {
+        .tag                    = HARDWARE_MODULE_TAG,
+        .module_api_version     = CAMERA_MODULE_API_VERSION_1_0,
+        .hal_api_version        = HARDWARE_HAL_API_VERSION,
+        .id                     = CAMERA_HARDWARE_MODULE_ID,
+        .name                   = "Telechips Camera HAL Module",
+        .author                 = "Telechips, Inc.",
+        .methods                = &tcamera_module_methods,
+        .dso                    = NULL,
+        .reserved               = { 0 },
+    },
+    .get_number_of_cameras      = tcamera::TCameraCommon::get_number_of_cameras,
+    .get_camera_info            = tcamera::TCameraCommon::get_camera_info,
+    .set_callbacks              = NULL,
+    .get_vendor_tag_ops         = NULL,
+    .reserved                   = { 0 },
+};
+
+```
+
+ 이러한 함수 패핑을 정의 하여, HAL 계층의 함수를 호출해 사용합니다. 
 
 
 -----
