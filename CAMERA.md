@@ -580,6 +580,19 @@ int32_t TAvnModule::start_preview(struct camera_device *device)
 
 note : https://cleanli.github.io/cleanhome/posts/2017-08-12/Android_x86_Camera_HAL.html
 
----
+-----
 
 ## KERNEL
+
+
+
+-----
+
+
+## DEBUG
+
+
+
+```c
+
+```
