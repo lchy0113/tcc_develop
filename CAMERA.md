@@ -590,9 +590,56 @@ note : https://cleanli.github.io/cleanhome/posts/2017-08-12/Android_x86_Camera_H
 
 
 ## DEBUG
-
+> do_startPreview(void) 함수는 startPreview(void) 또는 picture_handler(void)에서 call됨. 
 
 
 ```c
+	int32_t TAvnHardwareInterface::startPreview(void)
+		// start preview processing
 
+
+
+int32_t TAvnHardwareInterface::takePicture(void)
+|	// Take picture
++->	static int32_t run_picture_handler(void *context)
+	| // Run picture thread
+	+->	int32_t TAvnHardwareInterface::picture_handler(void)
+		| // picture thread
+		|
+		+->	int32_t TAvnHardwareInterface::do_startPreview(void)
+			// start preview processing
+			//	ret = m_device->event_handler(T_CAM_START_STREAM,(void *)pay_load);	// panic porint
+					|	// hardware/telechips/camera/libcamera_V2/modules/avn/TCameraAvn_hwi.cpp : do_startPreview(void)
+					|
+					+->	int32_t t_camif_device::event_handler(T_CAM_DEVICE_EVENT event, void* pay_load)
+					|	//	hardware/telechips/camera/libcamera_v2/device/t_camif_device.cpp
+					|	//	ret = start_stream(factor[0], factor[1]);
+					|	|
+					|	+-> int32_t t_camif_device::start_stream(int32_t buffer_count, int32_t module)
+					|	//	open the vioc stream path
+					|	//	ret = ioctl(m_camfd, VIDIOC_QBUF, &buf);
+					|	//	ret = ioctl(m_videosourcefd, VIDEOSOURCE_IOCTL_INITIALIZE, &param);
+					|	//	ret = ioctl(m_camfd, VIDIOC_STREAMON, &type);
 ```
+
+
+
+recovery handler에서는 moduel status가 preview_started가 아닌 경우, start preview service를 실행 시키고, 사진 촬영(takePicture) 시, Capture를 위해module status에서 preview started 상태를 해제함. 
+즉, 사진 촬영 시, module status를 변경시키는 코드와 recovery handler 의 sync가 맞지 않아, start preview service 가 반복적으로 실행되어 이슈가 발생. 
+
+ - recovery handler 
+
+ ![](./images/CAMERA_05.png)
+
+
+
+ - 사진 촬영
+
+ ![](./images/CAMERA_06.png)
+
+
+ - 이슈
+
+ ![](./images/CAMERA_07.png)
+
+-----
