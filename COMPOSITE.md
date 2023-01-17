@@ -9,7 +9,7 @@ COMPOSITE (CVBS-OUT)
 
  - tcc_tve
 
-	 ```
+	 ```dtb
 	tcc_tve: tve@12200000 {
 		status = "disabled";
 		compatible = "telechips,tcc-tve";
