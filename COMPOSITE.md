@@ -17,3 +17,8 @@ COMPOSITE (CVBS-OUT)
 		clocks = <&clk_ddi DDIBUS_NTSCPAL &clk_isoip_ddi ISOIP_DDB_VDAC>;
 	};
 	 ```
+
+
+ - register 
+
+	 ![](./images/COMPOSITE_01.png)
