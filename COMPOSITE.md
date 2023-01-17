@@ -22,7 +22,7 @@ COMPOSITE (CVBS-OUT)
  - register 
  아래 bit 제어를 통해 제어. 
  
- ```c
+```c
 void internal_tve_enable(unsigned int type, unsigned int onoff)
 {
 	if(onoff)
@@ -40,6 +40,6 @@ void internal_tve_enable(unsigned int type, unsigned int onoff)
 	}
 }
 
- ```
+```
 
 	 ![](./images/COMPOSITE_01.png)
