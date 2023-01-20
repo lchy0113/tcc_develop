@@ -5,7 +5,7 @@ COMPOSITE (CVBS-OUT)
 
 
 
-# Device
+## Device
 
  - tcc_tve
 
@@ -77,5 +77,14 @@ void internal_tve_enable(unsigned int type, unsigned int onoff)
 [2023-01-17 16:08:31.919]
 [2023-01-17 16:08:32.094] [  971.946945] tcc_cam: tccxxx_cif_irq_free - In
 [2023-01-17 16:08:32.094] [  971.952377] tcc_cam: tccxxx_cif_irq_free - Out
-
 ```
+
+
+
+## Composite Module
+
+ 다양한 데이터 입력 조건에 맞게 최적화하기 위해 luma 및 chroma bandwidths을 모두 변경할 수 있습니다.
+ input signal이 "VIOC"에 의해 생성되기 때문입니다.
+
+ ![Connection between VIOC and Encoder](./images/COMPOSITE_05.png)
+
