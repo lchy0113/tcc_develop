@@ -105,16 +105,16 @@ tccxxx_sub_overlay_ctl: wdma6 == async-fifo ==> rdma2-sc3-wmix0-disp0
 
 ### Note
 
- - Video Standard Selection
-  non SCH locked standards의 경우, FDRST를 사용하여 Chroma를 자유롭게 제어할 수 있다.
-  FSCADJ 레지스터가 '0' 외의 값으로 설정되면 SCH relationship을 유지 할 수 없다.  
-  설정을 위해 FDRST bit 를 free run mode로 설정하는 것을 권장.
+ - **Video Standard Selection**  
+  non SCH locked standards의 경우, FDRST를 사용하여 Chroma를 자유롭게 제어할 수 있다.  
+  FSCADJ 레지스터가 '0' 외의 값으로 설정되면 SCH relationship을 유지 할 수 없다.    
+  설정을 위해 FDRST bit 를 free run mode로 설정하는 것을 권장.  
  
- - DISP register configuration for NTSC-M
-  DDS.HSIZE = 720 (2d0h)
-  DDS.VSIZE = 480 (1e0h)
+ - **DISP register configuration for NTSC-M**  
+  DDS.HSIZE = 720 (2d0h)  
+  DDS.VSIZE = 480 (1e0h)  
 
 
- - DPOS (Display device Position Register)
+ - **DPOS (Display device Position Register)**   
 	  : display device position 을 이동하여도 gray bar 는 이동되지 않음. 
  ![](images/COMPOSITE_07.png)
