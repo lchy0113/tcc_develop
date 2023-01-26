@@ -88,3 +88,16 @@ void internal_tve_enable(unsigned int type, unsigned int onoff)
 
  ![Connection between VIOC and Encoder](./images/COMPOSITE_05.png)
 
+
+```bash
+ (DISP0) -> (NTSC/PAL Encoder) -> (DAC) -> DACOUT
+```
+
+
+### Note
+
+ - Video Standard Selection
+  non SCH locked standards의 경우, FDRST를 사용하여 Chroma를 자유롭게 제어할 수 있다.
+  FSCADJ 레지스터가 '0' 외의 값으로 설정되면 SCH relationship을 유지 할 수 없다.  
+  설정을 위해 FDRST bit 를 free run mode로 설정하는 것을 권장.
+ 
