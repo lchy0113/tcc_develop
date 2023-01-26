@@ -89,6 +89,15 @@ void internal_tve_enable(unsigned int type, unsigned int onoff)
  ![Connection between VIOC and Encoder](./images/COMPOSITE_05.png)
 
 
+ ![](./images/COMPOSITE_06.jpg)
+
+ - camera  data path : 
+ camera -> vioc_vin(4) -> vioc_vin(0) -> wmix(5) -> wdma(5) -> mali -> rdma(4) -> wmix(1) -> disp1 -> lcd
+ - cvbs output data path : 
+ camera -> vioc_vin(4) -> vioc_vin(0) -> wmix(5) -> wdma(6) -> async fifo -> rdma(2) -> wmix(0) -> disp0 -> cvbs device
+
+tccxxx_sub_overlay_ctl: wdma6 == async-fifo ==> rdma2-sc3-wmix0-disp0 
+
 ```bash
  (DISP0) -> (NTSC/PAL Encoder) -> (DAC) -> DACOUT
 ```
@@ -101,3 +110,7 @@ void internal_tve_enable(unsigned int type, unsigned int onoff)
   FSCADJ 레지스터가 '0' 외의 값으로 설정되면 SCH relationship을 유지 할 수 없다.  
   설정을 위해 FDRST bit 를 free run mode로 설정하는 것을 권장.
  
+ - DISP register configuration for NTSC-M
+  DDS.HSIZE = 720 (2d0h)
+  DDS.VSIZE = 480 (1e0h)
+
