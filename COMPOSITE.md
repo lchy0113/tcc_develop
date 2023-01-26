@@ -114,3 +114,7 @@ tccxxx_sub_overlay_ctl: wdma6 == async-fifo ==> rdma2-sc3-wmix0-disp0
   DDS.HSIZE = 720 (2d0h)
   DDS.VSIZE = 480 (1e0h)
 
+
+ - DPOS (Display device Position Register)
+	  : display device position 을 이동하여도 gray bar 는 이동되지 않음. 
+ ![](images/COMPOSITE_07.png)
