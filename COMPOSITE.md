@@ -118,3 +118,10 @@ tccxxx_sub_overlay_ctl: wdma6 == async-fifo ==> rdma2-sc3-wmix0-disp0
  - **DPOS (Display device Position Register)**   
 	  : display device position 을 이동하여도 gray bar 는 이동되지 않음. 
  ![](images/COMPOSITE_07.png)
+
+
+ - **PNTSCPAL**  
+ : 0x12200000
+
+ - **PNTSCPAL_ENCODER_CTRL**  
+ : 0x12200800
