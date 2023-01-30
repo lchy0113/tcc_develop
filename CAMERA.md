@@ -9,11 +9,11 @@
 1. Camera provider process 소개.
 
 ```bash
-nhn1033:/ # ps -e  | grep camrea
-1|nhn1033:/ # ps -e  | grep camera
+console:/ # ps -e  | grep camrea
+1|console:/ # ps -e  | grep camera
 cameraserver  1775     1   42092   6608 binder_thread_read b52de2f8 S android.hardware.camera.provider@2.4-service
 cameraserver  1812     1   47524  12956 binder_thread_read b31d62f8 S cameraserver
-nhn1033:/ #
+console:/ #
 ```
 
  pid 1775은 camera provider프로세스로서 cameraserver보다 일찍 실행. 
