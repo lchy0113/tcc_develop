@@ -558,16 +558,8 @@ class ExtendDisplayClient : public tcc::BnTClient    hardware/telechips/common/e
 
 ```
 
-## lcd display(nhn1033)
 
-* 하드웨어 디코더 동작
-```
-
-
-
-```
-
-## hdmi display(nhn1311)
+## hdmi display
 
 * 하드웨어 디코더 동작
 ```cpp
