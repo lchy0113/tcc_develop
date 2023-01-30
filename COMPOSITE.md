@@ -7,7 +7,7 @@ COMPOSITE (CVBS-OUT)
 
 ## Device
 
- - tcc_tve
+ - tcc_tve device 정보
 
 	 ```dtb
 	tcc_tve: tve@12200000 {
@@ -19,8 +19,8 @@ COMPOSITE (CVBS-OUT)
 	 ```
 
 
- - register 
- 아래 bit 제어를 통해 제어. 
+ - cvbs clock 제어 
+ 아래 bit 제어를 통해 clock 제어. 
  
  ```c
 void internal_tve_enable(unsigned int type, unsigned int onoff)
@@ -47,7 +47,7 @@ void internal_tve_enable(unsigned int type, unsigned int onoff)
  ![](./images/COMPOSITE_03.png)  
 
 
- - camera function
+ - camera function 로그
 
 ```bash
 [2023-01-17 16:08:13.551]
@@ -82,6 +82,7 @@ void internal_tve_enable(unsigned int type, unsigned int onoff)
 
 
 ## Composite Module
+> 출처 : TCC898x Full Specification V1.00.pdf
 
  다양한 데이터 입력 조건에 맞게 최적화하기 위해 luma 및 chroma bandwidths을 모두 변경할 수 있습니다.
  input signal이 "VIOC"에 의해 생성되기 때문입니다.
