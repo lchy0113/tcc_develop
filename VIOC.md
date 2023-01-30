@@ -88,7 +88,7 @@ LCDC 인터페이스는 최대 2개의 채널을 제공할 수 있습니다.
  ![Block Diagram of DDI_CONFIG](images/block_diagram_of_DDI_CONFIG.png)
 
 
-# DISPLAY 
+# DISPLAY  DEVELOP
 
 ## 13inch display develop
 
@@ -439,7 +439,7 @@ void tccfb_extoutput_activate(int stage)    drivers/video/fbdev/tcc-fb/tcc_vioc_
     +->    void tcc_vsync_hdmi_start(struct tcc_dp_device *pdp_data,int* lcd_video_started)    drivers/video/fbdev/tcc-fb/tcc_vsync.c
 ```
 
-### [kdiwin] : decoder data composite output
+### [develop] : decoder data composite output
 - ImageInfo 의 enable 필드를 참고하여 tcc_sub_display_ctl() 를 호출한다.
 - sub display(cvbs)에 디코더 데이터를 출력 시킬 경우, ImageInfo 의 data addr을 cvbs rdma addr 에 세팅한다. 
 - sub display(cvbs)에 디코더 데이터를 출력 시키지 않을 경우, sub display(cvbs) 의 rdma를 비활성화 세팅한다.
