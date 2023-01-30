@@ -1,5 +1,4 @@
 # VIOC 
-=====
 
 ## Overview
 </pr>
@@ -61,7 +60,6 @@ VIOC의 각 하드웨어 component는 "SYSTEM TIMER", "GRDMA", "VRDMA", "VWDMA",
 
 
 # DDI_CONFIG
-=====
 
 ## Overview
 </pr>
