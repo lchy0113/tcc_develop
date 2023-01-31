@@ -112,6 +112,8 @@ tccxxx_sub_overlay_ctl: wdma6 == async-fifo ==> rdma2-sc3-wmix0-disp0
 
  ![](./images/COMPOSITE_08.png)
 
+ ![](./images/COMPOSITE_09.png)
+
 ### Note
 
  - **Video Standard Selection**  
