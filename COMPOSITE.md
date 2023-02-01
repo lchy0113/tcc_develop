@@ -109,6 +109,8 @@ tccxxx_sub_overlay_ctl: wdma6 == async-fifo ==> rdma2-sc3-wmix0-disp0
    * 이를 수직 블랭킹 인터벌 (VBI)라고 함.
  - 모두가 가시 이미지의 가장자리를 벗어나지만 수직 동기 및 등화 펄스에 1-9 선만 사용된다.
  - 나머지 라인은 CRT 기반 스크린의 전자 빔이 디스플레이 상단으로 돌아갈 시간을 제공하기 위해 NTSC 사양에서 고의로 공백 처리됨. 
+ 
+ ![](./images/COMPOSITE_10.png)
 
  ![](./images/COMPOSITE_08.png)
 
