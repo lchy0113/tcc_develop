@@ -109,12 +109,18 @@ tccxxx_sub_overlay_ctl: wdma6 == async-fifo ==> rdma2-sc3-wmix0-disp0
    * 이를 수직 블랭킹 인터벌 (VBI)라고 함.
  - 모두가 가시 이미지의 가장자리를 벗어나지만 수직 동기 및 등화 펄스에 1-9 선만 사용된다.
  - 나머지 라인은 CRT 기반 스크린의 전자 빔이 디스플레이 상단으로 돌아갈 시간을 제공하기 위해 NTSC 사양에서 고의로 공백 처리됨. 
+ - NTSC-M 은 1초당 29.97개의 interlaced scanning으로 된 비디오 프레임으로 이루어진다. 
+ - 각 프레임은 전체 신호인 525 라인 중에서 480 라인으로 구성되며 나머지는 동기 신호나 수직 귀선(VBI;Vertical Blanking Interval, TV등의 영상표시장치에서 다음 스크린 필드를 찾기위해 스크린의 첫번 째 라인으로 돌아가는 동안 잠시 전자총의 발사를 멈추는 기간) 및 자막과 같은 다른 데이터의 전송을 위해 쓰인다.
  
  ![](./images/COMPOSITE_10.png)
 
  ![](./images/COMPOSITE_08.png)
 
  ![](./images/COMPOSITE_09.png)
+
+ ![](./images/COMPOSITE_11.png)
+
+ ![](./images/COMPOSITE_12.png)
 
 ### Note
 
