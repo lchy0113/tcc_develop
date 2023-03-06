@@ -35,3 +35,8 @@ device/COMPANY/PROJECT/DEVICE/BoardConfig.mk:19: [debug]
 ## guide for the unused pins
 
 ![](images/README_01.png)
+
+
+## GPIO CONTROL
+
+1. TO_MCU_RST : default low, reset to mcu when TO_MCU_RST pin high status.
