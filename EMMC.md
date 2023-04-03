@@ -28,23 +28,23 @@ eMMC
 3. sysfs의 device 정보를 확인합니다.
 
 ```bash
-stp7104b:/sys/class/mmc_host/mmc0/mmc0:0001 $ cat cid
+target_dev:/sys/class/mmc_host/mmc0/mmc0:0001 $ cat cid
 90014a483847346132a4001203b95800
-stp7104b:/sys/class/mmc_host/mmc0/mmc0:0001 $ cat manfid
+target_dev:/sys/class/mmc_host/mmc0/mmc0:0001 $ cat manfid
 0x000090
-stp7104b:/sys/class/mmc_host/mmc0/mmc0:0001 $ cat oemid
+target_dev:/sys/class/mmc_host/mmc0/mmc0:0001 $ cat oemid
 0x014a
-stp7104b:/sys/class/mmc_host/mmc0/mmc0:0001 $ cat name
+target_dev:/sys/class/mmc_host/mmc0/mmc0:0001 $ cat name
 H8G4a2
-stp7104b:/sys/class/mmc_host/mmc0/mmc0:0001 $ cat serial
+target_dev:/sys/class/mmc_host/mmc0/mmc0:0001 $ cat serial
 0x001203b9
-stp7104b:/sys/class/mmc_host/mmc0/mmc0:0001 $ cat date
+target_dev:/sys/class/mmc_host/mmc0/mmc0:0001 $ cat date
 05/2021
-stp7104b:/sys/class/mmc_host/mmc0/mmc0:0001 $
+target_dev:/sys/class/mmc_host/mmc0/mmc0:0001 $
 ```
 
 ```bash
-stp7104b:/sys/class/mmc_host/mmc0/mmc0:0001/block/mmcblk0 $ cat size
+target_dev:/sys/class/mmc_host/mmc0/mmc0:0001/block/mmcblk0 $ cat size
 15269888
 ```
  - 15269888 는 sector size입니다. 
@@ -52,4 +52,12 @@ stp7104b:/sys/class/mmc_host/mmc0/mmc0:0001/block/mmcblk0 $ cat size
 
 4. eMMC 장치에 파일을 저장하고, 저장된 파일을 읽어 봅니다.
 
+ - sample (./attachment/SD_Card_test.2.0.apk)
+
+  ![](./images/EMMC_01.png)
+  ![](./images/EMMC_02.png)
+  ![](./images/EMMC_03.png)
+
+
+	 
 5. eMMC의 속도를 측정합니다.
