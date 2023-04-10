@@ -1,73 +1,73 @@
-<mxfile host="Electron" modified="2023-04-10T10:24:25.905Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.1.2 Chrome/106.0.5249.199 Electron/21.4.3 Safari/537.36" etag="DeL1gSXyDiIc8ObuqZtu" version="21.1.2" type="device">
+<mxfile host="Electron" modified="2023-04-10T10:29:23.952Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.1.2 Chrome/106.0.5249.199 Electron/21.4.3 Safari/537.36" etag="V_5Wy-gmg2Ldg58hmbWl" version="21.1.2" type="device">
   <diagram name="Page-1" id="myasJhZjEN8nnCkA8gaw">
-    <mxGraphModel dx="794" dy="1198" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1644" dy="1198" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-21" value="" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;arcSize=5;" vertex="1" parent="1">
-          <mxGeometry x="30" y="120" width="630" height="420" as="geometry" />
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-21" value="" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;arcSize=5;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="60" width="770" height="540" as="geometry" />
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-3" target="oZquIhOSYidwJhV9TFeJ-4">
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=14;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-3" target="oZquIhOSYidwJhV9TFeJ-4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-3" target="oZquIhOSYidwJhV9TFeJ-5">
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-3" target="oZquIhOSYidwJhV9TFeJ-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-3" target="oZquIhOSYidwJhV9TFeJ-5">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="70" y="180" />
-              <mxPoint x="70" y="340" />
+              <mxPoint x="-10" y="168" />
+              <mxPoint x="-10" y="355" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-3" target="oZquIhOSYidwJhV9TFeJ-13">
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-3" value="user space" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontColor=#4D4D4D;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="60" y="148" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=14;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-4" target="oZquIhOSYidwJhV9TFeJ-5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-3" value="user space" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontColor=#4D4D4D;" vertex="1" parent="1">
-          <mxGeometry x="120" y="160" width="120" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-4" target="oZquIhOSYidwJhV9TFeJ-5">
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-4" target="oZquIhOSYidwJhV9TFeJ-14">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-4" target="oZquIhOSYidwJhV9TFeJ-14">
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-4" value="line discipline" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontColor=#4D4D4D;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="60" y="242" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=14;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-5" target="oZquIhOSYidwJhV9TFeJ-6">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-4" value="line discipline" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontColor=#4D4D4D;" vertex="1" parent="1">
-          <mxGeometry x="120" y="240" width="120" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-5" target="oZquIhOSYidwJhV9TFeJ-6">
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-5" target="oZquIhOSYidwJhV9TFeJ-15">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-5" target="oZquIhOSYidwJhV9TFeJ-15">
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-5" value="tty core layer" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontColor=#4D4D4D;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="60" y="335" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=14;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-6" target="oZquIhOSYidwJhV9TFeJ-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-5" value="tty core layer" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontColor=#4D4D4D;" vertex="1" parent="1">
-          <mxGeometry x="120" y="320" width="120" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-6" target="oZquIhOSYidwJhV9TFeJ-7">
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.003;entryY=0.422;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-6" target="oZquIhOSYidwJhV9TFeJ-16">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" edge="1" parent="1" source="oZquIhOSYidwJhV9TFeJ-6" target="oZquIhOSYidwJhV9TFeJ-16">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-6" value="tty device" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontColor=#4D4D4D;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="60" y="418" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-6" value="tty device" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontColor=#4D4D4D;" vertex="1" parent="1">
-          <mxGeometry x="120" y="400" width="120" height="40" as="geometry" />
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-7" value="hardware" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontColor=#4D4D4D;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="60" y="498" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-7" value="hardware" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontColor=#4D4D4D;" vertex="1" parent="1">
-          <mxGeometry x="120" y="480" width="120" height="40" as="geometry" />
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-13" value="static const struct file_operations tty_fops = {&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;.llseek&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;= no_llseek,&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;.read&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;= tty_read,&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;.write&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;= tty_write,&lt;br style=&quot;font-size: 14px;&quot;&gt;};" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=2" vertex="1" parent="1">
+          <mxGeometry x="230" y="120" width="350" height="95" as="geometry" />
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-13" value="static const struct file_operations tty_fops = {&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 10px;&quot;&gt;	&lt;/span&gt;.llseek&lt;span style=&quot;white-space: pre; font-size: 10px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 10px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 10px;&quot;&gt;	&lt;/span&gt;= no_llseek,&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 10px;&quot;&gt;	&lt;/span&gt;.read&lt;span style=&quot;white-space: pre; font-size: 10px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 10px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 10px;&quot;&gt;	&lt;/span&gt;= tty_read,&lt;br style=&quot;font-size: 10px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 10px;&quot;&gt;	&lt;/span&gt;.write&lt;span style=&quot;white-space: pre; font-size: 10px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 10px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 10px;&quot;&gt;	&lt;/span&gt;= tty_write,&lt;br style=&quot;font-size: 10px;&quot;&gt;};" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="280" y="145" width="330" height="70" as="geometry" />
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-14" value="struct tty_ldisc_ops tty_ldisc_N_TTY = {&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;.open&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;= n_tty_open,&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;.close&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;= n_tty_close,&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;.flush_buffer&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;= n_tty_flush_buffer,&lt;br style=&quot;font-size: 14px;&quot;&gt;};" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=2" vertex="1" parent="1">
+          <mxGeometry x="230" y="215" width="350" height="95" as="geometry" />
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-14" value="struct tty_ldisc_ops tty_ldisc_N_TTY = {&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;.open&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;= n_tty_open,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;.close&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;= n_tty_close,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;.flush_buffer&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;= n_tty_flush_buffer,&lt;br&gt;};" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="280" y="225" width="330" height="70" as="geometry" />
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-15" value="static const struct tty_operations_uart_ops = {&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;.open&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;= uart_open,&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;.close&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;= uart_close,&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;.write&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;= uart_write,&lt;br style=&quot;font-size: 14px;&quot;&gt;};" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=2" vertex="1" parent="1">
+          <mxGeometry x="230" y="310" width="350" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-15" value="static const struct tty_operations_uart_ops = {&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;.open&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;= uart_open,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;.close&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;= uart_close,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;.write&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;= uart_write,&lt;br&gt;};" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="280" y="305" width="330" height="70" as="geometry" />
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-16" value="static struct uart_ops amba_pl011_pops = {&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;.tx_empty&amp;nbsp;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;= pl01x_tx_empty,&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;.set_mctrl&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;=&lt;/span&gt;&amp;nbsp;pl011_set_mctrl,&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;.get_mctrl&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre; font-size: 14px;&quot;&gt;	&lt;/span&gt;= pl01x_get_mctrl,&lt;br style=&quot;font-size: 14px;&quot;&gt;};" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=2" vertex="1" parent="1">
+          <mxGeometry x="230" y="400" width="350" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-16" value="static struct uart_ops amba_pl011_pops = {&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;.tx_empty&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;= pl01x_tx_empty,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;.set_mctrl&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;=&lt;/span&gt;&amp;nbsp;pl011_set_mctrl,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;.get_mctrl&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;= pl01x_get_mctrl,&lt;br&gt;};" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="280" y="385" width="330" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="oZquIhOSYidwJhV9TFeJ-22" value="the tty frame is shown in the figure below:&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="40" y="120" width="250" height="30" as="geometry" />
+        <mxCell id="oZquIhOSYidwJhV9TFeJ-22" value="the tty frame is shown in the figure below:&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="-30" y="80" width="310" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
