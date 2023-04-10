@@ -1,6 +1,12 @@
 SERIAL
 =====
 
+# tty driver framework analysis
+
+![](./images/SERIAL_01.png)
+
+# develop 
+
 - 지원하는 RS485 인터페이스
   * DF_DP(RF도어폰_통신)
 	+ GPIO_C23	- RF_DP_TXD
@@ -14,8 +20,17 @@ SERIAL
   
 
 
-## datasheet
+# datasheet
 
 - Chapter 16 UART SUB SYSTEM
  
   * register : 0x1660_0000
+
+# patch
+
+```
+CONFIG_SERIAL_AMBA_PL011_SOFT_RS485 // config define
+
+static void pl011_rs485_start_rts_delay() // add function
+
+```
