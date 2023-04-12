@@ -40,3 +40,7 @@ device/COMPANY/PROJECT/DEVICE/BoardConfig.mk:19: [debug]
 ## GPIO CONTROL
 
 1. TO_MCU_RST : default low, reset to mcu when TO_MCU_RST pin high status.
+
+
+## KERNEL
+ 81513aaf982edec01a1ae0d560ea0473d9840583 commit 에서 telechip merge 됨.
