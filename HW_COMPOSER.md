@@ -75,6 +75,19 @@ $ atrace --list_categories
 			/**
 			  * malloc render memory 
 			  */
+	__tc_prepare_process(..)
+		|
+		+-> /** 
+			  * layer->compositionType 이 HWC_FRAMEBUFFER 인 경우, tccxxx_overlay_display_video_buffer() 를 call하지 않음. 
+			  * layer->compositionType 이 HWC_OVERLAY 인 경우, tccxxx_overlay_display_video_buffer()를 call 함.
+			  */
+			|
+			+->	__tc_hwc_set_display(..)
+				|
+				+-> /**
+					  * HWC_OVERLAY 인경우, tc_update_overlay(..) 을 호출
+					  */
+			
 
 ```
 
