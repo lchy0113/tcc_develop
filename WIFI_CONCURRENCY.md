@@ -224,3 +224,12 @@ wifidev:/ # ip rule
 23000:  from all fwmark 0x0/0xffff lookup main
 32000:  from all unreachable
 ```
+
+
+
+# note
+ - 	 AP모드. Station모드 standalone 동작(Android API)
+	 AP모드 (Tether):
+	 reference : com.android.settings/.TetherSettings
+	 Station 모드 :
+	 reference : com.android.tv.settings/.connectivity.NetworkActivity
