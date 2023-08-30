@@ -122,6 +122,19 @@ tccxxx_sub_overlay_ctl: wdma6 == async-fifo ==> rdma2-sc3-wmix0-disp0
 
  ![](./images/COMPOSITE_12.png)
 
+
+## NTSC / PAL Encoder Composite Module on TCC8985
+
+ - PIXSEL : control square pixel 
+ - IFMT : control sampling rate for 50Hz or 60Hz
+
+
+### to do : 
+ [x] format of output data : to 625 lines from 525 lines
+ [x] Chroma,Luma Bandwidth control : 
+
+
+
 ### Note
 
  - **Video Standard Selection**  
