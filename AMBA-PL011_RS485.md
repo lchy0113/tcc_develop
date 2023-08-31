@@ -46,6 +46,7 @@
 	 * 지연 함수2을 추가하여 트랜시버 버퍼 상태를 체크합니다. 
 
 
+ - RS485 트랜시버
 
  - 트랜시버 버퍼 체크 타이밍 계산
 
@@ -53,7 +54,7 @@
  ![](images/AMBA-PL011_RS485_02.png) 
 
    * 터미널 설정 :
-   1. 상위 레이어로 부터 시리얼 장치 설정 값에 따라서 트랜시버되는 bit 의 count를 계산합니다.
+   1. 상위 레이어에서 세팅하는 시리얼 장치 설정 값에 따라서 트랜시버되는 bit 의 count를 계산합니다.
     ex. transfer_bit_count(10) = 비트 수(8bit) + 정지 비트(1bit) + 패리티 비트(1bit) 
    2. 문자 한 개를 보내는 데 필요한 시간 계산
     ex. char_transfer_time(10416666.67)(ns) = transfer_bit_count(10) * NSEC_PER_SEC(10000000000) / baud(9600)
@@ -75,7 +76,7 @@
 
 
 
- - RS485 Transceivers IC 의 Transmitter Timing 은 Typ 150ns(Max 250ns) Receiver Timing 은 Max 350. 
+ - RS485 트랜시버 IC 의 Transmitter Timing 은 Typ 150ns(Max 250ns) Receiver Timing 은 Max 350. 
 
 
  DE 신호는 serial core에서 데이터 전송을 시작하여 전환되며 전송이 활성화되기 이전에 delay가 있는 경우, 첫 번째 timer에 의한 delay 후 전송이 시작됩니다.
