@@ -42,11 +42,13 @@
  전송제어(TxEN)신호 타이밍을 효율적으로 관리하기 위해 다음과 같은 기능을 추가합니다.
    - 전송제어(TxEN)신호 제어
    - 타이머를 사용하여 트랜시버의 리셋 시간을 지연
-     * 지연 함수1을 추가하여 트랜시버의 리셋 시간을 지연시킵니다.
-	 * 지연 함수2을 추가하여 트랜시버 버퍼 상태를 체크합니다. 
+     * 지연1을 추가하여 트랜시버의 리셋 시간을 지연시킵니다.
+	 * 지연2을 추가하여 트랜시버 버퍼 상태를 체크합니다. 
 
 
- - RS485 트랜시버 IC의 특성에 따라서 Transmitter Timing, Receiver Timing이 다르므로 
+ - 트랜시버의 리셋 타이밍 설정
+   RS485 트랜시버 IC의 특성에 따라서 Transmitter Timing, Receiver Timing이 다르므로 적절한 값 세팅이 필요합니다.
+   참고 : ZT13085E 타이밍**
 
  - 트랜시버 버퍼 체크 타이밍 계산
 
@@ -76,7 +78,7 @@
 
 
 
- - RS485 트랜시버 IC 의 Transmitter Timing 은 Typ 150ns(Max 250ns) Receiver Timing 은 Max 350. 
+ - ZT13085E 타이밍** : RS485 트랜시버 IC 의 Transmitter Timing 은 Typ 150ns(Max 250ns) Receiver Timing 은 Max 350. 
 
 
  DE 신호는 serial core에서 데이터 전송을 시작하여 전환되며 전송이 활성화되기 이전에 delay가 있는 경우, 첫 번째 timer에 의한 delay 후 전송이 시작됩니다.
