@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2023-08-31T08:13:54.823Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" etag="_gi3NNFSK1R8JUEj4GjG" version="21.6.8" type="device">
+<mxfile host="Electron" modified="2023-08-31T08:38:29.964Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" etag="QsX9dkhCQ5ZQhJevtIxD" version="21.6.8" type="device">
   <diagram name="Page-1" id="HqIN1Tp-WRLzK0X4IBLw">
     <mxGraphModel dx="2641" dy="2509" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -267,7 +267,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Re7Pq6waenZFom8dLttV-108" value="delay timer" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#4D4D4D;fontStyle=3;labelBackgroundColor=none;labelBorderColor=none;" vertex="1" parent="1">
+        <mxCell id="Re7Pq6waenZFom8dLttV-108" value="delay timer&lt;br&gt;(unit ns)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#4D4D4D;fontStyle=3;labelBackgroundColor=none;labelBorderColor=none;" vertex="1" parent="1">
           <mxGeometry x="-1530" y="430" width="90" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-110" value="" style="endArrow=baseDash;startArrow=baseDash;html=1;rounded=0;fillColor=#dae8fc;strokeColor=#6c8ebf;startFill=0;endFill=0;" edge="1" parent="1">
@@ -276,10 +276,10 @@
             <mxPoint x="-990" y="458" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Re7Pq6waenZFom8dLttV-111" value="delay timer" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#4D4D4D;fontStyle=3;labelBackgroundColor=none;labelBorderColor=none;" vertex="1" parent="1">
+        <mxCell id="Re7Pq6waenZFom8dLttV-111" value="delay timer&lt;br&gt;(unit ns)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#4D4D4D;fontStyle=3;labelBackgroundColor=none;labelBorderColor=none;" vertex="1" parent="1">
           <mxGeometry x="-1090" y="430" width="90" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Re7Pq6waenZFom8dLttV-113" value="transmit buffer empty check poll timer" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#4D4D4D;fontStyle=3;labelBackgroundColor=none;labelBorderColor=none;" vertex="1" parent="1">
+        <mxCell id="Re7Pq6waenZFom8dLttV-113" value="transmit buffer empty check poll timer&lt;br&gt;(unit char_transfer_time)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#4D4D4D;fontStyle=3;labelBackgroundColor=none;labelBorderColor=none;" vertex="1" parent="1">
           <mxGeometry x="-1420" y="430" width="300" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-114" value="" style="endArrow=block;startArrow=baseDash;html=1;rounded=0;fillColor=#d5e8d4;strokeColor=#4D4D4D;startFill=0;endFill=0;dashed=1;strokeWidth=0.5;labelBorderColor=none;" edge="1" parent="1">
@@ -399,49 +399,55 @@
           <mxGeometry x="-1640" y="220" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-140" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=3;strokeWidth=0.5;strokeColor=#4D4D4D;" vertex="1" parent="1">
-          <mxGeometry x="-790" y="-330" width="320" height="590" as="geometry" />
+          <mxGeometry x="-790" y="-331" width="500" height="590" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-141" value="&lt;h1&gt;&lt;font face=&quot;Verdana&quot;&gt;시리얼 통신 과정&lt;/font&gt;&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontColor=#4D4D4D;" vertex="1" parent="1">
-          <mxGeometry x="-780" y="-330" width="310" height="60" as="geometry" />
+          <mxGeometry x="-780" y="-331" width="310" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-142" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4D4D4D;strokeWidth=0.5;" edge="1" parent="1" source="Re7Pq6waenZFom8dLttV-143" target="Re7Pq6waenZFom8dLttV-145">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-143" value="시작" style="strokeWidth=0.5;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;strokeColor=#4D4D4D;" vertex="1" parent="1">
-          <mxGeometry x="-690" y="-250" width="110" height="50" as="geometry" />
+          <mxGeometry x="-770" y="-250" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-144" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4D4D4D;strokeWidth=0.5;" edge="1" parent="1" source="Re7Pq6waenZFom8dLttV-145" target="Re7Pq6waenZFom8dLttV-147">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-145" value="시리얼 장치 open" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=0.5;strokeColor=#4D4D4D;" vertex="1" parent="1">
-          <mxGeometry x="-690" y="-180" width="110" height="50" as="geometry" />
+          <mxGeometry x="-770" y="-180" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-146" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4D4D4D;strokeWidth=0.5;" edge="1" parent="1" source="Re7Pq6waenZFom8dLttV-147" target="Re7Pq6waenZFom8dLttV-153">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-147" value="터미널 설정 초기화" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=0.5;strokeColor=#4D4D4D;" vertex="1" parent="1">
-          <mxGeometry x="-690" y="-110" width="110" height="50" as="geometry" />
+          <mxGeometry x="-770" y="-110" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-152" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#4D4D4D;strokeWidth=0.5;" edge="1" parent="1" source="Re7Pq6waenZFom8dLttV-153" target="Re7Pq6waenZFom8dLttV-157">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Re7Pq6waenZFom8dLttV-153" value="터미널 설정 변경" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=0.5;strokeColor=#4D4D4D;" vertex="1" parent="1">
-          <mxGeometry x="-690" y="-40" width="110" height="50" as="geometry" />
+        <mxCell id="Re7Pq6waenZFom8dLttV-153" value="터미널 설정 변경" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=0.5;strokeColor=#36393d;fillColor=#ffff88;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="-770" y="-40" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-156" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#4D4D4D;strokeWidth=0.5;" edge="1" parent="1" source="Re7Pq6waenZFom8dLttV-157" target="Re7Pq6waenZFom8dLttV-161">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-157" value="터미널 설정 적용" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=0.5;strokeColor=#4D4D4D;" vertex="1" parent="1">
-          <mxGeometry x="-690" y="30" width="110" height="50" as="geometry" />
+          <mxGeometry x="-770" y="30" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-160" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=0.5;strokeColor=#4D4D4D;" edge="1" parent="1" source="Re7Pq6waenZFom8dLttV-161" target="Re7Pq6waenZFom8dLttV-162">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-161" value="데이터 송.수신" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=0.5;strokeColor=#4D4D4D;" vertex="1" parent="1">
-          <mxGeometry x="-690" y="100" width="110" height="50" as="geometry" />
+          <mxGeometry x="-770" y="100" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="Re7Pq6waenZFom8dLttV-162" value="종료" style="strokeWidth=0.5;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;strokeColor=#4D4D4D;" vertex="1" parent="1">
-          <mxGeometry x="-690" y="170" width="110" height="50" as="geometry" />
+          <mxGeometry x="-770" y="170" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Re7Pq6waenZFom8dLttV-163" value="" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.annotation_2;align=left;labelPosition=right;pointerEvents=1;strokeColor=#4D4D4D;" vertex="1" parent="1">
+          <mxGeometry x="-660" y="-39" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Re7Pq6waenZFom8dLttV-164" value="&lt;font style=&quot;&quot;&gt;&lt;font style=&quot;&quot; face=&quot;Google Sans Mono, monospace&quot;&gt;&lt;div style=&quot;&quot;&gt;ex.&amp;nbsp;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;tios.c_cflag |= (BAUDRATE | CSIZE | CSTOPB );&lt;/div&gt;&lt;/font&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#4D4D4D;fontFamily=Tahoma;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="-610" y="-39" width="310" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
