@@ -46,7 +46,7 @@
 	 * 지연 함수2을 추가하여 트랜시버 버퍼 상태를 체크합니다. 
 
 
- - RS485 트랜시버
+ - RS485 트랜시버 IC의 특성에 따라서 Transmitter Timing, Receiver Timing이 다르므로 
 
  - 트랜시버 버퍼 체크 타이밍 계산
 
