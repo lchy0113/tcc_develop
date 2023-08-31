@@ -46,7 +46,17 @@
 	 * 지연 함수2을 추가하여 트랜시버 버퍼 상태를 체크합니다. 
 
 
- - 
+ - 트랜시버 버퍼 체크 타이밍 계산
+
+  전송 데이터 특성에 맞춰 타이밍 값 세팅이 필요합니다. 
+ ![](images/AMBA-PL011_RS485_02.png) 
+
+   * 터미널 설정 :
+   1. 상위 레이어로 부터 시리얼 장치 설정 값에 따라서 트랜시버되는 bit 의 count를 계산합니다.
+    ex. transfer_bit_count(10) = 비트 수(8bit) + 정지 비트(1bit) + 패리티 비트(1bit) 
+   2. 문자 한 개를 보내는 데 필요한 시간 계산
+    ex. char_transfer_time(10416666.67)(ns) = transfer_bit_count(10) * NSEC_PER_SEC(10000000000) / baud(9600)
+
 
 
  - Legacy Code :
