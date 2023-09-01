@@ -65,11 +65,11 @@
 
  ![](images/AMBA-PL011_RS485_02.png) 
 
-   1. 상위 레이어에서 세팅하는 시리얼 장치 설정 값에 따라서 전송되는 bit 의 count를 계산합니다.
-    ex. 비트 수(8bit) + 정지 비트(1bit) + 패리티 비트(1bit)  =  transfer_bits_count(10)
-   2. 문자 한 개를 보내는 데 필요한 시간 계산
-    ex. transfer_bits_count(10) * nanosecond per second(10000000000) / baud rate(9600)  =  send_character_time(10416666)(ns)
-   3. 전송 버퍼 상태 체크 
+   1. 상위 레이어에서 세팅하는 시리얼 장치 설정 값에 따라서 전송되는 bit 의 count를 계산합니다.  
+    ex. 비트 수(8bit) + 정지 비트(1bit) + 패리티 비트(1bit)  =  transfer_bits_count(10)  
+   2. 문자 한 개를 보내는 데 필요한 시간 계산  
+    ex. transfer_bits_count(10) * nanosecond per second(10000000000) / baud rate(9600)  =  send_character_time(10416666)(ns)  
+   3. 전송 버퍼 상태 체크   
  
   ![](images/AMBA-PL011_RS485_03.png) 
   ![](images/AMBA-PL011_RS485_04.png) 
