@@ -48,20 +48,28 @@
 
  - 타이머1: 트랜시버의 전송제어(TxEN)신호 타이밍 지연
    RS485 트랜시버 IC의 특성에 따라서 다소 차이가 있지만 전송제어(TxEN)신호의 전환 시간은(Transmitter Timing, Receiver Timing) ns 단위로 정의되어 있습니다. 
+
    * 참고 : ZT13085E 타이밍**
+
+ ZT13085E 타이밍** : RS485 트랜시버 IC 의 Transmitter Timing 은 Typ 150ns(Max 250ns) Receiver Timing 은 Max 350. 
+
 
  - 타이머2: 트랜시버 버퍼 상태 체크 타이밍 계산
 
-  전송 데이터 특성에 맞춰 타이밍 값 세팅이 필요합니다. 
+  트랜시버 버퍼가 비워졌다 것을 알려주는 인터럽트가 없는 경우, 폴링 방식으로 트랜시버 버퍼 상태를 체크해야합니다. 
+  전송 데이터 세팅에 따라서 트랜시버 버퍼 상태 체크 타이밍이 달라지므로 아래와 같은 방법으로 적절한 타이밍을 계산합니다.
 
+  * 지연 타이밍 값 : 터미널 설정 시, 전달 받은 값을 사용합니다.
  ![](images/AMBA-PL011_RS485_02.png) 
 
-   * 터미널 설정 :
-   1. 상위 레이어에서 세팅하는 시리얼 장치 설정 값에 따라서 트랜시버되는 bit 의 count를 계산합니다.
-    ex. transfer_bit_count(10) = 비트 수(8bit) + 정지 비트(1bit) + 패리티 비트(1bit) 
+   1. 상위 레이어에서 세팅하는 시리얼 장치 설정 값에 따라서 전송되는 bit 의 count를 계산합니다.
+    ex. 비트 수(8bit) + 정지 비트(1bit) + 패리티 비트(1bit)  =  transfer_bits_count(10)
    2. 문자 한 개를 보내는 데 필요한 시간 계산
-    ex. character 전송 시간(10416666.67)(ns) = transfer_bit_count(10) * nanosecond per second(10000000000) / baud rate(9600)
+    ex. transfer_bits_count(10) * nanosecond per second(10000000000) / baud rate(9600)  =  send_character_time(10416666)(ns)
+   3. 전송 버퍼 상태 체크 폴링
  
+  ![](images/AMBA-PL011_RS485_03.png) 
+  ![](images/AMBA-PL011_RS485_04.png) 
 
  - 트랜시버 시, RS485
 
@@ -78,9 +86,6 @@
 	* 장치의 오동작 : 전송제어(TxEN)신호의 타이밍이 맞지 않으면 장치가 오동작 할 수 있습니다.
   
 
-
-
- - ZT13085E 타이밍** : RS485 트랜시버 IC 의 Transmitter Timing 은 Typ 150ns(Max 250ns) Receiver Timing 은 Max 350. 
 
 
  DE 신호는 serial core에서 데이터 전송을 시작하여 전환되며 전송이 활성화되기 이전에 delay가 있는 경우, 첫 번째 timer에 의한 delay 후 전송이 시작됩니다.
@@ -106,13 +111,6 @@
  - timer1 : rs485_delay_timer (used rs485 delays)
  - tiemr2 : rs485_tx_empty_poll_timer (used rs485 delays)
 
-
-
-  set_termios : 
-   1. upper layer로 부터 serial 장치 설정 값에 따라서 tx transmit되는 bit 의 count를 계산한다.
-    ex. transfer_bit_count(10) = 비트 수(8bit) + 정지 비트(1bit) + 패리티 비트(1bit) 
-   2. 문자 한 개를 보내는 데 필요한 시간 계산
-    ex. char_transfer_time(10416666.67)(ns) = transfer_bit_count(10) * NSEC_PER_SEC(10000000000 / baud(9600)
 
 4. 마무리
 
