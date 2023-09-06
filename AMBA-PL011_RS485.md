@@ -77,7 +77,7 @@
    RS485 트랜시버 IC의 특성에 따라 다소 차이가 있지만 전송제어(TxEN)신호의 전환 시간은(Transmitter Timing, Receiver Timing) ns 단위로 정의되어 있습니다.   
    타이머1은 정의된 전송제어(TxEN)신호에 맞춰 지연시킵니다.  
 
-   * 참고 : *ZT13085E 타이밍**
+   * 참고 : *ZT13085E 타이밍***
   
  > ZT13085E 타이밍** : RS485 트랜시버 IC 의 Transmitter Timing 은 Typ 150ns(Max 250ns) Receiver Timing 은 Max 350ns. 
 
