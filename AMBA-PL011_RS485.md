@@ -85,6 +85,10 @@
     ex. 비트 수(8bit) + 정지 비트(1bit) + 패리티 비트(1bit)  =  transfer_bits_count(10)  
    2. 문자 한 개를 보내는 데 필요한 시간 계산  
     ex. transfer_bits_count(10) * nanosecond per second(10^10) / baud rate(9600)  =  send_character_time(10416666)(ns)  
+
+
+ - 데이터 전송 
+
   ![](images/AMBA-PL011_RS485_03.png)   
  > 시리얼 통신 과정 중, '데이터 송신' 단계에서 추가한 기능이 동작됩니다.
    3. 타이머1은 정의된 Transmitter Timing 만큼 지연 후, 전송제어(TxEN)신호를 활성화 합니다.
