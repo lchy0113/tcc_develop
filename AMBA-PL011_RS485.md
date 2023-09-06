@@ -82,9 +82,9 @@
  > ZT13085E 타이밍** : RS485 트랜시버 IC 의 Transmitter Timing 은 Typ 150ns(Max 250ns) Receiver Timing 은 Max 350ns. 
 
 
- 시리얼 통신 과정의 '터미널 설정 변경' 단계에서 세팅 값 입력 과정을 진행합니다.
 
- ![ABCDEFG](images/AMBA-PL011_RS485_02.png) 
+ ![](images/AMBA-PL011_RS485_02.png) 
+ <시리얼 통신 과정의 '터미널 설정 변경' 단계에서 세팅 값 입력 과정을 진행합니다.>
 
    1. 상위 레이어에서 세팅하는 시리얼 장치 설정 값에 따라서 전송되는 bit 의 count를 계산합니다.  
     ex. 비트 수(8bit) + 정지 비트(1bit) + 패리티 비트(1bit)  =  transfer_bits_count(10)  
