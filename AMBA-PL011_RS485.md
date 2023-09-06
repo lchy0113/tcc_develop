@@ -87,7 +87,7 @@
    ex. transfer_bits_count(10) * nanosecond per second(10^10) / baud rate(9600)  =  send_character_time(10416666)(ns)  
 
 
-### 3 **데이터 전송**
+### 3) **데이터 전송**: 동기식 전송제어(TxEN)신호 제어
 
   ![](images/AMBA-PL011_RS485_03.png)   
  > 시리얼 통신 과정 중, '데이터 송신' 단계에서 추가한 기능이 동작됩니다.
