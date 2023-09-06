@@ -79,7 +79,7 @@
 
    * 참고 : *ZT13085E 타이밍***
   
- > *ZT13085E 타이밍** : RS485 트랜시버 IC 의 Transmitter Timing 은 Typ 150ns(Max 250ns) Receiver Timing 은 Max 350ns. *
+ > ZT13085E 타이밍** : RS485 트랜시버 IC 의 Transmitter Timing 은 Typ 150ns(Max 250ns) Receiver Timing 은 Max 350ns. 
 
 
  ![](images/AMBA-PL011_RS485_02.png) 
