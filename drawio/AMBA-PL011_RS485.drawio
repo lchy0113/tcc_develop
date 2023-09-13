@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2023-09-13T06:56:53.288Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" etag="VzoBaSWCZ-v0vSR7rjwo" version="21.6.8" type="device">
+<mxfile host="Electron" modified="2023-09-13T07:50:25.352Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" etag="pzalinRGbWvtWcvEXHV4" version="21.6.8" type="device">
   <diagram name="Page-1" id="HqIN1Tp-WRLzK0X4IBLw">
     <mxGraphModel dx="2834" dy="5011" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -1946,10 +1946,10 @@
         <mxCell id="v2MVpgUPyAXWTFi4Tj06-221" value="전송 데이터 입력 받음&lt;br style=&quot;font-size: 10px;&quot;&gt;(length : 5)&amp;nbsp;&lt;br style=&quot;font-size: 10px;&quot;&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;fontSize=10;strokeWidth=0.5;" vertex="1" parent="1">
           <mxGeometry x="-1651" y="-3200" width="130" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="v2MVpgUPyAXWTFi4Tj06-222" value="동기식 전송 제어 기술 적용" style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=7;verticalAlign=middle;align=center;" vertex="1" parent="1">
+        <mxCell id="v2MVpgUPyAXWTFi4Tj06-222" value="동기식 전송 제어 기술 적용" style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=7;verticalAlign=middle;align=left;" vertex="1" parent="1">
           <mxGeometry x="-1270" y="-3220" width="230" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="v2MVpgUPyAXWTFi4Tj06-223" value="종래 기술" style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=7;verticalAlign=middle;align=center;" vertex="1" parent="1">
+        <mxCell id="v2MVpgUPyAXWTFi4Tj06-223" value="종래 기술&lt;br&gt;(동기식 전송 제어 기술 미적용)" style="text;strokeColor=none;fillColor=none;html=1;fontSize=16;fontStyle=7;verticalAlign=middle;align=left;" vertex="1" parent="1">
           <mxGeometry x="-1265" y="-2900" width="230" height="20" as="geometry" />
         </mxCell>
       </root>
