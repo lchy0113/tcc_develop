@@ -57,10 +57,11 @@ while True:
 				f.write(f"[FAIL] [{date}] '{log_fail_string}'\n")
 		except:
 			print("error file open")
+		break;
 
 	elif log_boot_string in received_data:
-		print(Fore.GREEN + f"[INDEX] : [{date}] TOTAL({count}) [SUCC({count_succ}) / FAIL({count_fail})]" + Fore.RESET)
 		count += 1
+		print(Fore.GREEN + f"[INDEX] : [{date}] TOTAL({count}) [SUCC({count_succ}) / FAIL({count_fail})]" + Fore.RESET)
 		#ser.write(b'reboot\r\n')
 		command = f"./smartthings devices:commands {deviceid} switch:off --token={token}"
 		result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
