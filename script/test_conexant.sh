@@ -53,6 +53,8 @@ do
 	then
 		echo "[`date`] [$test_cnt] fail" >> $test_file
 		echo "[`date`] [$test_cnt] fail -> `adb -s $adb_device shell dmesg | grep $test_log `" >> $test_file
+		adb -s $adb_device root ; adb -s $adb_device remount ; adb -s $adb_device shell system_dump.sh
+		adb -s $adb_device pull /storage/emulated/0/temp/
 		test_cont=false
 	fi
 	test_cnt=$((test_cnt+1))
