@@ -54,6 +54,9 @@ test_file=test_$(date '+%Y-%m-%d').log
 while [ true ]
 do
 	echo "prepare for test"
+	token="61ed264a-248f-4685-86a4-a155d3b469df"
+	deviceid="a33c21d8-bd0f-4004-8353-14660902510c"
+
 	maxwait=20
 	delay=$((RANDOM%$maxwait))
 	progress_bar $delay
