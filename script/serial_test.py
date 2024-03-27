@@ -9,7 +9,7 @@ import os
 log_fail_string = "cx2070x_download_firmware(): download firmware failed, Error"
 log_succ_string = "cx2070x_download_firmware(): download firmware successfully"
 log_test_string = "TP2860 driver verison 0.10.1 loaded"
-log_boot_string = "init: processing action (sys.boot_completed=1)"
+log_boot_string = "init: processing action (sys.boot_completed=1) from (/init.rc"
 
 # set serial port 
 ser = serial.Serial(port='/dev/ttyUSB1', baudrate=115200, timeout=1, xonxoff=False, rtscts=False, dsrdtr=False)
@@ -66,6 +66,7 @@ while True:
 		command = f"./smartthings devices:commands {deviceid} switch:off --token={token}"
 		result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 		print(result.stdout)
+		print(Fore.GREEN + f"(power off)" + Fore.RESET)
 
 		random_delay = random.randint(2,10)
 		random_task(random_delay)
@@ -74,6 +75,7 @@ while True:
 		command = f"./smartthings devices:commands {deviceid} switch:on --token={token}"
 		result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 		print(result.stdout)
+		print(Fore.GREEN + f"(power on)" + Fore.RESET)
 
 
 
