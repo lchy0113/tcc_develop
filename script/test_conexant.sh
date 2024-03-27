@@ -30,13 +30,14 @@ fail_log="cx2070x_download_firmware():.download.firmware.failed,.Error"
 succ_log="cx2070x_download_firmware():.download.firmware.successfully"
 test_log="cx2070x_download_firmware():"
 
-test_cont=true
+test_cont=1
 test_cnt=0
 test_file=test_$(date '+%Y-%m-%d').log 
 
-while [ $test_cont ]
+while [ true ]
 do
-	progress_bar $((RANDOM%$maxwait))
+	delay=$((RANDOM%$maxwait))
+	progress_bar $delay
 
 	echo "reboot"
 	adb -s $adb_device reboot
@@ -46,16 +47,14 @@ do
 
 	if [ $(adb -s $adb_device shell dmesg | grep -c $succ_log) -ge 1 ]
 	then
-		echo "[`date`] [$test_cnt] success"
-		echo "[`date`] [$test_cnt] success -> `adb -s $adb_device shell dmesg | grep $test_log `" >> $test_file
-		test_cont=true
+		echo "[`date`] [$test_cnt] [$delay] success"
+		echo "[`date`] [$test_cnt] [$delay] success -> `adb -s $adb_device shell dmesg | grep $test_log `" >> $test_file
 	elif [ $(adb -s $adb_device shell dmesg | grep -c $fail_log) -ge 1 ]
 	then
-		echo "[`date`] [$test_cnt] fail" >> $test_file
-		echo "[`date`] [$test_cnt] fail -> `adb -s $adb_device shell dmesg | grep $test_log `" >> $test_file
+		echo "[`date`] [$test_cnt] [$delay] fail" >> $test_file
+		echo "[`date`] [$test_cnt] [$delay] fail -> `adb -s $adb_device shell dmesg | grep $test_log `" >> $test_file
 		adb -s $adb_device root ; adb -s $adb_device remount ; adb -s $adb_device shell system_dump.sh
 		adb -s $adb_device pull /storage/emulated/0/temp/
-		test_cont=false
 	fi
 	test_cnt=$((test_cnt+1))
 done
