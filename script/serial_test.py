@@ -41,6 +41,7 @@ while True:
 #	if log_test_string in received_data:
 #		print(Fore.BLUE + f"[PASS] '{log_test_string}'" + Fore.RESET)
 	if log_succ_string in received_data:
+		count_succ += 1
 		print(Fore.BLUE + f"[PASS] [{date}] '{log_succ_string}'" + Fore.RESET)
 		try:
 			with open(filename, 'a', encoding='UTF-8') as f:
@@ -48,10 +49,9 @@ while True:
 		except:
 			print("error file open")
 
-		count_succ += 1
 	elif log_fail_string in received_data:
-		print(Fore.RED + f"[FAIL] [{date}] '{log_fail_string}'" + Fore.RESET)
 		count_fail += 1
+		print(Fore.RED + f"[FAIL] [{date}] '{log_fail_string}'" + Fore.RESET)
 		try:
 			with open(filename, 'a', encoding='UTF-8') as f:
 				f.write(f"[FAIL] [{date}] '{log_fail_string}'\n")
@@ -66,7 +66,7 @@ while True:
 		result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 		print(result.stdout)
 
-		random_delay = random.randint(1,20)
+		random_delay = random.randint(2,10)
 		random_task(random_delay)
 		time.sleep(random_delay);
 
