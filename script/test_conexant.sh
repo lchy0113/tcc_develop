@@ -1,6 +1,23 @@
 #!/bin/bash
 
-maxwait=20
+token="61ed264a-248f-4685-86a4-a155d3b469df"
+deviceid="a33c21d8-bd0f-4004-8353-14660902510c"
+cmd_switchoff="switch:off"
+cmd_switchon="switch:off"
+
+# ./smartthings devices:commands --token=61ed264a-248f-4685-86a4-a155d3b469df
+# ─────────────────────────────────────────────────────────────────────────────────────────────
+#  #  Label                Name                     Type  Device Id
+# ─────────────────────────────────────────────────────────────────────────────────────────────
+# 1  SmartThings Station  Wireless-Charging-Hub    MQTT  dda6a1a3-6670-4035-a551-289d581ab781
+# 2  SmartThings Station  SmartThings Station      HUB   41a24a49-2f0d-40e0-a07e-75c6faa4507b
+# 3  Wi-Fi Smart Plug 1   Samjin Wi-Fi Smart Plug  MQTT  a33c21d8-bd0f-4004-8353-14660902510c
+# ─────────────────────────────────────────────────────────────────────────────────────────────
+# ? Select a device.
+
+# ./smartthings devices:commands $deviceid switch:off --token=61ed264a-248f-4685-86a4-a155d3b469df
+# ./smartthings devices:commands $deviceid switch:on --token=61ed264a-248f-4685-86a4-a155d3b469df
+
 progress_bar()
 {
 	local PROG_BAR_MAX=${1:-30}
@@ -36,11 +53,18 @@ test_file=test_$(date '+%Y-%m-%d').log
 
 while [ true ]
 do
+	echo "prepare for test"
+	maxwait=20
 	delay=$((RANDOM%$maxwait))
 	progress_bar $delay
 
-	echo "reboot"
-	adb -s $adb_device reboot
+	echo "power off"
+	./smartthings devices:commands $deviceid switch:off --token=$token
+	maxwait=10
+	delay=$((RANDOM%$maxwait))
+	progress_bar $delay
+	echo "power on"
+	./smartthings devices:commands $deviceid switch:on --token=$token
 
 	echo "wait-for-device"
 	adb -s $adb_device wait-for-device
