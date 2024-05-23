@@ -658,10 +658,12 @@ int32_t TAvnHardwareInterface::takePicture(void)
 ```
 
 
-
-recovery handler에서는 moduel status가 preview_started가 아닌 경우, start preview service를 실행 시키고, 사진 촬영(takePicture) 시, Capture를 위해module status에서 preview started 상태를 해제함. 
-즉, 사진 촬영 시, module status를 변경시키는 코드와 recovery handler 의 sync가 맞지 않아, start preview service 가 반복적으로 실행되어 이슈가 발생. 
-
+ recovery handler에서는 moduel status가 preview_started가 아닌 경우, 
+   start preview service를 실행 시키고, 사진 촬영(takePicture) 시,  
+   Capture를 위해module status에서 preview started 상태를 해제함.   
+ 즉, 사진 촬영 시, module status를 변경시키는 코드와 recovery handler 의 sync가 맞지 않아,   
+ start preview service 가 반복적으로 실행되어 이슈가 발생. 
+  
  - recovery handler 
 
  ![](./images/CAMERA_05.png)
@@ -676,5 +678,6 @@ recovery handler에서는 moduel status가 preview_started가 아닌 경우, sta
  - 이슈
 
  ![](./images/CAMERA_07.png)
+
 
 -----
