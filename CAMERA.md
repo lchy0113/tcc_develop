@@ -26,9 +26,9 @@
 ---
 
 ## The Camera Provider of the Android Camera principle starts
-
-1. Camera provider process 소개.
-
+  
+### 1. Camera provider process 소개.
+  
 ```bash
 console:/ # ps -e  | grep camrea
 1|console:/ # ps -e  | grep camera
@@ -41,16 +41,16 @@ console:/ #
  디바이스에서 실행되는 android.hardware.cameraprovider@2.4-service process는 camera 작동을 지원하는 중요한 프로세스.
  
  ![Camera 구조](images/CAMERA_01.png)
-
- 위의 그림에서 camera architecture는 camera provider process의 위치를 보여준다. 
- HAL layer는 camera provider process에서 실행된다.
-
-2. android.hardware.camera.provider@2.4-service 프로세스.
-
+  
+ 위의 그림에서 camera architecture는 camera provider process의 위치를 보여준다.   
+ HAL layer는 camera provider process에서 실행된다.  
+  
+### 2. android.hardware.camera.provider@2.4-service 프로세스.  
+  
 소스코드 위치 : hardware/interfaces/camera/provider/
-
+  
  ![](images/CAMERA_02.png)
-
+  
  hardware/interfaces/camera/provider/2.4/default/ 경로에 android.hardware.camera.provider@2.4-service.rc파일이 존재한다. 
  Android 초기화는 이러한 rc파일을 실행하는 것이다. 
  실행 코드를 살펴보자.
@@ -131,6 +131,10 @@ camera_module_t HAL_MODULE_INFO_SYM = {
 
  이러한 함수 패핑을 정의 하여, HAL 계층의 함수를 호출해 사용합니다. 
 
+<br/>
+<br/>
+<br/>
+<br/>
 
 -----
 
@@ -601,11 +605,21 @@ int32_t TAvnModule::start_preview(struct camera_device *device)
 
 note : https://cleanli.github.io/cleanhome/posts/2017-08-12/Android_x86_Camera_HAL.html
 
+<br/>
+<br/>
+<br/>
+<br/>
+
 -----
 
 ## Kernel
 
 
+
+<br/>
+<br/>
+<br/>
+<br/>
 
 -----
 
