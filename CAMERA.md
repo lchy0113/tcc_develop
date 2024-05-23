@@ -9,11 +9,10 @@
 
 <hr>
 
-- [The Camera Provider of the Android Camera principle starts](the-camera-provider-of-the-android-camera-principle-starts)
-
-- [Camera hal](camera-hal)
-- [Kernel](kernel)
-- [Debug](debug)
+- [The Camera Provider of the Android Camera principle starts](#the-camera-provider-of-the-android-camera-principle-starts)
+- [Camera hal](#camera-hal)
+- [Kernel](#kernel)
+- [Debug](#debug)
 
 <br/>
 <br/>
