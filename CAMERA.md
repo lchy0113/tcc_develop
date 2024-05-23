@@ -2,6 +2,22 @@
 
 > Telechips 플랫폼의 Camera 모듈에 대해 정리.
 
+<br/>
+<br/>
+<br/>
+<br/>
+
+<hr>
+
+- [The Camera Provider of the Android Camera principle starts](the-camera-provider-of-the-android-camera-principle-starts)
+
+- [Camera hal](camera-hal)
+- [Kernel](kernel)
+- [Debug](debug)
+
+<hr>
+<hr>
+
 ---
 
 ## The Camera Provider of the Android Camera principle starts
@@ -113,7 +129,7 @@ camera_module_t HAL_MODULE_INFO_SYM = {
 
 -----
 
-## CAMERA HAL 
+## Camera hal
 
  - hardware/telechips/camera 
 
@@ -582,14 +598,15 @@ note : https://cleanli.github.io/cleanhome/posts/2017-08-12/Android_x86_Camera_H
 
 -----
 
-## KERNEL
+## Kernel
 
 
 
 -----
 
 
-## DEBUG
+## Debug
+
 > do_startPreview(void) 함수는 startPreview(void) 또는 picture_handler(void)에서 call됨. 
 
 
