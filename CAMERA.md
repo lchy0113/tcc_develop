@@ -12,6 +12,7 @@
 - [The Camera Provider of the Android Camera principle starts](#the-camera-provider-of-the-android-camera-principle-starts)
 - [Camera hal](#camera-hal)
 - [Kernel](#kernel)
+- [Develop external cam](#develop-external-cam)
 - [Debug](#debug)
 
 <br/>
@@ -621,6 +622,89 @@ note : https://cleanli.github.io/cleanhome/posts/2017-08-12/Android_x86_Camera_H
 <br/>
 
 -----
+
+
+## Develop external cam
+
+ camera id 를 사용하여 external camera 를 open.  
+
+ Camera  .open(camera_id)  시, camera_id 값 에 open 하고자 하는 sensor_type 값 전달. 
+
+
+
+ 
+```bash
+----------------------------------------------
+# before
+
+**camera id**	**camera**
+0 				back camera(Door)
+1				front camera(internal cam)
+2				external camera(sensor type : 
+					TP2860_TVI_720P = 0x00,
+					TP2860_TVI_1080P = 0x01,
+					TP2860_AHD_720P = 0x02,
+					TP2860_AHD_1080P = 0x03,
+					TP2860_CVI_720P = 0x04,
+					TP2860_CVI_1080P = 0x05,
+					TP2860_NTSC	= 0x06,
+					
+					
+-----------------------------------------------
+# after
+
+**camera id**	**camera**
+		0 		back camera(Door)
+		1		front camera(internal cam)
+		2		external camera(sensor type(0x0) : tvi720p)
+		3		external camera(sensor type(0x1) : tvi1080p)
+		4		external camera(sensor type(0x2) : ahd720p)
+		5		external camera(sensor type(0x3) : ahd1080p)
+		6		external camera(sensor type(0x4) : cvi720p)
+		7		external camera(sensor type(0x5) : cvi1080p)
+		8		external camera(sensor type(0x6) : ntsc)
+
+```
+
+
+```cpp
+// camera hal sequence
+
+ Camera.open()
+    |
+    CameraDevice::open()
+	|   //hardware/interfaces/camera/device/1.0/default/CameraDevice.cpp
+ 	|
+	+-> tcamera::TCameraCommon::camera_device_open(...)
+		|	//hardware/telechips/camera/libcamera_v2/common/TCamera_Common.cpp
+		|
+		+-> TCameraCommon::TCamera_devic_connect(...)
+			|	//hardware/telechips/camera/libcamera_v2/common/TCamera_Common.cpp
+			|	// TAvnModule *hw = new TAvnModule((uint32_t)camera_id)
+			|
+			+-> TAvnModule::open_camera(...)
+				|	//hardware/telechips/camera/libcamera_v2/modules/avn/TCameraAvn_Module.cpp
+				|	// return double pointer for AVN camera device struct
+				|
+				+->	TAvnHardwareInterface::TAvnHardwareInterface(int32_t camera_id)
+				|	//hardware/telechips/camera/libcamera_v2/modules/avn/TCameraAvn_hwi.cpp
+				|	// m_camera_id(camera_id)
+				|	// parse sensor_format from camera id
+				|	// T_CAM_SET_SENSOR_FORMAT
+				|	// after 
+				|	// T_CAM_TOBE_OPEN
+
+
+```
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+-----
+
 
 
 ## Debug
