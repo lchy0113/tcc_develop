@@ -198,6 +198,10 @@ def main():
             print(f"\n===== CYCLE {c}/{args.cycles} @ {now_str()} =====")
             stats["total"] += 1
 
+            # Prep-off delay
+            print(f"[DELAY] pre-off 5s")
+            time.sleep(5)
+
             # OFF
             print("[ACTION] SmartPlug OFF ...", end=" ", flush=True)
             off_ok, off_note = smartthings_command(args.cli, args.device_id, args.token, "off")
